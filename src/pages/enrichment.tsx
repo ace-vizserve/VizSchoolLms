@@ -1,6 +1,6 @@
 import { CheckCircle, FileText, Users, ExternalLink, GraduationCap, Globe, CreditCard, Edit, Clock, UserCheck } from 'lucide-react';
 
-const Primary = () => {
+const Enrichment = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
@@ -382,4 +382,4 @@ const Primary = () => {
   );
 };
 
-export default Primary;
+export default Enrichment;

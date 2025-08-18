@@ -5,7 +5,13 @@ import { Marquee } from "../magicui/marquee";
 import AnimatedMeshGradient from "../ui/animated-mesh-gradient";
 import { Button } from "../ui/button";
 
-
+interface Tutor {
+  id: number;
+  name: string;
+  title: string;
+  image: string;
+  uniqueKey?: string;
+}
 
 interface TutorCardProps {
   name: string;
@@ -16,14 +22,6 @@ interface TutorCardProps {
 
 function Hero() {
   const [isLoaded, setIsLoaded] = useState(false);
-
-
-  interface Tutor {
-  id: number;
-  name: string;
-  title: string;
-  image: string;
-}
 
   const tutors: Tutor[] = [
     { id: 1, name: "Joe Johnson", title: "Mathematics Expert", image: "/assets/our-tutors/teacher-1.webp" },
@@ -277,7 +275,7 @@ function Hero() {
         <Marquee
           pauseOnHover
           vertical
-          className={`flex justify-center w-full max-h-screen mx-auto xl:mx-0 lg:w-1/2 xl:ml-auto lg:self-end self-center ${
+          className={`[--duration:100s] flex justify-center w-full max-h-screen mx-auto xl:mx-0 lg:w-1/2 xl:ml-auto lg:self-end self-center ${
             isLoaded ? "animate-fade-in-up" : "opacity-0"
           }`}>
           {infiniteTutors.map((tutor) => (

@@ -16,7 +16,6 @@ function Hero() {
               scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
             }}
             viewport={{
-              amount: "all",
               once: true,
             }}
             className="mt-6 text-xl md:text-2xl font-bold">
@@ -31,7 +30,6 @@ function Hero() {
               scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
             }}
             viewport={{
-              amount: "all",
               once: true,
             }}
             className="font-extrabold text-4xl md:text-5xl lg:text-[2.75rem] xl:text-5xl">
@@ -47,7 +45,6 @@ function Hero() {
             scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
           }}
           viewport={{
-            amount: "all",
             once: true,
           }}
           className="mt-6 text-xl md:text-2xl font-bold">
@@ -62,7 +59,6 @@ function Hero() {
             scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
           }}
           viewport={{
-            amount: "all",
             once: true,
           }}
           className="mt-6 flex items-center gap-4">
@@ -96,7 +92,6 @@ function Hero() {
           scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
         }}
         viewport={{
-          amount: "all",
           once: true,
         }}
         className="w-full aspect-video bg-cover rounded-4xl border-6 lg:border-8 border-primary"

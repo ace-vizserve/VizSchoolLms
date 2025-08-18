@@ -46,7 +46,6 @@ function Features() {
             scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
           }}
           viewport={{
-            amount: "all",
             once: true,
           }}
           className="text-primary text-4xl md:text-5xl md:leading-[3.5rem] font-bold tracking-tight max-w-xl md:text-center md:mx-auto">

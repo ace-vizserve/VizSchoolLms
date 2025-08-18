@@ -22,7 +22,7 @@ function OurTutors() {
       />
       <Hero />
 
-      <MaxWidthWrapper className="max-w-screen-xl py-16 lg:py-20 space-y-12 md:space-y-16 lg:space-y-20">
+      <MaxWidthWrapper className="max-w-screen-xl py-20 lg:py-24 space-y-12 md:space-y-16 lg:space-y-20">
         <Features />
         <Stats />
       </MaxWidthWrapper>

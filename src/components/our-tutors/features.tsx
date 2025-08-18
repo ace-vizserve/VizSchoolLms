@@ -1,88 +1,88 @@
-import { GraduationCap, Users } from "lucide-react";
+import { Award, BookOpen, GraduationCap, HeartHandshake, MessageCircle, Users } from "lucide-react";
+import { motion } from "motion/react";
+import { Button } from "../ui/button";
+
+const features = [
+  {
+    icon: GraduationCap,
+    title: "Certified Educators",
+    description:
+      "Our tutors are qualified professionals with real classroom experience, bringing expertise and passion to every lesson.",
+  },
+  {
+    icon: Users,
+    title: "Mentors & Guides",
+    description:
+      "Beyond teaching, they coach and inspire—helping students build confidence, resilience, and a love for learning.",
+  },
+  {
+    icon: HeartHandshake,
+    title: "Student-Centered Approach",
+    description:
+      "Every tutor focuses on understanding each learner’s strengths and challenges, tailoring lessons to individual needs.",
+  },
+  {
+    icon: BookOpen,
+    title: "Engaging Lessons",
+    description:
+      "Through interactive content and practical examples, our tutors make complex topics simple and enjoyable.",
+  },
+  {
+    icon: MessageCircle,
+    title: "Open Communication",
+    description:
+      "Tutors stay connected with parents and students, ensuring progress is clear and support is always available.",
+  },
+  {
+    icon: Award,
+    title: "Proven Results",
+    description:
+      "With consistent guidance and encouragement, our tutors help students achieve milestones and celebrate success.",
+  },
+];
 
 function Features() {
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="fixed inset-0 -z-10 overflow-hidden bg-gradient-to-bl from-accent/60 to-white" />
-      <div className="w-full max-w-screen-lg mx-auto py-12">
-        <h2 className="text-primary text-2xl leading-10 sm:text-3xl md:text-[38px] md:leading-[3.25rem] font-extrabold tracking-tight">
-          Meet Our Tutors: <br />
-          Inspiring Minds, One Lesson at a Time
-        </h2>
-        <div className="mt-8 grid sm:grid-cols-2 md:grid-cols-5 lg:grid-cols-3 gap-6">
-          <div className="bg-white rounded-xl pt-6 md:pt-8 pb-6 px-6 col-span-1 md:col-span-2 lg:col-span-1">
-            <div
-              style={{
-                backgroundImage: "url(/assets/our-tutors/our-tutors-1.jpg)",
-              }}
-              className="md:hidden mb-6 aspect-video w-full bg-background border rounded-xl bg-cover"
-            />
-            <span className="text-2xl font-bold text-primary tracking-tight">Expert Educators</span>
-
-            <ul className="mt-6 space-y-4">
-              <li>
-                <div className="flex items-start gap-3">
-                  <GraduationCap className="shrink-0" />
-                  <p className="-mt-0.5">
-                    Our tutors are certified educators with real classroom experience, bringing their expertise into
-                    every lesson.
-                  </p>
-                </div>
-              </li>
-              <li>
-                <div className="flex items-start gap-3">
-                  <Users className="shrink-0" />
-                  <p className="-mt-0.5">
-                    They mentor, guide, and inspire learners—ensuring every student feels supported on their journey.
-                  </p>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <div
+    <div className="py-12 md:py-16">
+      <h2 className="text-primary text-3xl sm:text-4xl font-extrabold tracking-tight text-center">
+        Dedicated Tutors, Real Results
+      </h2>
+      <p className="text-pretty mt-4 text-center text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
+        At VizSchool, our certified educators go beyond teaching—mentoring, guiding, and personalizing lessons to build
+        confidence, foster communication, and drive lasting success.
+      </p>
+      <div className="mt-10 sm:mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {features.map((feature, index) => (
+          <motion.div
+            key={feature.title}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1, duration: 0.5 }}
+            viewport={{ once: true }}
+            className="group flex flex-col relative overflow-hidden rounded-xl py-6 px-5 transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1"
             style={{
-              backgroundImage: "url(/assets/our-tutors/our-tutors-1.jpg)",
-            }}
-            className="hidden md:block border border-border/80 bg-cover rounded-xl col-span-1 md:col-span-3 lg:col-span-2"
-          />
+              background: "rgba(255, 255, 255, 0.25)",
+              backdropFilter: "blur(10px)",
+              border: "1px solid rgba(255, 255, 255, 0.3)",
+              boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
+            }}>
+            <div className="absolute inset-0 bg-gradient-to-br from-orange-400/5 to-purple-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
 
-          <div
-            style={{
-              backgroundImage: "url(/assets/our-tutors/our-tutors-2.webp)",
-            }}
-            className="hidden md:block border border-border/80 bg-cover rounded-xl col-span-1 md:col-span-3 lg:col-span-2"
-          />
+            <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/20 to-transparent rounded-t-xl"></div>
 
-          <div className="bg-white rounded-xl pt-6 md:pt-8 pb-6 px-6 col-span-1 md:col-span-2 lg:col-span-1">
-            <div
-              style={{
-                backgroundImage: "url(/assets/our-tutors/our-tutors-2.webp)",
-              }}
-              className="md:hidden mb-6 aspect-video w-full bg-background border rounded-xl bg-cover"></div>
+            <Button size={"icon"} variant={"outline"} className="bg-primary/10">
+              <feature.icon className="h-6 w-6 stroke-orange-500 stroke-2" />
+            </Button>
 
-            <span className="text-2xl font-bold text-primary tracking-tight">Personalised Learning</span>
+            <span className="mt-3 text-lg font-bold text-orange-500 relative z-10">{feature.title}</span>
 
-            <ul className="mt-6 space-y-4">
-              <li>
-                <div className="flex items-start gap-3">
-                  <GraduationCap className="shrink-0" />
-                  <p className="-mt-0.5">
-                    Lessons are tailored to each student’s pace, strengths, and goals for maximum growth.
-                  </p>
-                </div>
-              </li>
-              <li>
-                <div className="flex items-start gap-3">
-                  <Users className="shrink-0" />
-                  <p className="-mt-0.5">
-                    From academics to special skills, our tutors help students excel in every area of learning.
-                  </p>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
+            <p className="mt-1 text-muted-foreground text-[15px] relative z-10 leading-relaxed">
+              {feature.description}
+            </p>
+
+            <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/50 to-transparent"></div>
+          </motion.div>
+        ))}
       </div>
     </div>
   );

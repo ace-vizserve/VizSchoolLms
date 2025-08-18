@@ -216,7 +216,7 @@ function Hero() {
                 bounce: 0.3,
               }}
               viewport={{ once: true }}
-              className="text-white text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black !leading-[1.1] tracking-tight">
+              className="text-white text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black !leading-[1.1] tracking-tight">
               Meet Our{" "}
               <span className="relative text-white">
                 Expert
@@ -227,7 +227,7 @@ function Hero() {
                   className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-orange-400 to-blue-400 rounded-full"
                 />
               </span>{" "}
-              Tutors
+              Teachers
             </motion.h1>
           </div>
 

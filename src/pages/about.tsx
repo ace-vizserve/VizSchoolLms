@@ -33,7 +33,6 @@ function About() {
               scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
             }}
             viewport={{
-              amount: "all",
               once: true,
             }}>
             <Badge className="font-semibold rounded-full py-1 border-none bg-white/20 backdrop-blur-sm">
@@ -49,7 +48,6 @@ function About() {
               scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
             }}
             viewport={{
-              amount: "all",
               once: true,
             }}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl sm:max-w-[25ch] mx-auto font-bold tracking-tight leading-[1.2] lg:leading-[1.2]">
@@ -64,7 +62,6 @@ function About() {
               scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
             }}
             viewport={{
-              amount: "all",
               once: true,
             }}
             className="text-balance text-[17px] md:text-lg">
@@ -80,7 +77,6 @@ function About() {
               scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
             }}
             viewport={{
-              amount: "all",
               once: true,
             }}
             className="flex items-center justify-center gap-4">

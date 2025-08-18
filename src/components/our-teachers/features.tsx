@@ -7,7 +7,7 @@ const features = [
     icon: GraduationCap,
     title: "Certified Educators",
     description:
-      "Our tutors are qualified professionals with real classroom experience, bringing expertise and passion to every lesson.",
+      "Our teachers are qualified professionals with real classroom experience, bringing expertise and passion to every lesson.",
   },
   {
     icon: Users,
@@ -19,25 +19,25 @@ const features = [
     icon: HeartHandshake,
     title: "Student-Centered Approach",
     description:
-      "Every tutor focuses on understanding each learner’s strengths and challenges, tailoring lessons to individual needs.",
+      "Every teacher focuses on understanding each learner’s strengths and challenges, tailoring lessons to individual needs.",
   },
   {
     icon: BookOpen,
     title: "Engaging Lessons",
     description:
-      "Through interactive content and practical examples, our tutors make complex topics simple and enjoyable.",
+      "Through interactive content and practical examples, our teachers make complex topics simple and enjoyable.",
   },
   {
     icon: MessageCircle,
     title: "Open Communication",
     description:
-      "Tutors stay connected with parents and students, ensuring progress is clear and support is always available.",
+      "Teachers stay connected with parents and students, ensuring progress is clear and support is always available.",
   },
   {
     icon: Award,
     title: "Proven Results",
     description:
-      "With consistent guidance and encouragement, our tutors help students achieve milestones and celebrate success.",
+      "With consistent guidance and encouragement, our teachers help students achieve milestones and celebrate success.",
   },
 ];
 
@@ -45,7 +45,7 @@ function Features() {
   return (
     <div className="py-12 md:py-16">
       <h2 className="text-primary text-3xl sm:text-4xl font-extrabold tracking-tight text-center">
-        Dedicated Tutors, Real Results
+        Dedicated Teachers, Real Results
       </h2>
       <p className="text-pretty mt-4 text-center text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
         At VizSchool, our certified educators go beyond teaching—mentoring, guiding, and personalizing lessons to build

@@ -18,7 +18,7 @@ const features = [
   },
   {
     category: "Education & Tutoring",
-    title: "👩‍🏫 Our Tutors",
+    title: "👩‍🏫 Our Teachers",
     details:
       "Behind every VizSchool course is a team of passionate, certified educators—many from HFSE International School—who bring real classroom experience to the digital world. They're not just instructors; they’re mentors, focused on making each lesson engaging, relatable, and tailored to every learner's needs.Through interactive content, personalized feedback, and consistent guidance, our tutors go beyond teaching. With VizSchool, your child is never learning alone.",
     tutorialLink: "#",

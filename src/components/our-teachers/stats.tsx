@@ -11,7 +11,7 @@ function Stats() {
           Dedicated. Experienced. Inspiring.
         </h2>
         <p className="mt-4 text-base md:text-lg max-w-2xl text-foreground/70">
-          Our tutors bring a wealth of experience, passion, and commitment to every lesson—mentoring students, guiding
+          Our teachers bring a wealth of experience, passion, and commitment to every lesson—mentoring students, guiding
           their growth, and inspiring a lifelong love for learning.
         </p>
 

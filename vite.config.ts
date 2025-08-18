@@ -13,7 +13,7 @@ const routes = [
   "/contact-us",
   "/faq",
   "/sitemap",
-  "/our-tutors",
+  "/our-teachers",
 ];
 
 // https://vite.dev/config/

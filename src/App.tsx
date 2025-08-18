@@ -8,15 +8,17 @@ import About from "./pages/about";
 
 import ContactUs from "./pages/ContactUs";
 
+import Blog from "./pages/blog";
 import Blogs from "./pages/blogs";
+import Enrichment from "./pages/enrichment";
 import FAQ from "./pages/faq";
-import OurTutors from "./pages/our-tutors";
+
+import OurTeachers from "./pages/our-teachers";
+import Primary from "./pages/primary";
 import Programmes from "./pages/programmes";
 import Reviews from "./pages/reviews";
-import Sitemap from "./pages/sitemap";
-import Primary from "./pages/primary";
 import Secondary from "./pages/secondary";
-import Enrichment from "./pages/enrichment";
+import Sitemap from "./pages/sitemap";
 
 // ScrollToTop component to handle navigation scrolling
 function ScrollToTop() {
@@ -49,7 +51,9 @@ function App() {
 
             <Route path="/sitemap" element={<Sitemap />} />
 
-            <Route path="/our-tutors" element={<OurTutors />} />
+            <Route path="/our-teachers" element={<OurTeachers />} />
+
+            <Route path="/blogs/:id" element={<Blog />} />
 
             <Route path="/faq" element={<FAQ />} />
 

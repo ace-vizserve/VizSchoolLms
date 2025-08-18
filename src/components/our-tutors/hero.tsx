@@ -1,6 +1,7 @@
 import { ArrowUpRight, Sparkles } from "lucide-react";
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
+import { Marquee } from "../magicui/marquee";
 import AnimatedMeshGradient from "../ui/animated-mesh-gradient";
 import { Button } from "../ui/button";
 
@@ -22,7 +23,7 @@ interface TutorCardProps {
 function Hero() {
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const tutors = [
+  const tutors: Tutor[] = [
     { id: 1, name: "Joe Johnson", title: "Mathematics Expert", image: "/assets/our-tutors/teacher-1.webp" },
     { id: 2, name: "Michelle Chen", title: "Physics Specialist", image: "/assets/our-tutors/teacher-2.webp" },
     { id: 3, name: "Emily Rodriguez", title: "Chemistry Master", image: "/assets/our-tutors/teacher-3.webp" },
@@ -271,26 +272,16 @@ function Hero() {
           </motion.div>
         </div>
 
-        {/* Vertical Carousel Section */}
-        <div
-          className={`flex justify-center w-full mx-auto xl:mx-0 lg:w-1/2 xl:ml-auto lg:self-end self-center ${
+        <Marquee
+          pauseOnHover
+          vertical
+          className={`flex justify-center w-full max-h-screen mx-auto xl:mx-0 lg:w-1/2 xl:ml-auto lg:self-end self-center ${
             isLoaded ? "animate-fade-in-up" : "opacity-0"
-          }`}
-          style={{ animationDelay: "0.2s" }}>
-          {/* Vertical carousel with fade effects */}
-          <div className="relative w-full h-screen overflow-hidden">
-            <div
-              className="carousel-vertical"
-              style={{
-                maskImage: "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
-                WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%)",
-              }}>
-              {infiniteTutors.map((tutor) => (
-                <TutorCard key={tutor.uniqueKey} {...tutor} />
-              ))}
-            </div>
-          </div>
-        </div>
+          }`}>
+          {infiniteTutors.map((tutor) => (
+            <TutorCard key={tutor.id} {...tutor} />
+          ))}
+        </Marquee>
       </div>
     </div>
   );

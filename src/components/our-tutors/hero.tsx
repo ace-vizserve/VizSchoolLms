@@ -4,13 +4,7 @@ import { useEffect, useState } from "react";
 import AnimatedMeshGradient from "../ui/animated-mesh-gradient";
 import { Button } from "../ui/button";
 
-interface Tutor {
-  id: number;
-  name: string;
-  title: string;
-  image: string;
-  uniqueKey?: string;
-}
+
 
 interface TutorCardProps {
   name: string;

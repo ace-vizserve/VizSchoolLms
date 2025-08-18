@@ -14,6 +14,7 @@ import OurTutors from "./pages/our-tutors";
 import Programmes from "./pages/programmes";
 import Reviews from "./pages/reviews";
 import Sitemap from "./pages/sitemap";
+import Primary from "./pages/primary";
 
 // ScrollToTop component to handle navigation scrolling
 function ScrollToTop() {
@@ -51,6 +52,8 @@ function App() {
             <Route path="/faq" element={<FAQ />} />
 
             <Route path="/our-programmes" element={<Programmes />} />
+
+            <Route path="/primary" element={<Primary />} />
 
             {/* Optional: Redirect unknown routes to the homepage */}
             <Route path="*" element={<Navigate to="/" />} />

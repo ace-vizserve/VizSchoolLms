@@ -1,8 +1,9 @@
 import { ChevronRight } from "lucide-react";
 import { motion } from "motion/react";
+import { Link } from "react-router-dom";
 import MaxWidthWrapper from "../components/max-width-wrapper";
 import { Badge } from "../components/ui/badge";
-import { Button } from "../components/ui/button";
+import { buttonVariants } from "../components/ui/button";
 import { Card, CardContent, CardHeader } from "../components/ui/card";
 import SEO from "../seo";
 
@@ -98,7 +99,6 @@ function Blogs() {
             scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
           }}
           viewport={{
-            amount: "all",
             once: true,
           }}
           className="text-primary mb-14 text-4xl md:text-5xl font-extrabold text-center tracking-tighter">
@@ -136,9 +136,14 @@ function Blogs() {
                   <h3 className="mt-4 text-[1.35rem] font-semibold tracking-tight">{details.title}</h3>
                   <p className="mt-2 text-muted-foreground line-clamp-2">{details.excerpt}</p>
 
-                  <Button size={"sm"} className="mt-6 shadow-none">
+                  <Link
+                    to={"/blogs/123"}
+                    className={buttonVariants({
+                      className: "!mt-6 !shadow-none",
+                      size: "sm",
+                    })}>
                     Read more <ChevronRight />
-                  </Button>
+                  </Link>
                 </CardContent>
               </Card>
             </motion.div>

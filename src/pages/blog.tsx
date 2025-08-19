@@ -16,26 +16,6 @@ const post = {
 };
 
 function Blog() {
-  async function handleShare() {
-    const shareData = {
-      title: post.title,
-      text: post.excerpt,
-      url: window.location.href,
-    };
-
-    if (navigator.share) {
-      try {
-        await navigator.share(shareData);
-      } catch (err) {
-        console.error("Share failed:", err);
-      }
-    } else {
-      // fallback: copy link
-      navigator.clipboard.writeText(window.location.href);
-      alert("Link copied to clipboard!");
-    }
-  }
-
   return (
     <MaxWidthWrapper className="max-w-4xl py-16 md:py-20 lg:py-24">
       <header className="pb-6">
@@ -76,8 +56,8 @@ function Blog() {
               scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
             }}
             viewport={{ once: true }}
-            className="flex flex-wrap items-center gap-2">
-            <Button size="sm" variant="ghost" onClick={handleShare} className="flex items-center gap-2">
+            className="flex flex-wrap items-center">
+            <Button size="sm" variant="ghost" className="pointer-events-none flex items-center gap-2">
               <Share2 className="w-4 h-4" />
               Share
             </Button>

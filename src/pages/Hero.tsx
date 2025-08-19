@@ -1,6 +1,6 @@
 import React from "react";
-
 import Testimonials from "../components/Testimonials";
+import { BASE_URL } from "../constants";
 import SEO from "../seo";
 
 const Hero: React.FC = () => {
@@ -9,12 +9,12 @@ const Hero: React.FC = () => {
       <SEO
         title="VizSchool LMS | Learn Anywhere, Anytime with Confidence"
         description="Experience VizSchool LMS — flexible, interactive, and certificate-ready learning for K-12 students. Learn anywhere, anytime, at your own pace."
-        canonical="https://yourdomain.com/"
+        canonical={BASE_URL}
         schemaMarkup={{
           "@context": "https://schema.org",
           "@type": "WebSite",
           name: "VizSchool LMS",
-          url: "https://yourdomain.com/",
+          url: BASE_URL,
         }}
       />
       <div className="hero-container relative min-h-screen bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 overflow-hidden">
@@ -197,45 +197,44 @@ const Hero: React.FC = () => {
 
           {/* Three people with modern capsule shapes - keeping original alignment */}
           <div className="flex flex-row items-end justify-center gap-4 md:gap-16 mt-6 md:mt-8">
-{/* Person 1 - with fade-in animation */}
-<div className="fade-in-person1 relative flex-shrink-0 group mb-10 lg:mb-0">
-  <div className="w-24 h-32 md:w-64 md:h-80 bg-gradient-to-br from-purple-300 to-purple-400 rounded-full shadow-2xl transform group-hover:scale-105 transition-transform duration-300 border-4 border-white/20"></div>
-  <div className="absolute inset-0 flex items-end justify-center">
-    <img
-      src="/assets/child1.png"
-      alt="Child learning with book"
-      className="h-28 md:h-72 w-auto object-contain transform group-hover:scale-105 transition-transform duration-300"
-      style={{ filter: "drop-shadow(0 10px 20px rgba(0,0,0,0.3))" }}
-    />
-  </div>
-</div>
+            {/* Person 1 - with fade-in animation */}
+            <div className="fade-in-person1 relative flex-shrink-0 group mb-10 lg:mb-0">
+              <div className="w-24 h-32 md:w-64 md:h-80 bg-gradient-to-br from-purple-300 to-purple-400 rounded-full shadow-2xl transform group-hover:scale-105 transition-transform duration-300 border-4 border-white/20"></div>
+              <div className="absolute inset-0 flex items-end justify-center">
+                <img
+                  src="/assets/child1.png"
+                  alt="Child learning with book"
+                  className="h-28 md:h-72 w-auto object-contain transform group-hover:scale-105 transition-transform duration-300"
+                  style={{ filter: "drop-shadow(0 10px 20px rgba(0,0,0,0.3))" }}
+                />
+              </div>
+            </div>
 
-{/* Person 2 - Center */}
-<div className="fade-in-person2 relative flex-shrink-0 group mb-10 lg:mb-0">
-  <div className="w-28 h-36 md:w-72 md:h-88 bg-gradient-to-br from-yellow-300 to-yellow-400 rounded-full shadow-2xl transform group-hover:scale-105 transition-transform duration-300 border-4 border-white/20"></div>
-  <div className="absolute inset-0 flex items-end justify-center">
-    <img
-      src="/assets/child3.png"
-      alt="Teen learning with laptop"
-      className="h-32 md:h-80 w-auto object-contain transform group-hover:scale-105 transition-transform duration-300"
-      style={{ filter: "drop-shadow(0 10px 20px rgba(0,0,0,0.3))" }}
-    />
-  </div>
-</div>
+            {/* Person 2 - Center */}
+            <div className="fade-in-person2 relative flex-shrink-0 group mb-10 lg:mb-0">
+              <div className="w-28 h-36 md:w-72 md:h-88 bg-gradient-to-br from-yellow-300 to-yellow-400 rounded-full shadow-2xl transform group-hover:scale-105 transition-transform duration-300 border-4 border-white/20"></div>
+              <div className="absolute inset-0 flex items-end justify-center">
+                <img
+                  src="/assets/child3.png"
+                  alt="Teen learning with laptop"
+                  className="h-32 md:h-80 w-auto object-contain transform group-hover:scale-105 transition-transform duration-300"
+                  style={{ filter: "drop-shadow(0 10px 20px rgba(0,0,0,0.3))" }}
+                />
+              </div>
+            </div>
 
-{/* Person 3 */}
-<div className="fade-in-person3 relative flex-shrink-0 group mb-10 lg:mb-0">
-  <div className="w-24 h-32 md:w-64 md:h-80 bg-gradient-to-br from-green-300 to-green-400 rounded-full shadow-2xl transform group-hover:scale-105 transition-transform duration-300 border-4 border-white/20"></div>
-  <div className="absolute inset-0 flex items-end justify-center">
-    <img
-      src="/assets/child2.png"
-      alt="Child learning with tablet"
-      className="h-28 md:h-72 w-auto object-contain transform group-hover:scale-105 transition-transform duration-300"
-      style={{ filter: "drop-shadow(0 10px 20px rgba(0,0,0,0.3))" }}
-    />
-  </div>
-</div>
-
+            {/* Person 3 */}
+            <div className="fade-in-person3 relative flex-shrink-0 group mb-10 lg:mb-0">
+              <div className="w-24 h-32 md:w-64 md:h-80 bg-gradient-to-br from-green-300 to-green-400 rounded-full shadow-2xl transform group-hover:scale-105 transition-transform duration-300 border-4 border-white/20"></div>
+              <div className="absolute inset-0 flex items-end justify-center">
+                <img
+                  src="/assets/child2.png"
+                  alt="Child learning with tablet"
+                  className="h-28 md:h-72 w-auto object-contain transform group-hover:scale-105 transition-transform duration-300"
+                  style={{ filter: "drop-shadow(0 10px 20px rgba(0,0,0,0.3))" }}
+                />
+              </div>
+            </div>
           </div>
         </div>
 

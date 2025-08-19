@@ -6,7 +6,7 @@ function HowItWorks() {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
   return (
-    <div id="watch-demo" className="scroll-mt-24">
+    <div id="watch-demo" className="scroll-mt-28 md:scroll-mt-36">
       <div className="container mx-auto px-4 md:px-6 2xl:max-w-[1400px]">
         <div className="grid gap-8 lg:grid-cols-2 items-center">
           <div className="flex flex-col justify-center space-y-4">

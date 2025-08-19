@@ -1,5 +1,4 @@
 import { Calendar } from "lucide-react";
-import { motion } from "motion/react";
 import { Badge } from "../ui/badge";
 import { Separator } from "../ui/separator";
 
@@ -38,30 +37,15 @@ const otherArticles = [
 
 function OtherArticles() {
   return (
-    <motion.section
-      initial={{ translateY: 20, opacity: 0 }}
-      whileInView={{ translateY: 0, opacity: 1 }}
-      transition={{
-        delay: 0.2,
-        duration: 0.4,
-      }}
-      viewport={{ once: true }}
-      className="mt-16">
+    <section className="mt-16">
       <Separator className="mb-8" />
 
       <h2 className="text-2xl md:text-3xl font-bold text-primary mb-6">Other Articles</h2>
 
       <div className="grid gap-6 md:gap-8">
-        {otherArticles.map((article, index) => (
-          <motion.article
+        {otherArticles.map((article) => (
+          <article
             key={article.id}
-            initial={{ translateY: 20, opacity: 0 }}
-            whileInView={{ translateY: 0, opacity: 1 }}
-            transition={{
-              delay: index * 0.1,
-              duration: 0.3,
-            }}
-            viewport={{ once: true }}
             className="group cursor-pointer bg-white border border-neutral-200 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 hover:border-primary/20">
             <div className="flex flex-col sm:flex-row gap-4 p-5">
               <div className="sm:w-1/3 flex-shrink-0">
@@ -94,10 +78,10 @@ function OtherArticles() {
                 </div>
               </div>
             </div>
-          </motion.article>
+          </article>
         ))}
       </div>
-    </motion.section>
+    </section>
   );
 }
 

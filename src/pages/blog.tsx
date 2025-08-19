@@ -1,4 +1,4 @@
-import { Share2 } from "lucide-react";
+import { Calendar, Share2 } from "lucide-react";
 import { motion } from "motion/react";
 import type { SVGProps } from "react";
 import OtherArticles from "../components/blog/other-articles";
@@ -48,7 +48,10 @@ function Blog() {
             <Badge variant="outline">{post.category}</Badge>
             <span className="font-medium text-xs text-muted-foreground">{post.read_time}</span>
             <span className="font-medium text-xs text-muted-foreground">•</span>
-            <span className="font-medium text-xs text-muted-foreground">{post.created_at}</span>
+            <div className="flex items-center gap-1.5">
+              <Calendar className="size-3 text-muted-foreground" />
+              <span className="text-xs text-muted-foreground">{post.created_at}</span>
+            </div>
           </motion.div>
 
           <motion.div

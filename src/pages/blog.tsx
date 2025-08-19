@@ -1,6 +1,7 @@
 import { Share2 } from "lucide-react";
 import { motion } from "motion/react";
 import type { SVGProps } from "react";
+import OtherArticles from "../components/blog/other-articles";
 import MaxWidthWrapper from "../components/max-width-wrapper";
 import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
@@ -130,6 +131,8 @@ function Blog() {
           learning ensures that no one is left behind.
         </p>
       </article>
+
+      <OtherArticles />
     </MaxWidthWrapper>
   );
 }

@@ -8,10 +8,11 @@ import { Separator } from "../components/ui/separator";
 
 const post = {
   category: "Education",
-  readTime: "4 min read",
+  read_time: "4 min read",
   title: "Why Flexible Learning Works for Every Student",
+  created_at: "March 15, 2024",
   excerpt:
-    "Discover how VizSchool’s flexible approach allows students to learn at their own pace while still meeting academic goals. By blending structure with freedom, students can choose when and how they study without losing sight of academic benchmarks. This model not only adapts to different learning styles but also helps reduce stress, build confidence, and prepare learners for the challenges of higher education and real-world problem-solving.",
+    "Discover how VizSchool's flexible approach allows students to learn at their own pace while still meeting academic goals. By blending structure with freedom, students can choose when and how they study without losing sight of academic benchmarks. This model not only adapts to different learning styles but also helps reduce stress, build confidence, and prepare learners for the challenges of higher education and real-world problem-solving.",
   image: "/assets/reviews/blog-1.jpg",
 };
 
@@ -32,7 +33,7 @@ function Blog() {
           className="text-4xl md:text-5xl font-bold leading-tight mb-2 text-primary">
           {post.title}
         </motion.h1>
-        <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <motion.div
             initial={{ translateY: 10, opacity: 0 }}
             whileInView={{ translateY: 0, opacity: 1 }}
@@ -42,9 +43,11 @@ function Blog() {
               scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
             }}
             viewport={{ once: true }}
-            className="flex items-center gap-3">
+            className="flex items-center gap-3 flex-wrap">
             <Badge variant="outline">{post.category}</Badge>
-            <span className="font-medium text-xs text-muted-foreground">{post.readTime}</span>
+            <span className="font-medium text-xs text-muted-foreground">{post.read_time}</span>
+            <span className="font-medium text-xs text-muted-foreground">•</span>
+            <span className="font-medium text-xs text-muted-foreground">{post.created_at}</span>
           </motion.div>
 
           <motion.div
@@ -104,12 +107,12 @@ function Blog() {
         </p>
 
         <blockquote className="border-l-4 border-primary pl-4 italic font-semibold text-lg text-neutral-800 my-8">
-          “Education is most effective when it adapts to the student, not when the student is forced to adapt to the
-          system.”
+          "Education is most effective when it adapts to the student, not when the student is forced to adapt to the
+          system."
         </blockquote>
 
         <p>
-          By tailoring education to the student’s pace, VizSchool empowers learners to take ownership of their journey.
+          By tailoring education to the student's pace, VizSchool empowers learners to take ownership of their journey.
           This not only improves academic performance but also builds confidence, resilience, and a lifelong love for
           learning.
         </p>

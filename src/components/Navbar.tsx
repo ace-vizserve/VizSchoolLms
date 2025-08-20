@@ -46,15 +46,11 @@ const NavBar = () => {
           </div>
 
           {/* Login Button - Desktop */}
-<div className="hidden md:flex items-center ml-auto">
-  <a
-    href="https://lms.vizschool.org/login/index.php"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    <Button size={"lg"}>Login</Button>
-  </a>
-</div>
+          <div className="hidden md:flex items-center ml-auto">
+            <a href="https://lms.vizschool.org/login/index.php" target="_blank" rel="noopener noreferrer">
+              <Button size={"lg"}>Login</Button>
+            </a>
+          </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden absolute right-4">
@@ -90,15 +86,11 @@ const NavBar = () => {
             <NavLink to="/contact-us" className="block px-3 py-2 hover:text-secondary font-medium">
               Contact Us
             </NavLink>
-            <a
-  href="https://lms.vizschool.org/login/index.php"
-  target="_blank"
-  rel="noopener noreferrer"
->
-  <Button size={"lg"} className="w-full">
-    Login
-  </Button>
-</a>
+            <a href="https://lms.vizschool.org/login/index.php" target="_blank" rel="noopener noreferrer">
+              <Button size={"lg"} className="w-full">
+                Login
+              </Button>
+            </a>
           </div>
         </div>
       )}

@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import MaxWidthWrapper from "../components/max-width-wrapper";
+import { BASE_URL } from "../constants";
 import SEO from "../seo";
 
 function Sitemap() {
@@ -9,12 +10,12 @@ function Sitemap() {
       <SEO
         title="VizSchool LMS Sitemap | Navigate Our Learning Platform"
         description="View the complete sitemap for VizSchool LMS. Quickly navigate to our programmes, reviews, blog, FAQs, and contact information."
-        canonical="https://yourdomain.com/sitemap"
+        canonical={`${BASE_URL}/sitemap`}
         schemaMarkup={{
           "@context": "https://schema.org",
-          "@type": "SiteNavigationElement",
-          name: "VizSchool LMS Sitemap",
-          url: "https://yourdomain.com/sitemap",
+          "@type": "SitemapPage",
+          name: "Sitemap VizSchool LMS",
+          url: `${BASE_URL}/sitemap`,
         }}
       />
       <MaxWidthWrapper className="max-w-4xl min-h-full flex items-center justify-center">

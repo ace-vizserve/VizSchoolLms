@@ -1,6 +1,7 @@
 import MaxWidthWrapper from "../components/max-width-wrapper";
 
 import Testimonials from "../components/reviews/testimonials";
+import { BASE_URL } from "../constants";
 import SEO from "../seo";
 
 function Reviews() {
@@ -9,12 +10,12 @@ function Reviews() {
       <SEO
         title="Student and Parent Reviews | VizSchool LMS Experience"
         description="Read reviews from students and parents who have experienced VizSchool LMS. See how our platform transforms learning into an engaging journey."
-        canonical="https://yourdomain.com/reviews"
+        canonical={`${BASE_URL}/reviews`}
         schemaMarkup={{
           "@context": "https://schema.org",
-          "@type": "ReviewPage",
-          name: "Reviews",
-          url: "https://yourdomain.com/reviews",
+          "@type": "ReviewsPage",
+          name: "Reviews VizSchool LMS",
+          url: `${BASE_URL}/reviews`,
         }}
       />
 

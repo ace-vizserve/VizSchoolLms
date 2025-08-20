@@ -5,6 +5,7 @@ import MaxWidthWrapper from "../components/max-width-wrapper";
 import { Badge } from "../components/ui/badge";
 import { buttonVariants } from "../components/ui/button";
 import { Card, CardContent, CardHeader } from "../components/ui/card";
+import { BASE_URL } from "../constants";
 import SEO from "../seo";
 
 const blogs = [
@@ -82,12 +83,12 @@ function Blogs() {
       <SEO
         title="VizSchool LMS Blog | Education Insights and Tips"
         description="Stay updated with VizSchool LMS blog articles. Get tips, guides, and insights into online learning, student growth, and education technology."
-        canonical="https://yourdomain.com/blogs"
+        canonical={`${BASE_URL}/blogs`}
         schemaMarkup={{
           "@context": "https://schema.org",
-          "@type": "Blog",
-          name: "VizSchool LMS Blog",
-          url: "https://yourdomain.com/blogs",
+          "@type": "Blogs",
+          name: "VizSchool LMS Blogs",
+          url: `${BASE_URL}/blogs`,
         }}
       />
       <MaxWidthWrapper className="max-w-screen-xl mx-auto py-16 md:py-20 lg:py-24">

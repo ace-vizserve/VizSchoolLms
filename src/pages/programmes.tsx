@@ -7,6 +7,7 @@ import Hero from "../components/programmes/hero";
 import HowItWorks from "../components/programmes/how-it-works";
 import AnimatedMeshGradient from "../components/ui/animated-mesh-gradient";
 import { Button } from "../components/ui/button";
+import { BASE_URL } from "../constants";
 import SEO from "../seo";
 
 function Programmes() {
@@ -15,12 +16,12 @@ function Programmes() {
       <SEO
         title="Our Programmes | Innovative Learning for K-12 Students"
         description="Explore VizSchool LMS programmes — from core subjects to special courses. Designed to enhance learning for primary and secondary students."
-        canonical="https://yourdomain.com/our-programmes"
+        canonical={`${BASE_URL}/our-programmes`}
         schemaMarkup={{
           "@context": "https://schema.org",
-          "@type": "WebPage",
-          name: "Our Programmes",
-          url: "https://yourdomain.com/our-programmes",
+          "@type": "OurProgrammesPage",
+          name: "Our Programmes VizSchool LMS",
+          url: `${BASE_URL}/our-programmes`,
         }}
       />
       <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">

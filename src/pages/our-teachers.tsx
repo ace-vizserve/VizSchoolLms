@@ -2,6 +2,7 @@ import MaxWidthWrapper from "../components/max-width-wrapper";
 import Features from "../components/our-teachers/features";
 import Hero from "../components/our-teachers/hero";
 import Stats from "../components/our-teachers/stats";
+import { BASE_URL } from "../constants";
 import SEO from "../seo";
 
 function OurTeachers() {
@@ -10,14 +11,12 @@ function OurTeachers() {
       <SEO
         title="Our Teachers | Expert Educators at VizSchool"
         description="Meet the passionate, certified educators behind VizSchool. Our teachers mentor, guide, and inspire K–12 learners through engaging, personalized online lessons."
-        canonical="https://yourdomain.com/our-teachers"
+        canonical={`${BASE_URL}/our-teachers`}
         schemaMarkup={{
           "@context": "https://schema.org",
-          "@type": "WebPage",
-          name: "Our Teachers",
-          url: "https://yourdomain.com/our-teachers",
-          description:
-            "Meet the passionate, certified educators behind VizSchool. Our teachers mentor, guide, and inspire K–12 learners through engaging, personalized online lessons.",
+          "@type": "OurTeachersPage",
+          name: "Our Teachers VizSchool LMS",
+          url: `${BASE_URL}/our-teachers`,
         }}
       />
       <Hero />

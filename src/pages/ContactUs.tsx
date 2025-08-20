@@ -2,6 +2,7 @@ import Contact from "../components/contact/contact";
 import MaxWidthWrapper from "../components/max-width-wrapper";
 import AnimatedMeshGradient from "../components/ui/animated-mesh-gradient";
 import { Badge } from "../components/ui/badge";
+import { BASE_URL } from "../constants";
 import SEO from "../seo";
 
 const ContactUs = () => {
@@ -10,12 +11,12 @@ const ContactUs = () => {
       <SEO
         title="Contact VizSchool LMS | Get in Touch with Our Team"
         description="Reach out to VizSchool LMS for inquiries, support, or partnerships. Our friendly team is here to help you with your learning journey."
-        canonical="https://yourdomain.com/contact-us"
+        canonical={`${BASE_URL}/contact-us`}
         schemaMarkup={{
           "@context": "https://schema.org",
           "@type": "ContactPage",
           name: "Contact VizSchool LMS",
-          url: "https://yourdomain.com/contact-us",
+          url: `${BASE_URL}/contact-us`,
         }}
       />
       <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">

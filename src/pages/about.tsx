@@ -5,6 +5,7 @@ import MaxWidthWrapper from "../components/max-width-wrapper";
 import AnimatedMeshGradient from "../components/ui/animated-mesh-gradient";
 import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
+import { BASE_URL } from "../constants";
 import SEO from "../seo";
 
 function About() {
@@ -13,12 +14,12 @@ function About() {
       <SEO
         title="About VizSchool LMS | Our Mission and Vision for Learning"
         description="Discover the mission, vision, and story behind VizSchool LMS. Learn how we make education flexible, accessible, and empowering for every student."
-        canonical="https://yourdomain.com/about"
+        canonical={`${BASE_URL}/about`}
         schemaMarkup={{
           "@context": "https://schema.org",
-          "@type": "AboutPage",
-          name: "About VizSchool LMS",
-          url: "https://yourdomain.com/about",
+          "@type": "WebSite",
+          name: "VizSchool LMS",
+          url: `${BASE_URL}/about`,
         }}
       />
       <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">

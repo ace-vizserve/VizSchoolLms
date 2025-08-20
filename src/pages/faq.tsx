@@ -1,6 +1,7 @@
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { PlusIcon } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem } from "../components/ui/accordion";
+import { BASE_URL } from "../constants";
 import { cn } from "../lib/utils";
 import SEO from "../seo";
 
@@ -38,12 +39,12 @@ function FAQ() {
       <SEO
         title="Frequently Asked Questions | VizSchool LMS Help Center"
         description="Find answers to the most common questions about VizSchool LMS, including courses, enrollment, certificates, and platform features."
-        canonical="https://yourdomain.com/faq"
+        canonical={`${BASE_URL}/faq`}
         schemaMarkup={{
           "@context": "https://schema.org",
           "@type": "FAQPage",
-          name: "FAQ - VizSchool LMS",
-          url: "https://yourdomain.com/faq",
+          name: "FAQ VizSchool LMS",
+          url: `${BASE_URL}/faq`,
         }}
       />
 

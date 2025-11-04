@@ -17,6 +17,7 @@ import OurTeachers from "./pages/our-teachers";
 import Primary from "./pages/primary";
 import Programmes from "./pages/programmes";
 import Reviews from "./pages/reviews";
+import SchoolFees from "./pages/school-fees";
 import Secondary from "./pages/secondary";
 import Sitemap from "./pages/sitemap";
 
@@ -42,6 +43,8 @@ function App() {
             <Route path="/" element={<Hero />} />
 
             <Route path="/about" element={<About />} />
+
+            <Route path="/school-fees" element={<SchoolFees />} />
 
             <Route path="/contact-us" element={<ContactUs />} />
 

@@ -19,13 +19,13 @@ function Courses() {
 
       <div className=" py-10 md:py-14">
         <Tabs defaultValue="primary" className="w-full">
-          <TabsList className="gap-2 md:gap-4 w-max mx-auto bg-white">
+          <TabsList className="mx-auto inline-flex h-auto justify-center flex-wrap bg-muted/50 p-2 gap-4 rounded-xl border border-border">
             <TabsTrigger
               className={buttonVariants({
                 variant: "outline",
                 size: "lg",
                 className:
-                  "border-border data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:border-0",
+                  "px-6 py-3 rounded-lg font-semibold text-base transition-all duration-300 data-[state=inactive]:bg-transparent data-[state=inactive]:text-muted-foreground data-[state=inactive]:hover:bg-muted data-[state=inactive]:hover:text-foreground data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25 data-[state=active]:scale-105",
               })}
               value="primary">
               Primary
@@ -35,7 +35,7 @@ function Courses() {
                 variant: "outline",
                 size: "lg",
                 className:
-                  "border-border data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:border-0",
+                  "px-6 py-3 rounded-lg font-semibold text-base transition-all duration-300 data-[state=inactive]:bg-transparent data-[state=inactive]:text-muted-foreground data-[state=inactive]:hover:bg-muted data-[state=inactive]:hover:text-foreground data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25 data-[state=active]:scale-105",
               })}
               value="secondary">
               Secondary
@@ -45,20 +45,20 @@ function Courses() {
                 variant: "outline",
                 size: "lg",
                 className:
-                  "border-border data-[state=active]:bg-primary data-[state=active]:text-white data-[state=active]:border-0",
+                  "px-6 py-3 rounded-lg font-semibold text-base transition-all duration-300 data-[state=inactive]:bg-transparent data-[state=inactive]:text-muted-foreground data-[state=inactive]:hover:bg-muted data-[state=inactive]:hover:text-foreground data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25 data-[state=active]:scale-105",
               })}
               value="enrichment">
               Enrichment
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="primary">
+          <TabsContent className="mt-6 md:mt-12" value="primary">
             <PrimaryCourses />
           </TabsContent>
-          <TabsContent value="secondary">
+          <TabsContent className="mt-6 md:mt-12" value="secondary">
             <SecondaryCourses />
           </TabsContent>
-          <TabsContent value="enrichment">
+          <TabsContent className="mt-6 md:mt-12" value="enrichment">
             <EnrichmentCourses />
           </TabsContent>
         </Tabs>

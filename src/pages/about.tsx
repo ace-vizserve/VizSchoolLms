@@ -1,6 +1,7 @@
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "motion/react";
 import Features from "../components/about/features";
+import { WhyChooseUs } from "../components/about/why-choose-us";
 import MaxWidthWrapper from "../components/max-width-wrapper";
 import AnimatedMeshGradient from "../components/ui/animated-mesh-gradient";
 import { Badge } from "../components/ui/badge";
@@ -91,6 +92,7 @@ function About() {
           </motion.div>
         </MaxWidthWrapper>
       </div>
+      <WhyChooseUs />
       <Features />
     </>
   );

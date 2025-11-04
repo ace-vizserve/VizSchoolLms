@@ -1,4 +1,6 @@
+import { ArrowRight, Sparkles } from "lucide-react";
 import React from "react";
+import { Link } from "react-router-dom";
 import Testimonials from "../components/Testimonials";
 import { BASE_URL } from "../constants";
 import SEO from "../seo";
@@ -330,10 +332,67 @@ const Hero: React.FC = () => {
               </div>
             </div>
           </div>
+          <PricingTeaser />
         </div>
       </div>
     </>
   );
 };
+
+function PricingTeaser() {
+  return (
+    <div className="w-full max-w-4xl mx-auto py-12">
+      <div className="relative overflow-hidden rounded-2xl bg-white/10 backdrop-blur-md p-8 md:p-12 shadow-xl">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+        <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2"></div>
+
+        <div className="relative z-10">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full mb-6">
+            <Sparkles className="w-4 h-4 text-yellow-300" />
+            <span className="text-sm font-medium text-white">Transparent Pricing</span>
+          </div>
+
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Affordable Programs for Every Ambition</h2>
+
+          <p className="text-lg text-white/90 mb-6 max-w-2xl">
+            Quality education shouldn't break the bank. Our programs start at just{" "}
+            <span className="font-bold text-white">$2,500 SGD</span>, with flexible payment options and comprehensive
+            support included.
+          </p>
+
+          <Link
+            to="/school-fees"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-50 transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 group">
+            See Full Pricing Details
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </Link>
+
+          <div className="mt-8 pt-6 border-t border-white/20">
+            <div className="flex flex-wrap gap-6 text-sm text-white/90">
+              <div className="flex items-center gap-2">
+                <svg className="w-5 h-5 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>No hidden fees</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <svg className="w-5 h-5 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Flexible payment plans</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <svg className="w-5 h-5 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                </svg>
+                <span>Full support included</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default Hero;

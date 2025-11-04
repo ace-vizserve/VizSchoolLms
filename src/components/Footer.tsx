@@ -1,4 +1,4 @@
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Globe, Mail, MapPin, Phone } from "lucide-react";
 import type { SVGProps } from "react";
 import { Link, useLocation } from "react-router-dom";
 import TermsCondition from "../components/modal/terms-conditions"; // adjust path if needed
@@ -103,11 +103,11 @@ const Footer = () => {
           <div className="col-span-full md:col-span-1 w-max mx-auto md:mx-0">
             <h3 className="text-lg font-semibold mb-3">Follow Us</h3>
             <div className="flex space-x-3">
-              <Link to="#">
+              <Link target="_blank" to="https://www.facebook.com/vizschool">
                 <Facebook />
               </Link>
-              <Link to="#">
-                <Instagram />
+              <Link target="_blank" to="https://hfse.edu.sg/vizschool/">
+                <Globe />
               </Link>
               <Link to="#">
                 <LinkedIn />
@@ -120,19 +120,17 @@ const Footer = () => {
               <div className="flex items-center">
                 <Mail size={16} className="mr-2 text-gray-500" />
                 <Link to="mailto:contact@vizschool.com" className="text-blue-600 hover:text-blue-800">
-                  contact@vizschool.com
+                  admissions@hfse.edu.sg
                 </Link>
               </div>
               <div className="flex items-center">
                 <Phone size={16} className="mr-2 text-gray-500" />
-                <span className="text-muted-foreground">+65 8449 1000</span>
+                <span className="text-muted-foreground">+65 8200 0062</span>
               </div>
               <div className="flex items-start">
                 <MapPin size={16} className="mr-2 mt-0.5 text-gray-500 flex-shrink-0" />
                 <span className="text-muted-foreground">
-                  223 Mountbatten Road #02-23
-                  <br />
-                  Mountbatten Square,
+                  223 Mountbatten Road, 01-10
                   <br />
                   Singapore 398008
                 </span>
@@ -181,15 +179,6 @@ const LinkedIn = (props: SVGProps<SVGSVGElement>) => (
       fill="#0A66C2"
     />
   </svg>
-);
-
-const Instagram = () => (
-  <div
-    style={{
-      backgroundImage: "url(/assets/instagram.png)",
-    }}
-    className="w-[1.5em] h-[1.5em] bg-cover"
-  />
 );
 
 const Facebook = (props: SVGProps<SVGSVGElement>) => (

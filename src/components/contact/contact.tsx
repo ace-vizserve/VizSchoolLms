@@ -1,17 +1,17 @@
-import { useState, useEffect, useRef } from 'react';
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+import { Mail, MapPin, Phone, Send } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
 
 // Fix for Leaflet marker icons (Webpack/Vite issue)
 delete (L.Icon.Default.prototype as any)._getIconUrl;
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
-  iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+  iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
+  iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+  shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
 });
 
 // Declare global grecaptcha
@@ -24,16 +24,16 @@ declare global {
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    email: '',
-    phone: '',
-    name: '',
-    message: '',
-    captchaToken: ''
+    email: "",
+    phone: "",
+    name: "",
+    message: "",
+    captchaToken: "",
   });
 
-  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [newsletterEmail, setNewsletterEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [captchaError, setCaptchaError] = useState('');
+  const [captchaError, setCaptchaError] = useState("");
   const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
 
   const recaptchaRef = useRef<HTMLDivElement>(null);
@@ -50,8 +50,8 @@ const Contact = () => {
       setRecaptchaLoaded(true);
     };
 
-    const script = document.createElement('script');
-    script.src = 'https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit';
+    const script = document.createElement("script");
+    script.src = "https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit";
     script.async = true;
     script.defer = true;
     document.head.appendChild(script);
@@ -70,44 +70,44 @@ const Contact = () => {
   useEffect(() => {
     if (recaptchaLoaded && recaptchaRef.current && !widgetId.current) {
       try {
-        const siteKey = import.meta.env.VITE_CAPTCHA_SITE_KEY || '';
+        const siteKey = import.meta.env.VITE_CAPTCHA_SITE_KEY || "";
         widgetId.current = window.grecaptcha.render(recaptchaRef.current, {
           sitekey: siteKey,
           callback: (token: string) => {
-            setFormData(prev => ({ ...prev, captchaToken: token }));
-            setCaptchaError('');
+            setFormData((prev) => ({ ...prev, captchaToken: token }));
+            setCaptchaError("");
           },
-          'expired-callback': () => {
-            setFormData(prev => ({ ...prev, captchaToken: '' }));
-            setCaptchaError('reCAPTCHA has expired. Please verify again.');
+          "expired-callback": () => {
+            setFormData((prev) => ({ ...prev, captchaToken: "" }));
+            setCaptchaError("reCAPTCHA has expired. Please verify again.");
           },
-          'error-callback': () => {
-            setCaptchaError('reCAPTCHA error occurred. Please try again.');
-          }
+          "error-callback": () => {
+            setCaptchaError("reCAPTCHA error occurred. Please try again.");
+          },
         });
       } catch (error) {
-        console.error('Error rendering reCAPTCHA:', error);
-        setCaptchaError('Failed to load reCAPTCHA');
+        console.error("Error rendering reCAPTCHA:", error);
+        setCaptchaError("Failed to load reCAPTCHA");
       }
     }
   }, [recaptchaLoaded]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleCaptchaVerify = async () => {
     if (!formData.captchaToken) {
-      setCaptchaError('Please complete the reCAPTCHA verification');
+      setCaptchaError("Please complete the reCAPTCHA verification");
       return false;
     }
     try {
-      await new Promise(resolve => setTimeout(resolve, 500));
-      setCaptchaError('');
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      setCaptchaError("");
       return true;
     } catch {
-      setCaptchaError('Error verifying reCAPTCHA');
+      setCaptchaError("Error verifying reCAPTCHA");
       return false;
     }
   };
@@ -115,13 +115,13 @@ const Contact = () => {
   const resetRecaptcha = () => {
     if (widgetId.current !== null && window.grecaptcha) {
       window.grecaptcha.reset(widgetId.current);
-      setFormData(prev => ({ ...prev, captchaToken: '' }));
+      setFormData((prev) => ({ ...prev, captchaToken: "" }));
     }
   };
 
   const handleFormSubmit = async () => {
     setIsSubmitting(true);
-    setCaptchaError('');
+    setCaptchaError("");
 
     const isCaptchaValid = await handleCaptchaVerify();
     if (!isCaptchaValid) {
@@ -131,15 +131,15 @@ const Contact = () => {
 
     setTimeout(() => {
       setIsSubmitting(false);
-      alert('Message sent successfully!');
-      setFormData({ email: '', phone: '', name: '', message: '', captchaToken: '' });
+      alert("Message sent successfully!");
+      setFormData({ email: "", phone: "", name: "", message: "", captchaToken: "" });
       resetRecaptcha();
     }, 1500);
   };
 
   const handleNewsletterSubmit = async () => {
-    alert('Thank you for subscribing!');
-    setNewsletterEmail('');
+    alert("Thank you for subscribing!");
+    setNewsletterEmail("");
   };
 
   return (
@@ -151,15 +151,9 @@ const Contact = () => {
           <div className="lg:col-span-2">
             <div className="bg-white rounded-2xl p-8 shadow-sm">
               <div className="mb-6">
-                <Badge className="bg-blue-100 text-blue-700 hover:bg-blue-100 mb-4">
-                  Contact Form
-                </Badge>
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                  Send us a message
-                </h2>
-                <p className="text-gray-600">
-                  Fill out the form below and we'll get back to you as soon as possible.
-                </p>
+                <Badge className="bg-blue-100 text-blue-700 hover:bg-blue-100 mb-4">Contact Form</Badge>
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">Send us a message</h2>
+                <p className="text-gray-600">Fill out the form below and we'll get back to you as soon as possible.</p>
               </div>
 
               <div className="space-y-6">
@@ -229,9 +223,7 @@ const Contact = () => {
 
                 {/* reCAPTCHA v2 */}
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Verification *
-                  </label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Verification *</label>
                   <div className="flex flex-col space-y-2">
                     <div ref={recaptchaRef} className="recaptcha-container">
                       {!recaptchaLoaded && (
@@ -250,8 +242,7 @@ const Contact = () => {
                 <Button
                   onClick={handleFormSubmit}
                   disabled={isSubmitting || !formData.captchaToken}
-                  className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-medium transition-colors disabled:opacity-50"
-                >
+                  className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-medium transition-colors disabled:opacity-50">
                   {isSubmitting ? (
                     <>
                       <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
@@ -306,8 +297,7 @@ const Contact = () => {
 
                   <Button
                     onClick={handleNewsletterSubmit}
-                    className="w-full bg-white text-orange-600 hover:bg-orange-50 font-medium py-3 rounded-lg transition-colors"
-                  >
+                    className="w-full bg-white text-orange-600 hover:bg-orange-50 font-medium py-3 rounded-lg transition-colors">
                     Subscribe Now
                   </Button>
                 </div>
@@ -322,7 +312,7 @@ const Contact = () => {
             <div className="flex items-center justify-center w-12 h-12 bg-white/20 rounded-lg mb-4">
               <Phone className="h-6 w-6" />
             </div>
-            <h3 className="font-semibold text-lg mb-2">+1 (555) 123-4567</h3>
+            <h3 className="font-semibold text-lg mb-2">+65 8200 0062</h3>
             <p className="text-blue-100 text-sm">
               Call us during business hours for immediate assistance with your inquiries and support needs.
             </p>
@@ -332,7 +322,7 @@ const Contact = () => {
             <div className="flex items-center justify-center w-12 h-12 bg-white/20 rounded-lg mb-4">
               <Mail className="h-6 w-6" />
             </div>
-            <h3 className="font-semibold text-lg mb-2">contact@example.com</h3>
+            <h3 className="font-semibold text-lg mb-2">admissions@hfse.edu.sg</h3>
             <p className="text-blue-100 text-sm">
               Send us an email and we'll respond within 24 hours to help you with your questions.
             </p>
@@ -342,7 +332,7 @@ const Contact = () => {
             <div className="flex items-center justify-center w-12 h-12 bg-white/20 rounded-lg mb-4">
               <MapPin className="h-6 w-6" />
             </div>
-            <h3 className="font-semibold text-lg mb-2">Singapore</h3>
+            <h3 className="font-semibold text-lg mb-2">223 Mountbatten Road, 01-10 Singapore 398008</h3>
             <p className="text-blue-100 text-sm">
               Visit our office in the heart of Singapore for face-to-face consultations and meetings.
             </p>
@@ -351,23 +341,23 @@ const Contact = () => {
 
         {/* Map Section */}
         <div className="bg-white rounded-2xl overflow-hidden shadow-sm">
-<MapContainer
-  center={[1.308333, 103.879167]} // coordinates from Google Earth
-  zoom={18}
-  style={{ height: '320px', width: '100%' }}
-  aria-label="Map showing HFSE Singapore International School"
->
-  <TileLayer
-    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-    attribution='&copy; OpenStreetMap contributors'
-  />
-  <Marker position={[1.308333, 103.879167]}>
-    <Popup>
-      HFSE International School<br />
-      223 Mountbatten Road #02-23, Mountbatten Square, Singapore 398008
-    </Popup>
-  </Marker>
-</MapContainer>
+          <MapContainer
+            center={[1.308333, 103.879167]} // coordinates from Google Earth
+            zoom={18}
+            style={{ height: "320px", width: "100%" }}
+            aria-label="Map showing HFSE Singapore International School">
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution="&copy; OpenStreetMap contributors"
+            />
+            <Marker position={[1.308333, 103.879167]}>
+              <Popup>
+                HFSE International School
+                <br />
+                223 Mountbatten Road #02-23, Mountbatten Square, Singapore 398008
+              </Popup>
+            </Marker>
+          </MapContainer>
         </div>
       </div>
     </div>

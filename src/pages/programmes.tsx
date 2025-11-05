@@ -9,6 +9,7 @@ import { Programs } from "../components/programmes/programs";
 import AnimatedMeshGradient from "../components/ui/animated-mesh-gradient";
 import { Badge } from "../components/ui/badge";
 import { BASE_URL } from "../constants";
+import { cn } from "../lib/utils";
 import SEO from "../seo";
 
 function Programmes() {
@@ -47,7 +48,7 @@ const features = [
     category: "VizIndie",
     title: "Independent Learning with Guidance",
     details: "Ideal for self-motivated learners who prefer a self-paced approach.",
-    imageUrl: "/assets/programmes/programmes-1.jpeg",
+    imageUrl: "/assets/programmes/programmes-1.jpg",
     listTitle: "Why Choose VizIndie?",
     listContent: [
       "Complete flexibility in schedule and pace.",
@@ -59,7 +60,7 @@ const features = [
     category: "VizFlex",
     title: "Blended Support for Balanced Learners",
     details: "Perfect for families seeking a structured yet flexible experience.",
-    imageUrl: "/assets/programmes/programmes-2.jpeg",
+    imageUrl: "/assets/programmes/programmes-3.jpeg",
     listTitle: "Is VizFlex for your family?",
     listContent: [
       "Complete flexibility in schedule and pace.",
@@ -71,7 +72,7 @@ const features = [
     category: "VizLive",
     title: "Full-Time Virtual Classroom Experience",
     details: "Best for students who thrive with live interaction and consistent structure.",
-    imageUrl: "/assets/programmes/programmes-3.jpeg",
+    imageUrl: "/assets/programmes/programmes-2.jpeg",
     listTitle: "Love Online Sessions?",
     listContent: [
       "Complete flexibility in schedule and pace.",
@@ -86,7 +87,7 @@ function Features() {
     <div className="min-h-screen flex flex-col items-center justify-center py-16 md:py-20 lg:py-24 px-6 ">
       <div className="max-w-screen-lg w-full">
         <div className="mt-8 md:mt-16 w-full mx-auto space-y-20 lg:space-y-28">
-          {features.map((feature) => (
+          {features.map((feature, idx) => (
             <div
               key={feature.category}
               className="flex flex-col md:flex-row items-center gap-x-20 gap-y-6 md:odd:flex-row-reverse">
@@ -94,7 +95,9 @@ function Features() {
                 style={{
                   backgroundImage: `url(${feature.imageUrl})`,
                 }}
-                className="w-full aspect-[4/2] rounded-xl basis-1/2 bg-cover"
+                className={cn("w-full aspect-[4/2] rounded-xl basis-1/2 bg-cover", {
+                  "brightness-125": idx === 0,
+                })}
               />
               <div className="basis-1/2 shrink-0">
                 <Badge className="uppercase font-semibold text-sm">{feature.category}</Badge>

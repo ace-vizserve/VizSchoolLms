@@ -20,32 +20,32 @@ const NavBar = () => {
           <div className="hidden md:flex items-center space-x-8 ml-8">
             <NavLink
               to={"/about"}
-              className={({ isActive }) => (isActive ? "text-blue-600" : "hover:text-secondary font-medium")}>
+              className={({ isActive }) => (isActive ? "text-[#4247cb]" : "hover:text-secondary font-medium")}>
               About
             </NavLink>
             <NavLink
               to={"/our-programmes"}
-              className={({ isActive }) => (isActive ? "text-blue-600" : "hover:text-secondary font-medium")}>
+              className={({ isActive }) => (isActive ? "text-[#4247cb]" : "hover:text-secondary font-medium")}>
               Programmes
             </NavLink>
             <NavLink
               to={"/school-fees"}
-              className={({ isActive }) => (isActive ? "text-blue-600" : "hover:text-secondary font-medium")}>
+              className={({ isActive }) => (isActive ? "text-[#4247cb]" : "hover:text-secondary font-medium")}>
               School Fees
             </NavLink>
             <NavLink
               to={"/reviews"}
-              className={({ isActive }) => (isActive ? "text-blue-600" : "hover:text-secondary font-medium")}>
+              className={({ isActive }) => (isActive ? "text-[#4247cb]" : "hover:text-secondary font-medium")}>
               Reviews
             </NavLink>
             <NavLink
               to={"/blogs"}
-              className={({ isActive }) => (isActive ? "text-blue-600" : "hover:text-secondary font-medium")}>
+              className={({ isActive }) => (isActive ? "text-[#4247cb]" : "hover:text-secondary font-medium")}>
               Blogs
             </NavLink>
             <NavLink
               to={"/contact-us"}
-              className={({ isActive }) => (isActive ? "text-blue-600" : "hover:text-secondary font-medium")}>
+              className={({ isActive }) => (isActive ? "text-[#4247cb]" : "hover:text-secondary font-medium")}>
               Contact Us
             </NavLink>
           </div>

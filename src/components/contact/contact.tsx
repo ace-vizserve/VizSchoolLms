@@ -151,7 +151,7 @@ const Contact = () => {
           <div className="lg:col-span-2">
             <div className="bg-white rounded-2xl p-8 shadow-sm">
               <div className="mb-6">
-                <Badge className="bg-blue-100 text-blue-700 hover:bg-blue-100 mb-4">Contact Form</Badge>
+                <Badge className="bg-blue-100 text-[#4247cb] hover:bg-blue-100 mb-4">Contact Form</Badge>
                 <h2 className="text-2xl font-bold text-gray-900 mb-2">Send us a message</h2>
                 <p className="text-gray-600">Fill out the form below and we'll get back to you as soon as possible.</p>
               </div>
@@ -169,7 +169,7 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#4247cb] focus:border-[#4247cb] outline-none transition-colors"
                       placeholder="your@email.com"
                     />
                   </div>
@@ -183,7 +183,7 @@ const Contact = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#4247cb] focus:border-[#4247cb] outline-none transition-colors"
                       placeholder="+1 (555) 123-4567"
                     />
                   </div>
@@ -200,7 +200,7 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#4247cb] focus:border-[#4247cb] outline-none transition-colors"
                     placeholder="Your full name"
                   />
                 </div>
@@ -216,7 +216,7 @@ const Contact = () => {
                     onChange={handleInputChange}
                     required
                     rows={5}
-                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors resize-none"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#4247cb] focus:border-[#4247cb] outline-none transition-colors resize-none"
                     placeholder="Tell us about your project, questions, or how we can help..."
                   />
                 </div>
@@ -229,7 +229,7 @@ const Contact = () => {
                       {!recaptchaLoaded && (
                         <div className="flex items-center justify-center h-20 bg-gray-100 rounded border-2 border-dashed border-gray-300">
                           <div className="text-center">
-                            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500 mx-auto mb-2"></div>
+                            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-[#4247cb] mx-auto mb-2"></div>
                             <span className="text-sm text-gray-500">Loading reCAPTCHA...</span>
                           </div>
                         </div>
@@ -242,7 +242,7 @@ const Contact = () => {
                 <Button
                   onClick={handleFormSubmit}
                   disabled={isSubmitting || !formData.captchaToken}
-                  className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-medium transition-colors disabled:opacity-50">
+                  className="bg-[#ff8930] hover:bg-[#ff7520] text-white px-8 py-3 rounded-lg font-medium transition-colors disabled:opacity-50">
                   {isSubmitting ? (
                     <>
                       <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
@@ -261,7 +261,7 @@ const Contact = () => {
 
           {/* Newsletter Signup */}
           <div className="lg:col-span-1">
-            <div className="bg-gradient-to-br from-orange-400 to-orange-600 rounded-2xl p-8 text-white relative overflow-hidden">
+            <div className="bg-gradient-to-br from-[#ff8930] to-[#ff7520] rounded-2xl p-8 text-white relative overflow-hidden">
               <div className="absolute -top-4 -right-4 w-24 h-24 bg-white/10 rounded-full"></div>
               <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-white/10 rounded-full"></div>
 
@@ -297,7 +297,7 @@ const Contact = () => {
 
                   <Button
                     onClick={handleNewsletterSubmit}
-                    className="w-full bg-white text-orange-600 hover:bg-orange-50 font-medium py-3 rounded-lg transition-colors">
+                    className="w-full bg-white text-[#ff8930] hover:bg-orange-50 font-medium py-3 rounded-lg transition-colors">
                     Subscribe Now
                   </Button>
                 </div>
@@ -308,7 +308,7 @@ const Contact = () => {
 
         {/* Contact Cards */}
         <div className="grid md:grid-cols-3 gap-6 mb-16">
-          <div className="bg-blue-500 rounded-2xl p-6 text-white">
+          <div className="bg-[#4247cb] rounded-2xl p-6 text-white">
             <div className="flex items-center justify-center w-12 h-12 bg-white/20 rounded-lg mb-4">
               <Phone className="h-6 w-6" />
             </div>
@@ -318,7 +318,7 @@ const Contact = () => {
             </p>
           </div>
 
-          <div className="bg-blue-500 rounded-2xl p-6 text-white">
+          <div className="bg-[#4247cb] rounded-2xl p-6 text-white">
             <div className="flex items-center justify-center w-12 h-12 bg-white/20 rounded-lg mb-4">
               <Mail className="h-6 w-6" />
             </div>
@@ -328,7 +328,7 @@ const Contact = () => {
             </p>
           </div>
 
-          <div className="bg-blue-500 rounded-2xl p-6 text-white">
+          <div className="bg-[#4247cb] rounded-2xl p-6 text-white">
             <div className="flex items-center justify-center w-12 h-12 bg-white/20 rounded-lg mb-4">
               <MapPin className="h-6 w-6" />
             </div>

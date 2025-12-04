@@ -17,7 +17,7 @@ function Stats() {
 
         <div className="mt-16 sm:mt-24 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-10 gap-y-16 justify-center">
           <div>
-            <AnimatedNumberInView value={900} textColor="text-indigo-500" />
+            <AnimatedNumberInView value={900} textColor="text-[#4247cb]" />
 
             <p className="mt-6 font-semibold text-xl">Students Mentored</p>
             <p className="mt-2 text-[17px] text-muted-foreground">
@@ -25,7 +25,7 @@ function Stats() {
             </p>
           </div>
           <div>
-            <AnimatedNumberInView value={10000} textColor="text-rose-500" />
+            <AnimatedNumberInView value={10000} textColor="text-[#ff8930]" />
             <p className="mt-6 font-semibold text-xl">Hours of Teaching</p>
             <p className="mt-2 text-[17px] text-muted-foreground">
               Extensive experience in delivering engaging, personalized lessons.
@@ -35,14 +35,14 @@ function Stats() {
             <AnimatedNumberInView value={420} textColor="text-emerald-500" />
             <p className="mt-6 font-semibold text-xl">Courses Delivered</p>
             <p className="mt-2 text-[17px] text-muted-foreground">
-              From core subjects to special skills, we’ve taught it all.
+              From core subjects to special skills, we've taught it all.
             </p>
           </div>
           <div>
-            <AnimatedNumberInView value={2000} textColor="text-blue-500" />
+            <AnimatedNumberInView value={2000} textColor="text-[#4247cb]" />
             <p className="mt-6 font-semibold text-xl">Lessons Completed</p>
             <p className="mt-2 text-[17px] text-muted-foreground">
-              Every lesson is a step towards our students’ highest potential.
+              Every lesson is a step towards our students' highest potential.
             </p>
           </div>
         </div>

@@ -105,7 +105,7 @@ function TermsConditions() {
                 If you have any questions about this Agreement, please contact us at{" "}
                 <a
                   href="mailto:care@vizschool.com."
-                  className="text-orange-500 hover:text-orange-600 underline transition-colors duration-200">
+                  className="text-[#ff8930] hover:text-[#ff7520] underline transition-colors duration-200">
                   care@vizschool.com.
                 </a>
               </p>

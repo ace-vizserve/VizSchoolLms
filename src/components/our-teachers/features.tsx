@@ -19,7 +19,7 @@ const features = [
     icon: HeartHandshake,
     title: "Student-Centered Approach",
     description:
-      "Every teacher focuses on understanding each learner’s strengths and challenges, tailoring lessons to individual needs.",
+      "Every teacher focuses on understanding each learner's strengths and challenges, tailoring lessons to individual needs.",
   },
   {
     icon: BookOpen,
@@ -66,15 +66,15 @@ function Features() {
               border: "1px solid rgba(255, 255, 255, 0.3)",
               boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
             }}>
-            <div className="absolute inset-0 bg-gradient-to-br from-orange-400/5 to-purple-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-[#ff8930]/5 to-purple-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
 
             <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/20 to-transparent rounded-t-xl"></div>
 
             <Button size={"icon"} variant={"outline"} className="bg-primary/10">
-              <feature.icon className="h-6 w-6 stroke-orange-500 stroke-2" />
+              <feature.icon className="h-6 w-6 stroke-[#ff8930] stroke-2" />
             </Button>
 
-            <span className="mt-3 text-lg font-bold text-orange-500 relative z-10">{feature.title}</span>
+            <span className="mt-3 text-lg font-bold text-[#ff8930] relative z-10">{feature.title}</span>
 
             <p className="mt-1 text-muted-foreground text-[15px] relative z-10 leading-relaxed">
               {feature.description}

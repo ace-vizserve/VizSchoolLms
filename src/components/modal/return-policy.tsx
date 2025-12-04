@@ -21,7 +21,7 @@ function ReturnPolicy() {
             <section className="hover:bg-gray-50 p-4 rounded-lg">
               <h2 className="text-black font-semibold mb-2">1. Introduction</h2>
               <p>
-                VizSchool LMS (“we,” “our,” or “us”) is committed to protecting your privacy. This Privacy Policy
+                VizSchool LMS ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy
                 explains how we collect, use, and safeguard your personal information when you use our platform.
               </p>
             </section>
@@ -91,7 +91,7 @@ function ReturnPolicy() {
               </ul>
               <p className="mt-2">
                 To exercise these rights, contact us at{" "}
-                <a href="mailto:care@vizschool.com" className="text-orange-500 hover:text-orange-600 underline">
+                <a href="mailto:care@vizschool.com" className="text-[#ff8930] hover:text-[#ff7520] underline">
                   care@vizschool.com
                 </a>
                 .
@@ -118,7 +118,7 @@ function ReturnPolicy() {
               <h2 className="text-black font-semibold mb-2">9. Contact Information</h2>
               <p className="mb-10">
                 If you have any questions about this Agreement, please contact us at{" "}
-                <a href="mailto:care@vizschool.com" className="text-orange-500 hover:text-orange-600 underline">
+                <a href="mailto:care@vizschool.com" className="text-[#ff8930] hover:text-[#ff7520] underline">
                   care@vizschool.com
                 </a>
                 .

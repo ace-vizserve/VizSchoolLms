@@ -19,7 +19,7 @@ const Hero: React.FC = () => {
           url: BASE_URL,
         }}
       />
-      <div className="hero-container relative min-h-screen bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 overflow-hidden">
+      <div className="hero-container relative min-h-screen bg-gradient-to-br from-[#4247cb] via-[#3d42c0] to-[#383db5] overflow-hidden">
         {/* Modern animated background elements with original shapes */}
         <div className="absolute inset-0 pointer-events-none">
           {/* Original Triangles with modern styling */}
@@ -175,7 +175,7 @@ const Hero: React.FC = () => {
           {/* Modern heading with enhanced typography and fade-in animation */}
           <div className="mb-6">
             <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-sm font-medium mb-6 border border-white/20">
-              <span className="w-2 h-2 bg-orange-400 rounded-full mr-2 animate-pulse"></span>
+              <span className="w-2 h-2 bg-[#ff8930] rounded-full mr-2 animate-pulse"></span>
               Online Learning Platform
             </div>
             <h1 className="fade-in-heading text-5xl md:text-7xl font-black mb-4 leading-tight mt-8 md:mt-0 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
@@ -187,11 +187,11 @@ const Hero: React.FC = () => {
 
           {/* Modern CTA buttons with glassmorphism and fade-in animation */}
           <div className="fade-in-buttons flex flex-col sm:flex-row gap-4 mb-8 mt-8">
-            <button className="group bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold py-4 px-10 rounded-2xl transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+            <button className="group bg-gradient-to-r from-[#ff8930] to-[#ff7520] hover:from-[#ff7520] hover:to-[#ff6010] text-white font-semibold py-4 px-10 rounded-2xl transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
               Get Started
               <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
             </button>
-            <button className="group border-2 border-white/30 bg-white/10 backdrop-blur-md hover:bg-white hover:text-blue-600 text-white font-semibold py-4 px-10 rounded-2xl transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+            <button className="group border-2 border-white/30 bg-white/10 backdrop-blur-md hover:bg-white hover:text-[#4247cb] text-white font-semibold py-4 px-10 rounded-2xl transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
               Enroll Now
               <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
             </button>
@@ -362,7 +362,7 @@ function PricingTeaser() {
 
           <Link
             to="/school-fees"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-50 transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 group">
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-[#4247cb] font-semibold rounded-lg hover:bg-gray-50 transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105 group">
             See Full Pricing Details
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </Link>

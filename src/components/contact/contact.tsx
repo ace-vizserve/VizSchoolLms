@@ -5,8 +5,10 @@ import { useEffect, useRef, useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
+import emailjs from "@emailjs/browser";
+import SuccessModal from "../ui/successModal";
 
-// Fix for Leaflet marker icons (Webpack/Vite issue)
+// Fix for Leaflet marker icons
 delete (L.Icon.Default.prototype as any)._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
@@ -14,7 +16,6 @@ L.Icon.Default.mergeOptions({
   shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
 });
 
-// Declare global grecaptcha
 declare global {
   interface Window {
     grecaptcha: any;
@@ -27,17 +28,28 @@ const Contact = () => {
     email: "",
     phone: "",
     name: "",
+    inquiryType: "",
+    subject: "",
     message: "",
     captchaToken: "",
   });
 
-  const [newsletterEmail, setNewsletterEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [captchaError, setCaptchaError] = useState("");
   const [recaptchaLoaded, setRecaptchaLoaded] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const recaptchaRef = useRef<HTMLDivElement>(null);
   const widgetId = useRef<number | null>(null);
+
+  // Initialize EmailJS
+  useEffect(() => {
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    if (publicKey) {
+      emailjs.init(publicKey);
+    }
+  }, []);
 
   // Load reCAPTCHA script
   useEffect(() => {
@@ -102,14 +114,8 @@ const Contact = () => {
       setCaptchaError("Please complete the reCAPTCHA verification");
       return false;
     }
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 500));
-      setCaptchaError("");
-      return true;
-    } catch {
-      setCaptchaError("Error verifying reCAPTCHA");
-      return false;
-    }
+    setCaptchaError("");
+    return true;
   };
 
   const resetRecaptcha = () => {
@@ -119,33 +125,107 @@ const Contact = () => {
     }
   };
 
+  const validateForm = () => {
+    if (!formData.name.trim()) {
+      setErrorMessage("Please enter your full name");
+      return false;
+    }
+    if (!formData.email.trim()) {
+      setErrorMessage("Please enter your email address");
+      return false;
+    }
+    if (!formData.phone.trim()) {
+      setErrorMessage("Please enter your mobile number");
+      return false;
+    }
+    if (!formData.inquiryType) {
+      setErrorMessage("Please select an inquiry type");
+      return false;
+    }
+    if (!formData.subject.trim()) {
+      setErrorMessage("Please enter a subject");
+      return false;
+    }
+    return true;
+  };
+
   const handleFormSubmit = async () => {
     setIsSubmitting(true);
+    setErrorMessage("");
     setCaptchaError("");
 
+    // Validate form
+    if (!validateForm()) {
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Verify captcha
     const isCaptchaValid = await handleCaptchaVerify();
     if (!isCaptchaValid) {
       setIsSubmitting(false);
       return;
     }
 
-    setTimeout(() => {
-      setIsSubmitting(false);
-      alert("Message sent successfully!");
-      setFormData({ email: "", phone: "", name: "", message: "", captchaToken: "" });
-      resetRecaptcha();
-    }, 1500);
-  };
+    try {
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
 
-  const handleNewsletterSubmit = async () => {
-    alert("Thank you for subscribing!");
-    setNewsletterEmail("");
+      if (!serviceId || !templateId) {
+        throw new Error("EmailJS configuration is missing");
+      }
+
+      const now = new Date();
+      const timestamp = now.toLocaleString('en-SG', {
+        dateStyle: 'full',
+        timeStyle: 'short',
+        timeZone: 'Asia/Singapore'
+      });
+
+      const templateParams = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        inquiry_type: formData.inquiryType,
+        subject: formData.subject,
+        message: formData.message || "No message provided",
+        time: timestamp,
+      };
+
+      await emailjs.send(serviceId, templateId, templateParams);
+
+      // Show success modal
+      setShowSuccessModal(true);
+
+      // Reset form
+      setFormData({
+        email: "",
+        phone: "",
+        name: "",
+        inquiryType: "",
+        subject: "",
+        message: "",
+        captchaToken: "",
+      });
+      resetRecaptcha();
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      setErrorMessage("Failed to send message. Please try again or contact us directly at admissions@hfse.edu.sg");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <div className="bg-gray-50 py-16 px-4">
       <div className="max-w-7xl mx-auto">
-        {/* Contact Form and Newsletter Section */}
+        {/* Success Modal */}
+        <SuccessModal 
+          isOpen={showSuccessModal}
+          onClose={() => setShowSuccessModal(false)}
+        />
+
+        {/* Contact Form and Map Section */}
         <div className="grid lg:grid-cols-3 gap-8 mb-16">
           {/* Contact Form */}
           <div className="lg:col-span-2">
@@ -156,42 +236,17 @@ const Contact = () => {
                 <p className="text-gray-600">Fill out the form below and we'll get back to you as soon as possible.</p>
               </div>
 
-              <div className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                      Email *
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
-                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#4247cb] focus:border-[#4247cb] outline-none transition-colors"
-                      placeholder="your@email.com"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                      Phone Number
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#4247cb] focus:border-[#4247cb] outline-none transition-colors"
-                      placeholder="+1 (555) 123-4567"
-                    />
-                  </div>
+              {/* Error Message */}
+              {errorMessage && (
+                <div className="mb-6 p-4 rounded-lg bg-red-50 text-red-800 border border-red-200">
+                  <p className="text-sm font-medium">{errorMessage}</p>
                 </div>
+              )}
 
+              <div className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                    Name *
+                    Full Name *
                   </label>
                   <input
                     type="text"
@@ -201,27 +256,94 @@ const Contact = () => {
                     onChange={handleInputChange}
                     required
                     className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#4247cb] focus:border-[#4247cb] outline-none transition-colors"
-                    placeholder="Your full name"
+                    placeholder="Enter your full name"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                    Email Address *
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#4247cb] focus:border-[#4247cb] outline-none transition-colors"
+                    placeholder="Enter your email address"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                    Mobile Number *
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#4247cb] focus:border-[#4247cb] outline-none transition-colors"
+                    placeholder="Enter your mobile number"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Inquiry Type *
+                  </label>
+                  <div className="space-y-2">
+                    {["General Inquiry", "Admission Inquiry", "Product or Service Inquiry", "Partnership and Collaboration", "Feedbacks and Comments", "Other Inquiry"].map((type) => (
+                      <label key={type} className="flex items-center">
+                        <input
+                          type="radio"
+                          name="inquiryType"
+                          value={type}
+                          checked={formData.inquiryType === type}
+                          onChange={handleInputChange}
+                          className="w-4 h-4 text-[#4247cb] focus:ring-[#4247cb]"
+                        />
+                        <span className="ml-2 text-sm text-gray-700">{type}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                    Subject *
+                  </label>
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#4247cb] focus:border-[#4247cb] outline-none transition-colors"
+                    placeholder="Enter the subject of your message"
                   />
                 </div>
 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                    Message *
+                    Message
                   </label>
                   <textarea
                     id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
-                    required
                     rows={5}
                     className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#4247cb] focus:border-[#4247cb] outline-none transition-colors resize-none"
-                    placeholder="Tell us about your project, questions, or how we can help..."
+                    placeholder="Enter your message here"
                   />
                 </div>
 
-                {/* reCAPTCHA v2 */}
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Verification *</label>
                   <div className="flex flex-col space-y-2">
@@ -242,7 +364,7 @@ const Contact = () => {
                 <Button
                   onClick={handleFormSubmit}
                   disabled={isSubmitting || !formData.captchaToken}
-                  className="bg-[#ff8930] hover:bg-[#ff7520] text-white px-8 py-3 rounded-lg font-medium transition-colors disabled:opacity-50">
+                  className="w-full bg-[#ff8930] hover:bg-[#ff7520] text-white px-8 py-3 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
                   {isSubmitting ? (
                     <>
                       <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
@@ -259,55 +381,32 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Newsletter Signup */}
+          {/* Map Section */}
           <div className="lg:col-span-1">
-            <div className="bg-gradient-to-br from-[#ff8930] to-[#ff7520] rounded-2xl p-8 text-white relative overflow-hidden">
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-white/10 rounded-full"></div>
-              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-white/10 rounded-full"></div>
-
-              <div className="relative z-10">
-                <h3 className="text-2xl font-bold mb-3">Our Newsletter</h3>
-                <p className="text-orange-100 mb-6 text-sm leading-relaxed">
-                  Stay updated with our latest news, updates, and exclusive offers delivered straight to your inbox.
-                </p>
-
-                <div className="space-y-4">
-                  <div>
-                    <input
-                      type="email"
-                      value={newsletterEmail}
-                      onChange={(e) => setNewsletterEmail(e.target.value)}
-                      required
-                      className="w-full px-4 py-3 rounded-lg bg-white/20 backdrop-blur-sm border border-white/30 text-white placeholder-white/70 focus:ring-2 focus:ring-white/50 focus:border-white/50 outline-none transition-colors"
-                      placeholder="Enter your email"
-                    />
-                  </div>
-
-                  <div className="flex items-center space-x-2">
-                    <input
-                      type="checkbox"
-                      id="newsletter-agreement"
-                      required
-                      className="w-4 h-4 rounded border-white/30 bg-white/20 text-white focus:ring-white/50"
-                    />
-                    <label htmlFor="newsletter-agreement" className="text-xs text-white/90">
-                      I agree to receive marketing emails
-                    </label>
-                  </div>
-
-                  <Button
-                    onClick={handleNewsletterSubmit}
-                    className="w-full bg-white text-[#ff8930] hover:bg-orange-50 font-medium py-3 rounded-lg transition-colors">
-                    Subscribe Now
-                  </Button>
-                </div>
-              </div>
+            <div className="bg-white rounded-2xl overflow-hidden shadow-sm h-full">
+              <MapContainer
+                center={[1.308333, 103.879167]}
+                zoom={18}
+                style={{ height: "100%", minHeight: "600px", width: "100%" }}
+                aria-label="Map showing HFSE Singapore International School">
+                <TileLayer
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                  attribution="&copy; OpenStreetMap contributors"
+                />
+                <Marker position={[1.308333, 103.879167]}>
+                  <Popup>
+                    HFSE International School
+                    <br />
+                    223 Mountbatten Road #02-23, Mountbatten Square, Singapore 398008
+                  </Popup>
+                </Marker>
+              </MapContainer>
             </div>
           </div>
         </div>
 
         {/* Contact Cards */}
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
+        <div className="grid md:grid-cols-3 gap-6">
           <div className="bg-[#4247cb] rounded-2xl p-6 text-white">
             <div className="flex items-center justify-center w-12 h-12 bg-white/20 rounded-lg mb-4">
               <Phone className="h-6 w-6" />
@@ -337,27 +436,6 @@ const Contact = () => {
               Visit our office in the heart of Singapore for face-to-face consultations and meetings.
             </p>
           </div>
-        </div>
-
-        {/* Map Section */}
-        <div className="bg-white rounded-2xl overflow-hidden shadow-sm">
-          <MapContainer
-            center={[1.308333, 103.879167]} // coordinates from Google Earth
-            zoom={18}
-            style={{ height: "320px", width: "100%" }}
-            aria-label="Map showing HFSE Singapore International School">
-            <TileLayer
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              attribution="&copy; OpenStreetMap contributors"
-            />
-            <Marker position={[1.308333, 103.879167]}>
-              <Popup>
-                HFSE International School
-                <br />
-                223 Mountbatten Road #02-23, Mountbatten Square, Singapore 398008
-              </Popup>
-            </Marker>
-          </MapContainer>
         </div>
       </div>
     </div>

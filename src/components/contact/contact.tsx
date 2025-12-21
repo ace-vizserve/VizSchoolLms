@@ -280,6 +280,7 @@ const Contact = () => {
                   <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
                     Mobile Number *
                   </label>
+                  
                  <input
   type="tel"
   id="phone"

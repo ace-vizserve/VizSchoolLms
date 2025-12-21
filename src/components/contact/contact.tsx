@@ -280,16 +280,21 @@ const Contact = () => {
                   <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
                     Mobile Number *
                   </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#4247cb] focus:border-[#4247cb] outline-none transition-colors"
-                    placeholder="Enter your mobile number"
-                  />
+                 <input
+  type="tel"
+  id="phone"
+  name="phone"
+  value={formData.phone}
+  onChange={(e) => {
+    const numericValue = e.target.value.replace(/\D/g, "");
+    setFormData((prev) => ({ ...prev, phone: numericValue }));
+  }}
+  inputMode="numeric"
+  pattern="[0-9]*"
+  required
+  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#4247cb] focus:border-[#4247cb] outline-none transition-colors"
+  placeholder="Enter your mobile number"
+/>
                 </div>
 
                 <div>

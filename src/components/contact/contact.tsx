@@ -1,3 +1,4 @@
+import emailjs from "@emailjs/browser";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { Mail, MapPin, Phone, Send } from "lucide-react";
@@ -5,7 +6,6 @@ import { useEffect, useRef, useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
-import emailjs from "@emailjs/browser";
 import SuccessModal from "../ui/successModal";
 
 // Fix for Leaflet marker icons
@@ -176,10 +176,10 @@ const Contact = () => {
       }
 
       const now = new Date();
-      const timestamp = now.toLocaleString('en-SG', {
-        dateStyle: 'full',
-        timeStyle: 'short',
-        timeZone: 'Asia/Singapore'
+      const timestamp = now.toLocaleString("en-SG", {
+        dateStyle: "full",
+        timeStyle: "short",
+        timeZone: "Asia/Singapore",
       });
 
       const templateParams = {
@@ -220,10 +220,7 @@ const Contact = () => {
     <div className="bg-gray-50 py-16 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Success Modal */}
-        <SuccessModal 
-          isOpen={showSuccessModal}
-          onClose={() => setShowSuccessModal(false)}
-        />
+        <SuccessModal isOpen={showSuccessModal} onClose={() => setShowSuccessModal(false)} />
 
         {/* Contact Form and Map Section */}
         <div className="grid lg:grid-cols-3 gap-8 mb-16">
@@ -280,30 +277,35 @@ const Contact = () => {
                   <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
                     Mobile Number *
                   </label>
-                  
-                 <input
-  type="tel"
-  id="phone"
-  name="phone"
-  value={formData.phone}
-  onChange={(e) => {
-    const numericValue = e.target.value.replace(/\D/g, "");
-    setFormData((prev) => ({ ...prev, phone: numericValue }));
-  }}
-  inputMode="numeric"
-  pattern="[0-9]*"
-  required
-  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#4247cb] focus:border-[#4247cb] outline-none transition-colors"
-  placeholder="Enter your mobile number"
-/>
+
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={(e) => {
+                      const numericValue = e.target.value.replace(/\D/g, "");
+                      setFormData((prev) => ({ ...prev, phone: numericValue }));
+                    }}
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    required
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#4247cb] focus:border-[#4247cb] outline-none transition-colors"
+                    placeholder="Enter your mobile number"
+                  />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Inquiry Type *
-                  </label>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Inquiry Type *</label>
                   <div className="space-y-2">
-                    {["General Inquiry", "Admission Inquiry", "Product or Service Inquiry", "Partnership and Collaboration", "Feedbacks and Comments", "Other Inquiry"].map((type) => (
+                    {[
+                      "General Inquiry",
+                      "Admission Inquiry",
+                      "Product or Service Inquiry",
+                      "Partnership and Collaboration",
+                      "Feedbacks and Comments",
+                      "Other Inquiry",
+                    ].map((type) => (
                       <label key={type} className="flex items-center">
                         <input
                           type="radio"

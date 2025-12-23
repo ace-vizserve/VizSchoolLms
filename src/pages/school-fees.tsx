@@ -148,9 +148,9 @@ function SchoolFees() {
 
                     <div className="mb-6">
                       <div className="flex items-baseline gap-2">
-                        <span className="text-4xl font-bold text-foreground">${plan.promo.toLocaleString()}</span>
+                        <span className="text-4xl font-bold text-foreground">S${plan.promo.toLocaleString()}</span>
                         <span className="text-lg text-muted-foreground line-through">
-                          ${plan.fees.toLocaleString()}
+                          S${plan.fees.toLocaleString()}
                         </span>
                       </div>
                       <div className="mt-2">

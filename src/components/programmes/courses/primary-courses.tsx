@@ -6,13 +6,6 @@ import { Badge } from "../../ui/badge";
 import { buttonVariants } from "../../ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "../../ui/card";
 
-const getClassColor = (title: string) => {
-  if (title.includes("FRENCH")) return "border-l-blue-500 text-blue-600 bg-blue-50";
-  if (title.includes("TAMIL")) return "border-l-orange-500 text-orange-600 bg-orange-50";
-  if (title.includes("MANDARIN")) return "border-l-red-500 text-red-600 bg-red-50";
-  return "border-l-emerald-500 text-emerald-600 bg-emerald-50";
-};
-
 const classTypes = [
   { label: "Global Class 3 (ENGLISH + FRENCH)", value: "Global Class 3 (ENGLISH + FRENCH)" },
   { label: "Global Class 2 (ENGLISH + TAMIL)", value: "Global Class 2 (ENGLISH + TAMIL)" },

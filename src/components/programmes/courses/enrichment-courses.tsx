@@ -1,7 +1,7 @@
-import { ArrowUpRight } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "../../ui/avatar";
+import { ArrowUpRight, Sparkles } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Badge } from "../../ui/badge";
-import { Button } from "../../ui/button";
+import { buttonVariants } from "../../ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "../../ui/card";
 
 const enrichmentCourses = [
@@ -86,48 +86,86 @@ const enrichmentCourses = [
 
 function EnrichmentCourses() {
   return (
-    <div className="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
-      {enrichmentCourses.map((details, i) => (
-        <Card key={i} className="shadow-none pt-0 overflow-hidden">
-          <CardHeader className="p-0">
-            <div
-              style={{
-                backgroundImage: `url(${details.image})`,
-              }}
-              className="aspect-video bg-cover rounded-lg w-full"
-            />
-          </CardHeader>
-          <CardContent className="pt-4 pb-5">
-            <Badge className="font-semibold">{details.category}</Badge>
+    <div className="max-w-7xl mx-auto space-y-10 p-4">
+      {/* Enrichment Header Section - PURPLE THEME */}
+      <div className="relative group overflow-hidden bg-violet-600 rounded-3xl p-8 shadow-xl">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-white/20 rounded-full blur-3xl -mr-32 -mt-32"></div>
+        <div className="relative flex flex-col md:flex-row items-start md:items-center gap-6 text-white">
+          <div className="w-14 h-14 bg-white/20 backdrop-blur-xl rounded-2xl flex items-center justify-center border border-white/30 shrink-0">
+            <Sparkles size={28} />
+          </div>
+          <div>
+            <h4 className="font-bold text-2xl tracking-tight">Specialty Enrichment</h4>
+            <p className="text-violet-50 text-sm opacity-90 max-w-xl">
+              From Music to Robotics, discover elective courses designed to ignite passion and build future-ready skills
+              beyond the classroom.
+            </p>
+          </div>
+        </div>
+      </div>
 
-            <div className="space-y-2">
-              <h3 className="mt-4 text-[1.35rem] font-semibold tracking-tight">{details.title}</h3>
-              <p className="text-muted-foreground text-sm md:text-[17px] line-clamp-2">{details.excerpt}</p>
-            </div>
-            <div className="mt-6 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Avatar>
-                  <AvatarImage src="https://github.com/shadcn.png" />
-                  <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
-                <span className="text-muted-foreground font-semibold">{details.tutor}</span>
+      {/* Courses Grid */}
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {enrichmentCourses.map((details, i) => (
+          <Card
+            key={i}
+            className="group flex flex-col bg-white border-slate-200 shadow-sm hover:shadow-2xl hover:border-violet-200 transition-all duration-500 rounded-[2rem] overflow-hidden hover:-translate-y-2">
+            <CardHeader className="p-0 relative">
+              <div
+                style={{ backgroundImage: `url(${details.image})` }}
+                className="aspect-[16/10] bg-cover bg-center w-full group-hover:scale-110 transition-transform duration-700"
+              />
+              <div className="absolute top-4 left-4">
+                <Badge className="bg-white/95 backdrop-blur-md text-violet-600 font-black px-4 py-1.5 shadow-sm border-none rounded-full">
+                  {details.category}
+                </Badge>
               </div>
-              <Badge className="bg-green-100 text-green-500 rounded-full px-3 text-xs font-bold uppercase">
-                {details.price}
-              </Badge>
-            </div>
-          </CardContent>
-          <CardFooter className="pt-0">
-            <Button
-              size={"lg"}
-              variant={"ghost"}
-              className="py-5 w-full font-semibold bg-primary/10 hover:bg-primary text-primary hover:text-white gap-2">
-              Enrol now
-              <ArrowUpRight />
-            </Button>
-          </CardFooter>
-        </Card>
-      ))}
+            </CardHeader>
+
+            <CardContent className="flex-grow pt-8 px-8 space-y-5">
+              <div className="min-h-[120px] space-y-3">
+                <h3 className="text-xl font-black text-slate-900 leading-tight group-hover:text-violet-600 transition-colors duration-300">
+                  {details.title}
+                </h3>
+                <p className="text-slate-500 text-sm leading-relaxed line-clamp-3">{details.excerpt}</p>
+              </div>
+
+              {/* Tutor & Price Section */}
+              <div className="flex items-center justify-between py-5 border-t border-slate-100">
+                {/* <div className="flex items-center gap-3">
+                  <Avatar className="h-10 w-10 border-2 border-violet-100">
+                    <AvatarImage src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${details.tutor}`} />
+                    <AvatarFallback className="bg-violet-50 text-violet-600 font-bold">
+                      {details.tutor.charAt(0)}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="flex flex-col">
+                    <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Tutor</span>
+                    <span className="text-sm font-bold text-slate-700">{details.tutor}</span>
+                  </div>
+                </div> */}
+                <div className="text-right">
+                  <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest block">Fee</span>
+                  <span className="text-lg font-black text-slate-900">{details.price}</span>
+                </div>
+              </div>
+            </CardContent>
+
+            <CardFooter className="pb-8 px-8">
+              <Link
+                target="_blank"
+                to={"https://enrol.hfse.edu.sg/admission/dashboard"}
+                className={buttonVariants({
+                  className:
+                    "w-full !h-14 !rounded-2xl !font-black !text-base transition-all duration-300 group bg-violet-600 hover:bg-violet-700 shadow-lg shadow-violet-200 text-white",
+                })}>
+                Enroll Now
+                <ArrowUpRight className="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </Link>
+            </CardFooter>
+          </Card>
+        ))}
+      </div>
     </div>
   );
 }

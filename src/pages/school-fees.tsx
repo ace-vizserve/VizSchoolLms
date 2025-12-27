@@ -1,8 +1,9 @@
 import { motion, type Variants } from "framer-motion";
 import { ArrowUpRight, CircleCheck, Sparkles, TrendingUp, Users } from "lucide-react";
+import { Link } from "react-router-dom";
 import FeeBreakdown from "../components/school-fees/fee-breakdown";
 import { Badge } from "../components/ui/badge";
-import { Button } from "../components/ui/button";
+import { buttonVariants } from "../components/ui/button";
 import { Separator } from "../components/ui/separator";
 import { BASE_URL } from "../constants";
 import SEO from "../seo";
@@ -129,10 +130,10 @@ function SchoolFees() {
                   key={plan.programName}
                   whileHover={{ y: -8, scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 200, damping: 15 }}
-                  className="relative group rounded-2xl border border-border hover:border-primary/50 hover:shadow-lg transition-all duration-300 bg-card overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  className="flex relative group rounded-2xl border border-border hover:border-primary/50 hover:shadow-lg transition-all duration-300 bg-card overflow-hidden">
+                  <div className=" absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                  <div className="relative p-8">
+                  <div className="flex flex-col flex-1 relative p-8">
                     <motion.div
                       initial={{ scale: 0.8, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
@@ -180,9 +181,15 @@ function SchoolFees() {
                       </ul>
                     </div>
 
-                    <Button size="lg" className="w-full font-semibold gap-2">
+                    <Link
+                      target="_blank"
+                      to={"https://enrol.hfse.edu.sg/admission/dashboard"}
+                      className={buttonVariants({
+                        className:
+                          "mt-auto w-full !h-14 !rounded-2xl !font-black !shadow-lg !shadow-orange-200 text-white group",
+                      })}>
                       Enrol in {plan.programName} <ArrowUpRight />
-                    </Button>
+                    </Link>
                   </div>
                 </motion.div>
               );

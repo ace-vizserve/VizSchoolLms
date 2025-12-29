@@ -112,12 +112,14 @@ function Features() {
           <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
             Join thousands of students learning at their own pace with VizSchool
           </p>
-          <button className="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary font-semibold rounded-xl hover:bg-gray-50 transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105">
+          <a
+            href="https://enrol.hfse.edu.sg/"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary font-semibold rounded-xl hover:bg-gray-50 transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-105">
             Get Started Today
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
             </svg>
-          </button>
+          </a>
         </div>
       </div>
     </MaxWidthWrapper>

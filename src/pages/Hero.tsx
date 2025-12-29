@@ -187,14 +187,18 @@ const Hero: React.FC = () => {
 
           {/* Modern CTA buttons with glassmorphism and fade-in animation */}
           <div className="fade-in-buttons flex flex-col sm:flex-row gap-4 mb-8 mt-8">
-            <button className="group bg-gradient-to-r from-[#ff8930] to-[#ff7520] hover:from-[#ff7520] hover:to-[#ff6010] text-white font-semibold py-4 px-10 rounded-2xl transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+            <a
+              href="https://enrol.hfse.edu.sg/"
+              className="group bg-gradient-to-r from-[#ff8930] to-[#ff7520] hover:from-[#ff7520] hover:to-[#ff6010] text-white font-semibold py-4 px-10 rounded-2xl transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
               Get Started
               <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
-            </button>
-            <button className="group border-2 border-white/30 bg-white/10 backdrop-blur-md hover:bg-white hover:text-[#4247cb] text-white font-semibold py-4 px-10 rounded-2xl transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+            </a>
+            <a
+              href="https://enrol.hfse.edu.sg/"
+              className="group border-2 border-white/30 bg-white/10 backdrop-blur-md hover:bg-white hover:text-[#4247cb] text-white font-semibold py-4 px-10 rounded-2xl transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
               Enroll Now
               <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
-            </button>
+            </a>
           </div>
 
           {/* Three people with modern capsule shapes - keeping original alignment */}

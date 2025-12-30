@@ -92,7 +92,7 @@ const NavBar = () => {
               Contact Us
             </NavLink>
             <a href="https://lms.vizschool.org/login/index.php" target="_blank" rel="noopener noreferrer">
-              <Button size={"lg"} className="w-full">
+              <Button size={"lg"} className="w-full cursor-pointer">
                 Login
               </Button>
             </a>

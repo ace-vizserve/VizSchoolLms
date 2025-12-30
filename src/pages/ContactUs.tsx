@@ -22,7 +22,7 @@ const ContactUs = () => {
       <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
         {/* Animated Background */}
         <AnimatedMeshGradient primaryColor="#FD8735" secondaryColor="#007AFF" overlayOpacity={0.3} />
-
+        
         {/* Foreground Content */}
         <MaxWidthWrapper className="relative z-10 space-y-6 text-center text-white">
           <Badge className="font-semibold rounded-full py-1 border-none bg-white/20 backdrop-blur-sm">

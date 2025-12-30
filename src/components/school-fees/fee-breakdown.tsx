@@ -12,27 +12,27 @@ const schoolPrograms = [
     breakdown: [
       {
         component: "Annual Tuition",
-        fee: "$2,500",
+        fee: "S$2,500",
         details: "Base fee for program access, advisor support, core curriculum guidance",
       },
       {
         component: "Curriculum Bundle",
-        fee: "$200 – $500",
+        fee: "S$200 – S$500",
         details: "Suggested books and learning materials",
       },
       {
         component: "Advisor Sessions",
-        fee: "$300",
+        fee: "S$300",
         details: "Four scheduled online check-ins with HFSE academic & wellbeing advisors",
       },
       {
         component: "Assessment Kit",
-        fee: "$150",
+        fee: "S$150",
         details: "Year-end testing Tools",
       },
       {
         component: "US/SG Accreditation",
-        fee: "Optional: $300 – $500",
+        fee: "Optional: S$300 – S$500",
         details: "Documentation & report processing",
       },
     ],
@@ -45,7 +45,7 @@ const schoolPrograms = [
     breakdown: [
       {
         component: "Annual Tuition",
-        fee: "$3,500",
+        fee: "S$3,500",
         details: "Includes platform access (MobyMax, Labster), advisor support",
       },
       {
@@ -55,27 +55,27 @@ const schoolPrograms = [
       },
       {
         component: "Print Material Kit",
-        fee: "$300 – $600",
+        fee: "S$300 – S$600",
         details: "Grade-level consumables & workbooks",
       },
       {
         component: "Unit / Quarterly Tests",
-        fee: "$200",
+        fee: "S$200",
         details: "Digital assessments via online tools",
       },
       {
         component: "Advisor Check-ins",
-        fee: "$350",
+        fee: "S$350",
         details: "Six scheduled online sessions for guidance & progress review",
       },
       {
         component: "Hybrid Workshops",
-        fee: "Optional: $150 – $250/session",
+        fee: "Optional: S$150 – S$250/session",
         details: "2–4 optional face-to-face workshops per year",
       },
       {
         component: "Accreditation Support",
-        fee: "Optional: $300 – $500",
+        fee: "Optional: S$300 – S$500",
         details: "Accreditation assistance",
       },
     ],
@@ -88,7 +88,7 @@ const schoolPrograms = [
     breakdown: [
       {
         component: "Annual Tuition",
-        fee: "$5,500",
+        fee: "S$5,500",
         details: "Includes daily live classes, homeroom, grading",
       },
       {
@@ -118,12 +118,12 @@ const schoolPrograms = [
       },
       {
         component: "SG Accreditation",
-        fee: "Optional: $300 – $500",
+        fee: "Optional: S$300 – S$500",
         details: "Singapore accreditation support",
       },
       {
         component: "On-campus Hybrid Add-Ons",
-        fee: "Optional: $250/quarter",
+        fee: "Optional: S$250/quarter",
         details: "Face-to-face sessions at HFSE hub or partner site",
       },
     ],
@@ -185,7 +185,7 @@ function ProgramBreakdown({ program }: { program: (typeof schoolPrograms)[0] }) 
         <p className="text-lg text-muted-foreground mb-3">{program.overview}</p>
         <div className="flex items-center justify-center gap-2">
           <span className="text-sm text-muted-foreground">Total Fee Range:</span>
-          <span className="text-2xl font-bold text-primary">${program.feeRange}</span>
+          <span className="text-2xl font-bold text-primary">S${program.feeRange}</span>
         </div>
       </div>
 

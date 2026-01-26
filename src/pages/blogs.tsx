@@ -16,65 +16,7 @@ const blogs = [
     excerpt:
       "Discover how VizSchool’s flexible approach allows students to learn at their own pace while still meeting academic goals.",
     image: "/assets/reviews/blog-1.png",
-  },
-  {
-    category: "Technology",
-    readTime: "5 min read",
-    title: "How VizSchool Uses Technology to Enhance Learning",
-    excerpt:
-      "From interactive lessons to real-time progress tracking, here’s how VizSchool integrates technology into everyday learning.",
-    image: "/assets/reviews/blog-2.png",
-  },
-  {
-    category: "Parent Tips",
-    readTime: "3 min read",
-    title: "Helping Your Child Succeed in Online School",
-    excerpt: "Practical strategies for parents to keep their children engaged and motivated while studying online.",
-    image: "/assets/reviews/blog-3.png",
-  },
-  {
-    category: "Student Life",
-    readTime: "6 min read",
-    title: "A Day in the Life of a VizSchool Student",
-    excerpt: "Follow a Primary 5 student’s daily routine to see how online classes, projects, and breaks fit together.",
-    image: "/assets/reviews/blog-4.png",
-  },
-  {
-    category: "Academics",
-    readTime: "5 min read",
-    title: "Mastering Math with VizSchool’s Interactive Lessons",
-    excerpt: "Why our interactive and gamified math lessons help students grasp complex concepts faster and better.",
-    image: "/assets/reviews/blog-5.png",
-  },
-  {
-    category: "Parent Tips",
-    readTime: "4 min read",
-    title: "Balancing Screen Time and Learning Time",
-    excerpt: "Learn how to manage your child’s screen time effectively while ensuring quality education at home.",
-    image: "/assets/reviews/blog-6.png",
-  },
-  {
-    category: "Technology",
-    readTime: "5 min read",
-    title: "The Future of Online Education in the Singapore",
-    excerpt: "Explore how platforms like VizSchool are shaping the future of education for international students.",
-    image: "/assets/reviews/blog-7.png",
-  },
-  {
-    category: "Student Life",
-    readTime: "3 min read",
-    title: "Fun Activities to Keep Learning Exciting",
-    excerpt:
-      "Beyond the screen: simple activities you can do at home to make learning more engaging. Learning can be fun.",
-    image: "/assets/reviews/blog-8.png",
-  },
-  {
-    category: "Academics",
-    readTime: "6 min read",
-    title: "How VizSchool Prepares Students for the Next Grade Level",
-    excerpt: "Step-by-step insights into how our curriculum ensures readiness for academic progression.",
-    image: "/assets/reviews/blog-9.png",
-  },
+  }
 ];
 
 function Blogs() {

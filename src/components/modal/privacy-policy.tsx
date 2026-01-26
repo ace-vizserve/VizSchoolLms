@@ -7,21 +7,21 @@ function PrivacyPolicy() {
     <Dialog>
       <DialogTrigger asChild>
         <Button className="p-0" variant={"link"}>
-          Privacy Policy
+          PDPA
         </Button>
       </DialogTrigger>
       <DialogContent className="!max-w-3xl pt-10">
         <ScrollArea className="h-[60vh]">
           <DialogHeader className="items-center">
             <img src="/assets/logo.png" alt="VizSchool Logo" className="size-24 object-cover mb-2" />
-            <DialogTitle className="text-primary font-bold">Privacy Policy</DialogTitle>
+            <DialogTitle className="text-primary font-bold">Personal Data Protection Statement</DialogTitle>
             <DialogDescription>Effective Date: 2025</DialogDescription>
           </DialogHeader>
           <div className="mt-4 text-muted-foreground text-sm leading-relaxed">
             <section className="hover:bg-gray-50 p-4 rounded-lg">
               <h2 className="text-black font-semibold mb-2">1. Introduction</h2>
               <p>
-                VizSchool LMS ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy
+                VizSchool LMS ("we," "our," or "us") is committed to protecting your privacy. This Personal Data Protection Statement
                 explains how we collect, use, and safeguard your personal information when you use our platform.
               </p>
             </section>

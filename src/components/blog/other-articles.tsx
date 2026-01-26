@@ -12,27 +12,8 @@ const otherArticles = [
     read_time: "3 min read",
     created_at: "March 10, 2024",
     image: "/assets/reviews/blog-2.png",
-  },
-  {
-    id: 2,
-    title: "The Science Behind Effective Online Learning",
-    excerpt:
-      "Discover the research-backed methods that make virtual education as effective as traditional classroom learning.",
-    category: "Research",
-    read_time: "5 min read",
-    created_at: "March 8, 2024",
-    image: "/assets/reviews/blog-3.png",
-  },
-  {
-    id: 3,
-    title: "Preparing Students for Future Careers",
-    excerpt:
-      "How modern education adapts to prepare students for jobs that don't exist yet and skills that matter most.",
-    category: "Career Prep",
-    read_time: "4 min read",
-    created_at: "March 5, 2024",
-    image: "/assets/reviews/blog-4.png",
-  },
+  }
+
 ];
 
 function OtherArticles() {

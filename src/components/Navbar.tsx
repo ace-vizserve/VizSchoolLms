@@ -33,11 +33,7 @@ const NavBar = () => {
               className={({ isActive }) => (isActive ? "text-[#4247cb]" : "hover:text-secondary font-medium")}>
               School Fees
             </NavLink>
-            <NavLink
-              to={"/reviews"}
-              className={({ isActive }) => (isActive ? "text-[#4247cb]" : "hover:text-secondary font-medium")}>
-              Reviews
-            </NavLink>
+            
             <NavLink
               to={"/blogs"}
               className={({ isActive }) => (isActive ? "text-[#4247cb]" : "hover:text-secondary font-medium")}>
@@ -82,9 +78,7 @@ const NavBar = () => {
             <NavLink to={"/our-programmes"} className="block px-3 py-2 hover:text-secondary font-medium">
               Programmes
             </NavLink>
-            <NavLink to={"/reviews"} className="block px-3 py-2 hover:text-secondary font-medium">
-              Reviews
-            </NavLink>
+          
             <NavLink to="/blogs" className="block px-3 py-2 hover:text-secondary font-medium">
               Blogs
             </NavLink>

@@ -45,7 +45,7 @@ function Courses() {
                 variant: "outline",
                 size: "lg",
                 className:
-                  "px-6 py-3 rounded-lg font-semibold text-base transition-all duration-300 data-[state=inactive]:bg-transparent data-[state=inactive]:text-muted-foreground data-[state=inactive]:hover:bg-muted data-[state=inactive]:hover:text-foreground data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25 data-[state=active]:scale-105",
+                  "px-6 py-3 rounded-lg font-semibold text-base transition-all duration-300 data-[state=inactive]:bg-transparent data-[state=inactive]:text-muted-foreground data-[state=inactive]:hover:bg-muted data-[state=inactive]:hover:text-foreground data-[state=active]:bg-violet-600 data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg data-[state=active]:shadow-primary/25 data-[state=active]:scale-105",
               })}
               value="enrichment">
               Enrichment

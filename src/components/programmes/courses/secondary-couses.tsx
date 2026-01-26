@@ -17,7 +17,6 @@ const gradeLevels = [
 const secondarySchoolCourses = [
   {
     gradeLevel: "Secondary 1",
-    price: "S$80",
     title: "Standard Class (ENGLISH + TAGALOG)",
     excerpt:
       "Dive into classic and modern literature while developing strong analytical writing and comprehension skills.",
@@ -25,7 +24,6 @@ const secondarySchoolCourses = [
   },
   {
     gradeLevel: "Secondary 2",
-    price: "Free",
     title: "Standard Class (ENGLISH + TAGALOG)",
     excerpt:
       "Enhance persuasive speaking, critical thinking, and writing skills through structured debates and discussions.",
@@ -33,14 +31,12 @@ const secondarySchoolCourses = [
   },
   {
     gradeLevel: "Secondary 3",
-    price: "S$50",
     title: "Standard Class (ENGLISH + TAGALOG)",
     excerpt: "Learn the principles of digital illustration, photo editing, and creative design projects.",
     image: "/assets/reviews/blog-3.png",
   },
   {
     gradeLevel: "Secondary 4",
-    price: "Free",
     title: "Standard Class (ENGLISH + TAGALOG)",
     excerpt: "Improve physical endurance, coordination, and teamwork through various indoor and outdoor activities.",
     image: "/assets/reviews/blog-6.png",
@@ -63,7 +59,7 @@ function SecondaryCourses() {
         <div className="space-y-1">
           <div className="flex items-center gap-2 text-orange-600 font-bold uppercase tracking-wider text-xs">
             <Filter size={14} />
-            Browse Catalog
+            Browse Catalogue
           </div>
           <h3 className="text-2xl font-extrabold text-slate-900 tracking-tight">Grade Levels</h3>
         </div>
@@ -130,15 +126,7 @@ function SecondaryCourses() {
                 </h3>
                 <p className="text-slate-500 text-sm mt-3 line-clamp-3">{details.excerpt}</p>
 
-                <div className="flex items-center justify-between mt-6 pt-5 border-t border-slate-100">
-                  <div className="flex flex-col">
-                    <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Investment</span>
-                    <span className="text-xl font-black text-slate-900">{details.price}</span>
-                  </div>
-                  {details.price === "Free" && (
-                    <Badge className="bg-orange-100 text-orange-600 font-bold border-none">Limited</Badge>
-                  )}
-                </div>
+                <div className="flex items-center justify-between mt-6 pt-5 border-t border-slate-100"></div>
               </CardContent>
 
               <CardFooter className="pb-8 px-8">
@@ -148,7 +136,7 @@ function SecondaryCourses() {
                   className={buttonVariants({
                     className: "w-full !h-14 !rounded-2xl !font-black !shadow-lg !shadow-orange-200 text-white group",
                   })}>
-                  Enroll Now
+                  Enrol Now
                   <ArrowUpRight className="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </Link>
               </CardFooter>

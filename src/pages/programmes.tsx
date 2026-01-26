@@ -1,4 +1,3 @@
-import EnrollNowCTA, { EnrollNowCTAMobile } from "../components/programmes/enroll-now-cta";
 
 import { Check } from "lucide-react";
 import AcademicPathway from "../components/programmes/academic-pathway";
@@ -30,8 +29,6 @@ function Programmes() {
         <AnimatedMeshGradient primaryColor="#FD8735" secondaryColor="#007AFF" overlayOpacity={0.3} />
         <Hero />
       </div>
-      <EnrollNowCTA />
-      <EnrollNowCTAMobile />
       <Features />
       <Programs />
       <AcademicPathway />

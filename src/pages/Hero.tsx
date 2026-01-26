@@ -1,8 +1,9 @@
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Check, Sparkles } from "lucide-react";
 import React from "react";
 import { Link } from "react-router-dom";
-import Testimonials from "../components/Testimonials";
+import { Badge } from "../components/ui/badge";
 import { BASE_URL } from "../constants";
+import { cn } from "../lib/utils";
 import SEO from "../seo";
 
 const Hero: React.FC = () => {
@@ -131,7 +132,6 @@ const Hero: React.FC = () => {
             className="absolute bottom-20 left-16 w-24 h-24 bg-gradient-to-tr from-white/8 to-transparent rounded-full blur-lg animate-pulse"
             style={{ animationDelay: "4s" }}></div>
         </div>
-
         {/* Custom CSS for fade-in animation */}
         <style>{`
         @keyframes fadeInUp {
@@ -169,7 +169,6 @@ const Hero: React.FC = () => {
           opacity: 0;
         }
       `}</style>
-
         {/* Main content with modern styling */}
         <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-8 text-center text-white pt-20 md:pt-0">
           {/* Modern heading with enhanced typography and fade-in animation */}
@@ -183,22 +182,6 @@ const Hero: React.FC = () => {
               <br />
               <span className="text-4xl md:text-6xl font-light">Online, Anytime, Anywhere</span>
             </h1>
-          </div>
-
-          {/* Modern CTA buttons with glassmorphism and fade-in animation */}
-          <div className="fade-in-buttons flex flex-col sm:flex-row gap-4 mb-8 mt-8">
-            <a
-              href="https://enrol.hfse.edu.sg/"
-              className="group bg-gradient-to-r from-[#ff8930] to-[#ff7520] hover:from-[#ff7520] hover:to-[#ff6010] text-white font-semibold py-4 px-10 rounded-2xl transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-              Get Started
-              <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
-            </a>
-            <a
-              href="https://enrol.hfse.edu.sg/"
-              className="group border-2 border-white/30 bg-white/10 backdrop-blur-md hover:bg-white hover:text-[#4247cb] text-white font-semibold py-4 px-10 rounded-2xl transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-              Enroll Now
-              <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
-            </a>
           </div>
 
           {/* Three people with modern capsule shapes - keeping original alignment */}
@@ -243,109 +226,116 @@ const Hero: React.FC = () => {
             </div>
           </div>
         </div>
-
-        <Testimonials />
-
-        {/* Modern stats section with glassmorphism cards */}
-        <div className="relative z-10 py-20 px-8">
-          <div className="max-w-7xl mx-auto text-center">
-            <div className="mb-16">
-              <div className="inline-flex items-center px-4 py-2 bg-white backdrop-blur-md rounded-full text-sm font-medium mb-6 border border-white/20">
-                <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
-                Student Success Stories
-              </div>
-              <h2 className="text-white text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text">
-                Students & Parents Love VizSchool!
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 md:gap-8">
-              {/* Statistic 1 */}
-              <div className="group bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl">
-                <div className="w-20 h-20 mx-auto mb-6 flex items-center justify-center bg-white/20 rounded-2xl group-hover:scale-110 transition-transform duration-300">
-                  <img src="/assets/image1.png" alt="Student studying" className="w-16 h-16 object-contain" />
-                </div>
-                <div className="text-white text-4xl md:text-5xl font-black mb-3 group-hover:text-blue-100 transition-colors duration-300">
-                  95%
-                </div>
-                <div className="text-white/90 text-sm md:text-base font-medium leading-relaxed">
-                  Students enjoy
-                  <br />
-                  Newcastle
-                </div>
-              </div>
-
-              {/* Statistic 2 */}
-              <div className="group bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl">
-                <div className="w-20 h-20 mx-auto mb-6 flex items-center justify-center bg-white/20 rounded-2xl group-hover:scale-110 transition-transform duration-300">
-                  <img src="/assets/image2.png" alt="Star rating" className="w-16 h-16 object-contain animate-pulse" />
-                </div>
-                <div className="text-white text-3xl md:text-4xl font-black mb-3 group-hover:text-blue-100 transition-colors duration-300">
-                  9 out of 10
-                </div>
-                <div className="text-white/90 text-sm md:text-base font-medium leading-relaxed">
-                  Parents love the
-                  <br />
-                  flexibility
-                </div>
-              </div>
-
-              {/* Statistic 3 */}
-              <div className="group bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl">
-                <div className="w-20 h-20 mx-auto mb-6 flex items-center justify-center bg-white/20 rounded-2xl group-hover:scale-110 transition-transform duration-300">
-                  <img src="/assets/image3.png" alt="Confident student" className="w-16 h-16 object-contain" />
-                </div>
-                <div className="text-white text-4xl md:text-5xl font-black mb-3 group-hover:text-blue-100 transition-colors duration-300">
-                  85%
-                </div>
-                <div className="text-white/90 text-sm md:text-base font-medium leading-relaxed">
-                  Students feel
-                  <br />
-                  more confident
-                </div>
-              </div>
-
-              {/* Statistic 4 */}
-              <div className="group bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl">
-                <div className="w-20 h-20 mx-auto mb-6 flex items-center justify-center bg-white/20 rounded-2xl group-hover:scale-110 transition-transform duration-300">
-                  <img src="/assets/image4.png" alt="Multiple courses" className="w-16 h-16 object-contain" />
-                </div>
-                <div className="text-white text-3xl md:text-4xl font-black mb-3 group-hover:text-blue-100 transition-colors duration-300">
-                  4 out of 5
-                </div>
-                <div className="text-white/90 text-sm md:text-base font-medium leading-relaxed">
-                  Students book
-                  <br />
-                  multiple courses
-                </div>
-              </div>
-
-              {/* Statistic 5 */}
-              <div className="group bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl">
-                <div className="w-16 h-16 mx-auto mb-6 flex items-center justify-center bg-white/20 rounded-2xl group-hover:scale-110 transition-transform duration-300">
-                  <img src="/assets/image5.png" alt="Certificate trophy" className="w-10 h-10 object-contain" />
-                </div>
-                <div className="text-white text-4xl md:text-5xl font-black mb-3 group-hover:text-blue-100 transition-colors duration-300">
-                  100%
-                </div>
-                <div className="text-white/90 text-sm md:text-base font-medium leading-relaxed">
-                  Students earn
-                  <br />
-                  certificates
-                </div>
-              </div>
-            </div>
-          </div>
-          <PricingTeaser />
+        {/* New Enrol Now CTA Section */}
+        <div className="relative z-10 py-16 px-8 text-center text-white">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Start Your Learning Journey?</h2>
+          <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto">
+            Discover our diverse range of programmes designed to foster academic excellence and personal growth. Enrol
+            today and unlock your full potential!
+          </p>
+          <a
+            href="https://enrol.hfse.edu.sg/"
+            className="group bg-gradient-to-r from-[#ff8930] to-[#ff7520] hover:from-[#ff7520] hover:to-[#ff6010] text-white font-semibold py-4 px-10 rounded-2xl transition-all duration-300 flex items-center justify-center gap-3 shadow-lg hover:shadow-xl transform hover:-translate-y-1 mx-auto w-fit">
+            Enrol Now
+            <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
+          </a>
         </div>
+        <Programmes />
       </div>
     </>
   );
 };
 
+const features = [
+  {
+    category: "VizIndie",
+    title: "Independent Learning with Guidance",
+    details: "Ideal for self-motivated learners who prefer a self-paced approach.",
+    imageUrl: "/assets/programmes/programmes-1.jpg",
+    listTitle: "Why Choose VizIndie?",
+    listContent: [
+      "Complete flexibility in schedule and pace.",
+      "Access to curated modules, quality teaching notes, and assessments.",
+      "Optional academic mentoring and quarterly check-ins.",
+    ],
+  },
+  {
+    category: "VizFlex",
+    title: "Blended Support for Balanced Learners",
+    details: "Perfect for families seeking a structured yet flexible experience.",
+    imageUrl: "/assets/programmes/programmes-3.jpeg",
+    listTitle: "Is VizFlex for your family?",
+    listContent: [
+      "Complete flexibility in schedule and pace.",
+      "Access to curated modules, quality teaching notes, and assessments.",
+      "Optional academic mentoring and quarterly check-ins.",
+    ],
+  },
+  {
+    category: "VizLive",
+    title: "Full-Time Virtual Classroom Experience",
+    details: "Best for students who thrive with live interaction and consistent structure.",
+    imageUrl: "/assets/programmes/programmes-2.jpeg",
+    listTitle: "Love Online Sessions?",
+    listContent: [
+      "Complete flexibility in schedule and pace.",
+      "Access to curated modules, quality teaching notes, and assessments.",
+      "Optional academic mentoring and quarterly check-ins.",
+    ],
+  },
+];
+
+function Programmes() {
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center py-16 md:py-20 lg:py-24 px-6 ">
+      <div className="max-w-screen-lg w-full">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-white mb-2">Our Programmes</h2>
+          <h3 className="text-2xl text-white/80">Choose the best plan for your learning style</h3>
+        </div>
+        <div className="mt-8 md:mt-16 w-full mx-auto space-y-20 lg:space-y-28">
+          {features.map((feature, idx) => (
+            <div
+              key={feature.category}
+              className="flex flex-col md:flex-row items-center gap-x-20 gap-y-6 md:odd:flex-row-reverse bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-white/20">
+              <div
+                style={{
+                  backgroundImage: `url(${feature.imageUrl})`,
+                }}
+                className={cn("w-full aspect-[4/2] rounded-xl basis-1/2 bg-cover", {
+                  "brightness-125": idx === 0,
+                })}
+              />
+              <div className="basis-1/2 shrink-0">
+                <Badge className="uppercase font-semibold text-sm bg-orange-400">{feature.category}</Badge>
+                <h4 className="my-3 text-3xl font-semibold tracking-tight text-white">{feature.title}</h4>
+                <p className="text-white/80 text-[17px]">{feature.details}</p>
+
+                <h5 className="mt-8 mb-5 text-xl font-bold text-white tracking-tight">{feature.listTitle}</h5>
+
+                <ul className="space-y-4">
+                  {feature.listContent.map((item, index) => (
+                    <li key={index} className="flex items-start gap-3 group">
+                      <div className="mt-0.5 rounded-full bg-primary/10 p-1 flex-shrink-0 group-hover:bg-primary/20 transition-colors">
+                        <Check className="size-5 text-orange-400" strokeWidth={3} />
+                      </div>
+                      <span className="text-white/80 text-[16px] leading-relaxed">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+        <PricingTeaser />
+      </div>
+    </div>
+  );
+}
+
 function PricingTeaser() {
   return (
-    <div className="w-full max-w-4xl mx-auto py-12">
+    <div className="w-full mt-8 md:mt-16 w-full mx-auto space-y-20 lg:space-y-28">
       <div className="relative overflow-hidden rounded-2xl bg-white/10 backdrop-blur-md p-8 md:p-12 shadow-xl">
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
         <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2"></div>

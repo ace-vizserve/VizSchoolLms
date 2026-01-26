@@ -335,7 +335,7 @@ function Programmes() {
 
 function PricingTeaser() {
   return (
-    <div className="w-full mt-8 md:mt-16 w-full mx-auto space-y-20 lg:space-y-28">
+    <div className="w-full mt-8 md:mt-16 mx-auto space-y-20 lg:space-y-28">
       <div className="relative overflow-hidden rounded-2xl bg-white/10 backdrop-blur-md p-8 md:p-12 shadow-xl">
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
         <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/10 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2"></div>

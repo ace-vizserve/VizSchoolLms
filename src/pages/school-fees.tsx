@@ -101,8 +101,8 @@ function SchoolFees() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="text-center mb-16 md:mb-20">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary font-medium text-sm mb-6">
-              <Sparkles className="w-4 h-4" />
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-base md:text-lg mb-6">
+              <Sparkles className="w-5 h-5" />
               <span>Academic Year 2025–2026</span>
             </div>
 

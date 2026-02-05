@@ -1,4 +1,3 @@
-
 import { Check } from "lucide-react";
 import AcademicPathway from "../components/programmes/academic-pathway";
 import Courses from "../components/programmes/courses";
@@ -97,8 +96,8 @@ function Features() {
                 })}
               />
               <div className="basis-1/2 shrink-0">
-                <Badge className="uppercase font-semibold text-sm">{feature.category}</Badge>
-                <h4 className="my-3 text-3xl font-semibold tracking-tight">{feature.title}</h4>
+                <Badge className="uppercase font-semibold text-2xl">{feature.category}</Badge>
+                <h4 className="my-3 text-xl font-semibold tracking-tight">{feature.title}</h4>
                 <p className="text-muted-foreground text-[17px]">{feature.details}</p>
 
                 <h5 className="mt-8 mb-5 text-xl font-bold text-foreground tracking-tight">{feature.listTitle}</h5>

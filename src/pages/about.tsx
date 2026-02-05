@@ -1,11 +1,9 @@
-import { ArrowUpRight } from "lucide-react";
 import { motion } from "motion/react";
 import Features from "../components/about/features";
 import { WhyChooseUs } from "../components/about/why-choose-us";
 import MaxWidthWrapper from "../components/max-width-wrapper";
 import AnimatedMeshGradient from "../components/ui/animated-mesh-gradient";
 import { Badge } from "../components/ui/badge";
-import { Button } from "../components/ui/button";
 import { BASE_URL } from "../constants";
 import SEO from "../seo";
 
@@ -37,7 +35,7 @@ function About() {
             viewport={{
               once: true,
             }}>
-            <Badge className="font-semibold rounded-full py-1 border-none bg-white/20 backdrop-blur-sm">
+            <Badge className="px-4 text-base font-semibold rounded-full py-1 border-none bg-white/20 backdrop-blur-sm">
               Our Vision for Learning
             </Badge>
           </motion.div>
@@ -81,15 +79,7 @@ function About() {
             viewport={{
               once: true,
             }}
-            className="flex items-center justify-center gap-4">
-            <Button
-              variant="outline"
-              size="lg"
-              className="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 hover:text-white">
-              Hear from our community
-              <ArrowUpRight className="!h-5 !w-5" />
-            </Button>
-          </motion.div>
+            className="flex items-center justify-center gap-4"></motion.div>
         </MaxWidthWrapper>
       </div>
       <WhyChooseUs />

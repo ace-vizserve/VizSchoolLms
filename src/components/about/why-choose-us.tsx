@@ -56,7 +56,7 @@ const plusPoints = [
 export function WhyChooseUs() {
   return (
     <div id="why-choose-us" className="max-w-(--breakpoint-xl) mx-auto px-6 text-center pt-16 md:pt-20 lg:pt-24">
-      <Badge className="font-semibold">Why Choose Us</Badge>
+      <Badge className="px-4 text-base font-semibold">Why Choose Us</Badge>
       <h2 className="mt-5 max-w-4xl mx-auto text-4xl sm:text-5xl leading-[1.1] font-semibold tracking-tighter text-balance">
         Shaping the Future of Smart and Flexible Learning
       </h2>

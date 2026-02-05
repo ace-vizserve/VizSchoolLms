@@ -31,8 +31,8 @@ export default function AcademicPathway() {
 
       <div className="relative z-10 max-w-6xl mx-auto">
         <div className="text-center max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary font-medium text-sm mb-6">
-            <GraduationCap className="w-4 h-4" />
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-lg mb-6">
+            <GraduationCap className="w-5 h-5" />
             <span>Educational Excellence</span>
           </div>
 

@@ -173,10 +173,10 @@ const Hero: React.FC = () => {
         <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-8 text-center text-white pt-20 md:pt-0">
           {/* Modern heading with enhanced typography and fade-in animation */}
           <div className="mb-6">
-            <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-sm font-medium mb-6 border border-white/20">
+            {/* <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-md rounded-full text-sm font-medium mb-6 border border-white/20">
               <span className="w-2 h-2 bg-[#ff8930] rounded-full mr-2 animate-pulse"></span>
               Online Learning Platform
-            </div>
+            </div> */}
             <h1 className="fade-in-heading text-5xl md:text-7xl font-black mb-4 leading-tight mt-8 md:mt-0 bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
               Empowering You to Learn
               <br />
@@ -307,8 +307,8 @@ function Programmes() {
                 })}
               />
               <div className="basis-1/2 shrink-0">
-                <Badge className="uppercase font-semibold text-sm bg-orange-400">{feature.category}</Badge>
-                <h4 className="my-3 text-3xl font-semibold tracking-tight text-white">{feature.title}</h4>
+                <Badge className="text-2xl uppercase font-semibold bg-orange-400">{feature.category}</Badge>
+                <h4 className="my-3 text-xl font-semibold tracking-tight text-white">{feature.title}</h4>
                 <p className="text-white/80 text-[17px]">{feature.details}</p>
 
                 <h5 className="mt-8 mb-5 text-xl font-bold text-white tracking-tight">{feature.listTitle}</h5>

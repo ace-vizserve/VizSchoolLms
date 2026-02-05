@@ -1,4 +1,4 @@
-import { Globe, Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 import type { SVGProps } from "react";
 import { Link, useLocation } from "react-router-dom";
 import TermsCondition from "../components/modal/terms-conditions"; // adjust path if needed
@@ -106,9 +106,7 @@ const Footer = () => {
               <Link target="_blank" to="https://www.facebook.com/vizschool">
                 <Facebook />
               </Link>
-              <Link target="_blank" to="https://hfse.edu.sg/vizschool/">
-                <Globe />
-              </Link>
+
               <Link to="#">
                 <LinkedIn />
               </Link>

@@ -23,9 +23,9 @@ export function Programs() {
   return (
     <div>
       <div className="max-w-(--breakpoint-xl) mx-auto px-6 text-center py-24">
-        <Badge className="font-semibold">Our Programs</Badge>
+        <Badge className="text-xl font-semibold">Our Programmes</Badge>
         <h2 className="mt-5 max-w-4xl mx-auto text-4xl sm:text-5xl leading-[1.1] font-semibold tracking-tighter text-balance">
-          Programs That Empower Every Learner to Excel
+          Programmes That Empower Every Learner to Excel
         </h2>
         <p className="mt-5 text-lg text-muted-foreground">
           HFSE VizSchool offers a flexible, accredited online learning pathway that empowers students to learn from

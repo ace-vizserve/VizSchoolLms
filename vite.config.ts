@@ -7,7 +7,7 @@ import ViteSitemap from "vite-plugin-sitemap";
 const routes = [
   "/",
   "/about",
-  "/our-programmes",
+  "/vizschool-online-learning-programmes",
   "/reviews",
   "/blogs",
   "/contact-us",

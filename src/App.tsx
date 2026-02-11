@@ -60,7 +60,7 @@ function App() {
 
             <Route path="/faq" element={<FAQ />} />
 
-            <Route path="/our-programmes" element={<Programmes />} />
+            <Route path="/vizschool-online-learning-programmes" element={<Programmes />} />
 
             <Route path="/primary" element={<Primary />} />
 

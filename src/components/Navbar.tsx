@@ -24,7 +24,7 @@ const NavBar = () => {
               About
             </NavLink>
             <NavLink
-              to={"/our-programmes"}
+              to={"/vizschool-online-learning-programmes"}
               className={({ isActive }) => (isActive ? "text-[#4247cb]" : "hover:text-secondary font-medium")}>
               Programmes
             </NavLink>
@@ -75,7 +75,7 @@ const NavBar = () => {
             <NavLink to={"/about"} className="block px-3 py-2 hover:text-secondary font-medium">
               About
             </NavLink>
-            <NavLink to={"/our-programmes"} className="block px-3 py-2 hover:text-secondary font-medium">
+            <NavLink to={"/vizschool-online-learning-programmes"} className="block px-3 py-2 hover:text-secondary font-medium">
               Programmes
             </NavLink>
           

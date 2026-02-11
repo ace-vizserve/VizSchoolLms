@@ -28,10 +28,8 @@ export function Programs() {
           Programmes That Empower Every Learner to Excel
         </h2>
         <p className="mt-5 text-lg text-muted-foreground">
-          HFSE VizSchool offers a flexible, accredited online learning pathway that empowers students to learn from
-          anywhere while staying connected to a vibrant global community. Each program is designed to match your
-          family’s lifestyle, learning goals, and pace — ensuring that every child learns with joy, confidence, and
-          purpose.
+          HFSE VizSchool offers a flexible, accredited online learning pathway that enables students to learn from anywhere while remaining connected to a vibrant global school community.<br/>
+          Each programme is designed to align with your family’s lifestyle, learning goals, and preferred pace, ensuring that every child learns with joy, confidence, and purpose. 
         </p>
 
         <div className="mt-12 flex flex-wrap justify-center gap-4">

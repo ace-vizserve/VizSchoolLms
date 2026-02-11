@@ -6,19 +6,19 @@ export default function AcademicPathway() {
       icon: GraduationCap,
       title: "Preschool to Secondary Levels",
       content:
-        "Programmes follow the HFSE curriculum framework mapped to the Singapore syllabus and international benchmarks.",
+        "Programmes follow the HFSE curriculum framework, mapped to the Singapore syllabus and international benchmarks.",
     },
     {
       icon: TrendingUp,
       title: "Progressive Evaluation",
       content:
-        "Students undergo formative and summative assessments each term to monitor academic development and holistic growth.",
+        "Learners undergo formative and summative assessments each term to track academic development and holistic growth.",
     },
     {
       icon: ArrowRight,
       title: "Promotion Criteria",
       content:
-        "Successful completion of each level qualifies learners for promotion to the next grade or transition to on-site schooling within the HFSE network.",
+        "Successful completion of each level allows promotion to the next grade or transition to on-site schooling within the HFSE network.",
     },
   ];
 
@@ -41,8 +41,7 @@ export default function AcademicPathway() {
           </h1>
 
           <p className="mt-6 text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            HFSE VizSchool provides a structured yet flexible learning journey designed to nurture independence,
-            discipline, and academic excellence from early years to secondary levels.
+           VizSchool provides a carefully planned academic pathway that nurtures independence, discipline, and academic excellence from early years through to secondary levels. 
           </p>
         </div>
 

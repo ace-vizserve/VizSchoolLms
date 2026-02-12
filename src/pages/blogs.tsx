@@ -16,21 +16,21 @@ const blogs = [
     excerpt:
       "Discover how VizSchool’s flexible approach allows students to learn at their own pace while still meeting academic goals.",
     image: "/assets/reviews/blog-1.png",
-  }
+  },
 ];
 
 function Blogs() {
   return (
     <>
       <SEO
-        title="VizSchool LMS Blog | Education Insights and Tips"
-        description="Stay updated with VizSchool LMS blog articles. Get tips, guides, and insights into online learning, student growth, and education technology."
-        canonical={`${BASE_URL}/blogs`}
+        title="VizSchool Blog | Latest Education News & Insights"
+        description="Read the VizSchool Blog for the latest school news, learning tips, resources, and insights for students and parents."
+        canonical={`${BASE_URL}/vizschool-blog-latest-education-news`}
         schemaMarkup={{
           "@context": "https://schema.org",
           "@type": "Blogs",
           name: "VizSchool LMS Blogs",
-          url: `${BASE_URL}/blogs`,
+          url: `${BASE_URL}/vizschool-blog-latest-education-news`,
         }}
       />
       <MaxWidthWrapper className="max-w-screen-xl mx-auto py-16 md:py-20 lg:py-24">

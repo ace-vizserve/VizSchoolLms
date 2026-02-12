@@ -37,14 +37,14 @@ function FAQ() {
   return (
     <>
       <SEO
-        title="Frequently Asked Questions | VizSchool LMS Help Center"
-        description="Find answers to the most common questions about VizSchool LMS, including courses, enrollment, certificates, and platform features."
-        canonical={`${BASE_URL}/faq`}
+        title="VizSchool FAQ: Frequently Asked Questions & Answers"
+        description="Find answers to common questions about admissions, programmes, school policies, fees, and more in the VizSchool FAQ section."
+        canonical={`${BASE_URL}/vizschool-frequently-asked-questions`}
         schemaMarkup={{
           "@context": "https://schema.org",
           "@type": "FAQPage",
           name: "FAQ VizSchool LMS",
-          url: `${BASE_URL}/faq`,
+          url: `${BASE_URL}/vizschool-frequently-asked-questions`,
         }}
       />
 
@@ -64,7 +64,7 @@ function FAQ() {
                   <AccordionPrimitive.Trigger
                     className={cn(
                       "text-primary flex flex-1 items-center justify-between py-4 font-semibold tracking-tight transition-all hover:underline [&[data-state=open]>svg]:rotate-45",
-                      "text-start text-lg"
+                      "text-start text-lg",
                     )}>
                     {question}
                     <PlusIcon className="h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-200 stroke-primary stroke-3" />

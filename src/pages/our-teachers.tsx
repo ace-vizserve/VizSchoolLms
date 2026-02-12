@@ -9,14 +9,14 @@ function OurTeachers() {
   return (
     <>
       <SEO
-        title="Our Teachers | Expert Educators at VizSchool"
-        description="Meet the passionate, certified educators behind VizSchool. Our teachers mentor, guide, and inspire K–12 learners through engaging, personalized online lessons."
-        canonical={`${BASE_URL}/our-teachers`}
+        title="VizSchool Teachers: Certified Educators Guiding Every Learner"
+        description="Meet VizSchool’s certified teachers and mentors. Experienced online educators delivering personalised, student-centred learning for global families."
+        canonical={`${BASE_URL}/vizschool-teachers-expert-educators`}
         schemaMarkup={{
           "@context": "https://schema.org",
           "@type": "OurTeachersPage",
           name: "Our Teachers VizSchool LMS",
-          url: `${BASE_URL}/our-teachers`,
+          url: `${BASE_URL}/vizschool-teachers-expert-educators`,
         }}
       />
       <Hero />

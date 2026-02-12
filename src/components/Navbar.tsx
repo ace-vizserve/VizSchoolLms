@@ -19,7 +19,7 @@ const NavBar = () => {
           {/* Navigation Menu - Desktop */}
           <div className="hidden md:flex items-center space-x-8 ml-8">
             <NavLink
-              to={"/about"}
+              to={"/about-vizschool-virtual-learning"}
               className={({ isActive }) => (isActive ? "text-[#4247cb]" : "hover:text-secondary font-medium")}>
               About
             </NavLink>
@@ -33,14 +33,14 @@ const NavBar = () => {
               className={({ isActive }) => (isActive ? "text-[#4247cb]" : "hover:text-secondary font-medium")}>
               School Fees
             </NavLink>
-            
+
             <NavLink
-              to={"/blogs"}
+              to={"/vizschool-blog-latest-education-news"}
               className={({ isActive }) => (isActive ? "text-[#4247cb]" : "hover:text-secondary font-medium")}>
               Blogs
             </NavLink>
             <NavLink
-              to={"/contact-us"}
+              to={"/contact-vizschool-admissions"}
               className={({ isActive }) => (isActive ? "text-[#4247cb]" : "hover:text-secondary font-medium")}>
               Contact Us
             </NavLink>
@@ -72,17 +72,23 @@ const NavBar = () => {
       {isOpen && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 space-y-1">
-            <NavLink to={"/about"} className="block px-3 py-2 hover:text-secondary font-medium">
+            <NavLink
+              to={"/about-vizschool-virtual-learning"}
+              className="block px-3 py-2 hover:text-secondary font-medium">
               About
             </NavLink>
-            <NavLink to={"/vizschool-online-learning-programmes"} className="block px-3 py-2 hover:text-secondary font-medium">
+            <NavLink
+              to={"/vizschool-online-learning-programmes"}
+              className="block px-3 py-2 hover:text-secondary font-medium">
               Programmes
             </NavLink>
-          
-            <NavLink to="/blogs" className="block px-3 py-2 hover:text-secondary font-medium">
+
+            <NavLink
+              to="/vizschool-blog-latest-education-news"
+              className="block px-3 py-2 hover:text-secondary font-medium">
               Blogs
             </NavLink>
-            <NavLink to="/contact-us" className="block px-3 py-2 hover:text-secondary font-medium">
+            <NavLink to="/contact-vizschool-admissions" className="block px-3 py-2 hover:text-secondary font-medium">
               Contact Us
             </NavLink>
             <a href="https://lms.vizschool.org/login/index.php" target="_blank" rel="noopener noreferrer">

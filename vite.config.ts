@@ -6,14 +6,16 @@ import ViteSitemap from "vite-plugin-sitemap";
 
 const routes = [
   "/",
-  "/about",
+  "/about-vizschool-virtual-learning",
   "/vizschool-online-learning-programmes",
-  "/reviews",
-  "/blogs",
-  "/contact-us",
-  "/faq",
-  "/sitemap",
-  "/our-teachers",
+  "/vizschool-reviews-testimonials",
+  "/vizschool-blog-latest-education-news",
+  "/contact-vizschool-admissions",
+  "/vizschool-frequently-asked-questions",
+  "/vizschool-sitemap",
+  "/school-fees-tuition-vizschool",
+  "/vizschool-teachers-expert-educators",
+  "/vizschool-primary-school-grades-1-6",
 ];
 
 // https://vite.dev/config/

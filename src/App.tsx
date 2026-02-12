@@ -42,23 +42,23 @@ function App() {
           <Routes>
             <Route path="/" element={<Hero />} />
 
-            <Route path="/about" element={<About />} />
+            <Route path="/about-vizschool-virtual-learning" element={<About />} />
 
             <Route path="/school-fees-tuition-vizschool" element={<SchoolFees />} />
 
-            <Route path="/contact-us" element={<ContactUs />} />
+            <Route path="/contact-vizschool-admissions" element={<ContactUs />} />
 
-            <Route path="/blogs" element={<Blogs />} />
+            <Route path="/vizschool-blog-latest-education-news" element={<Blogs />} />
 
-            <Route path="/reviews" element={<Reviews />} />
+            <Route path="/vizschool-reviews-testimonials" element={<Reviews />} />
 
-            <Route path="/sitemap" element={<Sitemap />} />
+            <Route path="/vizschool-sitemap" element={<Sitemap />} />
 
             <Route path="/vizschool-teachers-expert-educators" element={<OurTeachers />} />
 
             <Route path="/blogs/:id" element={<Blog />} />
 
-            <Route path="/faq" element={<FAQ />} />
+            <Route path="/vizschool-frequently-asked-questions" element={<FAQ />} />
 
             <Route path="/vizschool-online-learning-programmes" element={<Programmes />} />
 

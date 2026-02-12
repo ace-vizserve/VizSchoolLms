@@ -6,14 +6,14 @@ const ContactUs = () => {
   return (
     <>
       <SEO
-        title="Contact VizSchool LMS | Get in Touch with Our Team"
-        description="Reach out to VizSchool LMS for inquiries, support, or partnerships. Our friendly team is here to help you with your learning journey."
-        canonical={`${BASE_URL}/contact-us`}
+        title="Contact VizSchool: Admissions, Inquiries & Support"
+        description="Contact VizSchool for inquiries, admissions support, and more. Reach our team via phone, email, or visit us for assistance."
+        canonical={`${BASE_URL}/contact-vizschool-admissions`}
         schemaMarkup={{
           "@context": "https://schema.org",
           "@type": "ContactPage",
           name: "Contact VizSchool LMS",
-          url: `${BASE_URL}/contact-us`,
+          url: `${BASE_URL}/contact-vizschool-admissions`,
         }}
       />
 

@@ -16,7 +16,7 @@ const Footer = () => {
     <footer className="bg-gray-50 border-t border-gray-200 py-8">
       <MaxWidthWrapper
         className={cn("max-w-screen-xl", {
-          "pb-24 md:pb-28 lg:pb-0": pathname === "/our-programmes",
+          "pb-24 md:pb-28 lg:pb-0": pathname === "/vizschool-online-learning-programmes",
         })}>
         {/* Newsletter Section */}
         <div className="mb-10">
@@ -47,7 +47,7 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-3">Get Started</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link to="/about" className="text-muted-foreground hover:text-gray-900">
+                <Link to="/about-vizschool-virtual-learning" className="text-muted-foreground hover:text-gray-900">
                   Why VizSchool?
                 </Link>
               </li>
@@ -57,22 +57,22 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/reviews" className="text-muted-foreground hover:text-gray-900">
+                <Link to="/vizschool-reviews-testimonials" className="text-muted-foreground hover:text-gray-900">
                   Reviews
                 </Link>
               </li>
               <li>
-                <Link to="/blogs" className="text-muted-foreground hover:text-gray-900">
+                <Link to="/vizschool-blog-latest-education-news" className="text-muted-foreground hover:text-gray-900">
                   Blog
                 </Link>
               </li>
               <li>
-                <Link to="/contact-us" className="text-muted-foreground hover:text-gray-900">
+                <Link to="/contact-vizschool-admissions" className="text-muted-foreground hover:text-gray-900">
                   Contact Us
                 </Link>
               </li>
               <li>
-                <Link to="/faq" className="text-muted-foreground hover:text-gray-900">
+                <Link to="/vizschool-frequently-asked-questions" className="text-muted-foreground hover:text-gray-900">
                   FAQ
                 </Link>
               </li>
@@ -147,7 +147,7 @@ const Footer = () => {
             <PrivacyPolicy />
             <span className="text-gray-400">|</span>
             <Link
-              to="/sitemap"
+              to="/vizschool-sitemap"
               className={buttonVariants({
                 variant: "link",
                 className: "!p-0",

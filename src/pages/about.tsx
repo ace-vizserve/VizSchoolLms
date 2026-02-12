@@ -11,14 +11,14 @@ function About() {
   return (
     <>
       <SEO
-        title="About VizSchool LMS | Our Mission and Vision for Learning"
-        description="Discover the mission, vision, and story behind VizSchool LMS. Learn how we make education flexible, accessible, and empowering for every student."
-        canonical={`${BASE_URL}/about`}
+        title="VizSchool: A Flexible Virtual School for Global Learners"
+        description="Learn about VizSchool, the virtual learning arm of HFSE International School, offering flexible, values-based online education for global families."
+        canonical={`${BASE_URL}/about-vizschool-virtual-learning`}
         schemaMarkup={{
           "@context": "https://schema.org",
           "@type": "WebSite",
           name: "VizSchool LMS",
-          url: `${BASE_URL}/about`,
+          url: `${BASE_URL}/about-vizschool-virtual-learning`,
         }}
       />
       <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">

@@ -76,14 +76,14 @@ function SchoolFees() {
   return (
     <>
       <SEO
-        title="School Fees | Innovative Learning for K-12 Students"
-        description="Learn more about VizSchool's transparent and flexible school fees. Discover affordable, high-quality online education options for preschool to secondary levels designed to suit your family's learning goals."
-        canonical={`${BASE_URL}/school-fees`}
+        title="School Fees & Tuition | VizSchool"
+        description="View VizSchool’s school fees and tuition details, including payment information and enrollment requirements for all academic programmes."
+        canonical={`${BASE_URL}/school-fees-tuition-vizschool`}
         schemaMarkup={{
           "@context": "https://schema.org",
           "@type": "SchoolFeesPage",
           name: "School Fees | VizSchool LMS",
-          url: `${BASE_URL}/school-fees`,
+          url: `${BASE_URL}/school-fees-tuition-vizschool`,
         }}
       />
 

@@ -14,14 +14,14 @@ function Programmes() {
   return (
     <>
       <SEO
-        title="Our Programmes | Innovative Learning for K-12 Students"
-        description="Explore VizSchool LMS programmes — from core subjects to special courses. Designed to enhance learning for primary and secondary students."
-        canonical={`${BASE_URL}/our-programmes`}
+        title="VizSchool Programmes: Flexible Online Learning for Every Learner"
+        description="Explore VizSchool programmes including VizIndie, VizFlex, and VizLive. Flexible, values-based online learning pathways designed for global families."
+        canonical={`${BASE_URL}/vizschool-online-learning-programmes`}
         schemaMarkup={{
           "@context": "https://schema.org",
           "@type": "OurProgrammesPage",
           name: "Our Programmes VizSchool LMS",
-          url: `${BASE_URL}/our-programmes`,
+          url: `${BASE_URL}/vizschool-online-learning-programmes`,
         }}
       />
       <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
@@ -43,7 +43,8 @@ const features = [
   {
     category: "VizIndie",
     title: "Independent Learning with Guided Support ",
-    details: "VizIndie is ideal for self-motivated learners who prefer a self-paced approach while benefiting from structured guidance and academic oversight.",
+    details:
+      "VizIndie is ideal for self-motivated learners who prefer a self-paced approach while benefiting from structured guidance and academic oversight.",
     imageUrl: "/assets/programmes/programmes-1.jpg",
     listTitle: "Why Choose VizIndie?",
     listContent: [
@@ -55,7 +56,8 @@ const features = [
   {
     category: "VizFlex",
     title: "Blended Support for Balanced Learners",
-    details: "VizFlex offers a balanced approach to virtual schooling by combining independent study with live teacher interaction. It is designed for families who want structure alongside flexibility.",
+    details:
+      "VizFlex offers a balanced approach to virtual schooling by combining independent study with live teacher interaction. It is designed for families who want structure alongside flexibility.",
     imageUrl: "/assets/programmes/programmes-3.jpeg",
     listTitle: "Is VizFlex Right for Your Family? ",
     listContent: [
@@ -67,7 +69,8 @@ const features = [
   {
     category: "VizLive",
     title: "Full-Time Virtual Classroom Experience",
-    details: "VizLive is a full-time virtual school programme for students who thrive in interactive, structured learning environments with daily live lessons.",
+    details:
+      "VizLive is a full-time virtual school programme for students who thrive in interactive, structured learning environments with daily live lessons.",
     imageUrl: "/assets/programmes/programmes-2.jpeg",
     listTitle: "Ideal for Learners Who Enjoy Live Online Sessions",
     listContent: [

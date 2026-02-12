@@ -8,14 +8,14 @@ function Reviews() {
   return (
     <>
       <SEO
-        title="Student and Parent Reviews | VizSchool LMS Experience"
-        description="Read reviews from students and parents who have experienced VizSchool LMS. See how our platform transforms learning into an engaging journey."
-        canonical={`${BASE_URL}/reviews`}
+        title="Reviews & Testimonials | VizSchool"
+        description="Read genuine reviews and testimonials from VizSchool students and parents about their learning experience and academic growth."
+        canonical={`${BASE_URL}/vizschool-reviews-testimonials`}
         schemaMarkup={{
           "@context": "https://schema.org",
           "@type": "ReviewsPage",
           name: "Reviews VizSchool LMS",
-          url: `${BASE_URL}/reviews`,
+          url: `${BASE_URL}/vizschool-reviews-testimonials`,
         }}
       />
 

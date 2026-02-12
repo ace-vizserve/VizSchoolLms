@@ -8,14 +8,14 @@ function Sitemap() {
   return (
     <>
       <SEO
-        title="VizSchool LMS Sitemap | Navigate Our Learning Platform"
-        description="View the complete sitemap for VizSchool LMS. Quickly navigate to our programmes, reviews, blog, FAQs, and contact information."
-        canonical={`${BASE_URL}/sitemap`}
+        title="Sitemap | VizSchool"
+        description="Explore the VizSchool sitemap to quickly find pages, programmes, and information across the VizSchool website."
+        canonical={`${BASE_URL}/vizschool-sitemap`}
         schemaMarkup={{
           "@context": "https://schema.org",
           "@type": "SitemapPage",
           name: "Sitemap VizSchool LMS",
-          url: `${BASE_URL}/sitemap`,
+          url: `${BASE_URL}/vizschool-sitemap`,
         }}
       />
       <MaxWidthWrapper className="max-w-4xl min-h-full flex items-center justify-center">
@@ -56,37 +56,41 @@ function Sitemap() {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/about" className="text-muted-foreground hover:text-gray-900">
+                  <Link to="/about-vizschool-virtual-learning" className="text-muted-foreground hover:text-gray-900">
                     Why VizSchool?
                   </Link>
                 </li>
                 <li>
-                  <Link to="/our-teachers" className="text-muted-foreground hover:text-gray-900">
+                  <Link to="/vizschool-teachers-expert-educators" className="text-muted-foreground hover:text-gray-900">
                     Our Teachers
                   </Link>
                 </li>
                 <li>
-                  <Link to="/reviews" className="text-muted-foreground hover:text-gray-900">
+                  <Link to="/vizschool-reviews-testimonials" className="text-muted-foreground hover:text-gray-900">
                     Reviews
                   </Link>
                 </li>
                 <li>
-                  <Link to="/blogs" className="text-muted-foreground hover:text-gray-900">
+                  <Link
+                    to="/vizschool-blog-latest-education-news"
+                    className="text-muted-foreground hover:text-gray-900">
                     Blog
                   </Link>
                 </li>
                 <li>
-                  <Link to="/contact-us" className="text-muted-foreground hover:text-gray-900">
+                  <Link to="/contact-vizschool-admissions" className="text-muted-foreground hover:text-gray-900">
                     Contact Us
                   </Link>
                 </li>
                 <li>
-                  <Link to="/faq" className="text-muted-foreground hover:text-gray-900">
+                  <Link
+                    to="/vizschool-frequently-asked-questions"
+                    className="text-muted-foreground hover:text-gray-900">
                     FAQ
                   </Link>
                 </li>
                 <li>
-                  <Link to="/sitemap" className="text-muted-foreground hover:text-gray-900">
+                  <Link to="/vizschool-sitemap" className="text-muted-foreground hover:text-gray-900">
                     Sitemap
                   </Link>
                 </li>
@@ -109,32 +113,36 @@ function Sitemap() {
               </motion.h2>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <Link to="/about" className="text-muted-foreground hover:text-gray-900">
+                  <Link to="/about-vizschool-virtual-learning" className="text-muted-foreground hover:text-gray-900">
                     Why VizSchool?
                   </Link>
                 </li>
                 <li>
-                  <Link to="/our-teachers" className="text-muted-foreground hover:text-gray-900">
+                  <Link to="/vizschool-teachers-expert-educators" className="text-muted-foreground hover:text-gray-900">
                     Teachers
                   </Link>
                 </li>
                 <li>
-                  <Link to="/reviews" className="text-muted-foreground hover:text-gray-900">
+                  <Link to="/vizschool-reviews-testimonials" className="text-muted-foreground hover:text-gray-900">
                     Reviews
                   </Link>
                 </li>
                 <li>
-                  <Link to="/blogs" className="text-muted-foreground hover:text-gray-900">
+                  <Link
+                    to="/vizschool-blog-latest-education-news"
+                    className="text-muted-foreground hover:text-gray-900">
                     Blog
                   </Link>
                 </li>
                 <li>
-                  <Link to="/contact-us" className="text-muted-foreground hover:text-gray-900">
+                  <Link to="/contact-vizschool-admissions" className="text-muted-foreground hover:text-gray-900">
                     Contact Us
                   </Link>
                 </li>
                 <li>
-                  <Link to="/faq" className="text-muted-foreground hover:text-gray-900">
+                  <Link
+                    to="/vizschool-frequently-asked-questions"
+                    className="text-muted-foreground hover:text-gray-900">
                     FAQ
                   </Link>
                 </li>
@@ -157,7 +165,7 @@ function Sitemap() {
               </motion.h2>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <Link to="/primary-courses" className="text-muted-foreground hover:text-gray-900">
+                  <Link to="/vizschool-primary-school-grades-1-6" className="text-muted-foreground hover:text-gray-900">
                     Primary
                   </Link>
                 </li>
@@ -172,7 +180,9 @@ function Sitemap() {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/our-programmes" className="text-muted-foreground hover:text-gray-900">
+                  <Link
+                    to="/vizschool-online-learning-programmes"
+                    className="text-muted-foreground hover:text-gray-900">
                     All Programmes
                   </Link>
                 </li>

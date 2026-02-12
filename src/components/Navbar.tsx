@@ -29,7 +29,7 @@ const NavBar = () => {
               Programmes
             </NavLink>
             <NavLink
-              to={"/school-fees"}
+              to={"/school-fees-tuition-vizschool"}
               className={({ isActive }) => (isActive ? "text-[#4247cb]" : "hover:text-secondary font-medium")}>
               School Fees
             </NavLink>

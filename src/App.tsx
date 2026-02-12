@@ -44,7 +44,7 @@ function App() {
 
             <Route path="/about" element={<About />} />
 
-            <Route path="/school-fees" element={<SchoolFees />} />
+            <Route path="/school-fees-tuition-vizschool" element={<SchoolFees />} />
 
             <Route path="/contact-us" element={<ContactUs />} />
 

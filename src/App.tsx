@@ -54,7 +54,7 @@ function App() {
 
             <Route path="/sitemap" element={<Sitemap />} />
 
-            <Route path="/our-teachers" element={<OurTeachers />} />
+            <Route path="/vizschool-teachers-expert-educators" element={<OurTeachers />} />
 
             <Route path="/blogs/:id" element={<Blog />} />
 
@@ -62,7 +62,7 @@ function App() {
 
             <Route path="/vizschool-online-learning-programmes" element={<Programmes />} />
 
-            <Route path="/primary" element={<Primary />} />
+            <Route path="/vizschool-primary-school-grades-1-6" element={<Primary />} />
 
             <Route path="/secondary" element={<Secondary />} />
 

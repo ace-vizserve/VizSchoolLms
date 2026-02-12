@@ -52,7 +52,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/our-teachers" className="text-muted-foreground hover:text-gray-900">
+                <Link to="/vizschool-teachers-expert-educators" className="text-muted-foreground hover:text-gray-900">
                   Our Teachers
                 </Link>
               </li>
@@ -83,7 +83,7 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-3">Our Programmes</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link to="/Primary" className="text-muted-foreground hover:text-gray-900">
+                <Link to="/vizschool-primary-school-grades-1-6" className="text-muted-foreground hover:text-gray-900">
                   Primary
                 </Link>
               </li>

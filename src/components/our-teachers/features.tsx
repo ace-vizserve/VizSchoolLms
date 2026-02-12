@@ -7,37 +7,37 @@ const features = [
     icon: GraduationCap,
     title: "Certified Educators",
     description:
-      "Our teachers are qualified professionals with real classroom experience, bringing expertise and passion to every lesson.",
+      "VizSchool teachers are qualified professionals with recognised credentials and real classroom experience. They bring subject expertise, structure, and enthusiasm to every online lesson.",
   },
   {
     icon: Users,
     title: "Mentors & Guides",
     description:
-      "Beyond teaching, they coach and inspire—helping students build confidence, resilience, and a love for learning.",
+      "Beyond teaching academic content, our educators act as mentors. They coach students to build confidence, resilience, independence, and a genuine love for learning.",
   },
   {
     icon: HeartHandshake,
     title: "Student-Centered Approach",
     description:
-      "Every teacher focuses on understanding each learner's strengths and challenges, tailoring lessons to individual needs.",
+      "Every lesson is designed around the learner. Teachers adapt instruction to suit individual learning styles, strengths, and areas for growth, ensuring meaningful progress for every student.",
   },
   {
     icon: BookOpen,
     title: "Engaging Lessons",
     description:
-      "Through interactive content and practical examples, our teachers make complex topics simple and enjoyable.",
+      "Through interactive activities, practical examples, and clear explanations, VizSchool teachers make complex concepts accessible, relevant, and enjoyable in an online setting.",
   },
   {
     icon: MessageCircle,
     title: "Open Communication",
     description:
-      "Teachers stay connected with parents and students, ensuring progress is clear and support is always available.",
+      "Teachers maintain clear communication with both parents and students, providing regular feedback, progress updates, and timely academic support.",
   },
   {
     icon: Award,
     title: "Proven Results",
     description:
-      "With consistent guidance and encouragement, our teachers help students achieve milestones and celebrate success.",
+      "With consistent encouragement and structured guidance, VizSchool teachers support learners in achieving academic milestones and celebrating personal successes.",
   },
 ];
 
@@ -47,10 +47,16 @@ function Features() {
       <h2 className="text-primary text-3xl sm:text-4xl font-extrabold tracking-tight text-center">
         Dedicated Teachers, Real Results
       </h2>
-      <p className="text-pretty mt-4 text-center text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-        At VizSchool, our certified educators go beyond teaching—mentoring, guiding, and personalizing lessons to build
-        confidence, foster communication, and drive lasting success.
-      </p>
+<div className="mt-4 text-center max-w-2xl mx-auto text-base md:text-lg text-muted-foreground space-y-6">
+  <p className="text-pretty">
+    VizSchool’s certified educators are committed to supporting every learner’s growth. Through consistent guidance, thoughtful mentoring, and personalised instruction, they help students develop both academically and personally.
+  </p>
+
+  <p className="text-pretty">
+    Our teachers focus on understanding each learner’s strengths, challenges, and learning pace, ensuring that every child feels supported, motivated, and confident in their learning journey.
+  </p>
+</div>
+
       <div className="mt-10 sm:mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {features.map((feature, index) => (
           <motion.div

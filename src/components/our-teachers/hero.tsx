@@ -219,7 +219,7 @@ function Hero() {
               className="text-white text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black !leading-[1.1] tracking-tight">
               Meet Our{" "}
               <span className="relative text-white">
-                Expert
+                 Expert Teachers
                 <motion.div
                   initial={{ width: 0 }}
                   whileInView={{ width: "100%" }}
@@ -227,7 +227,7 @@ function Hero() {
                   className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-[#ff8930] to-[#4247cb] rounded-full"
                 />
               </span>{" "}
-              Teachers
+            at VizSchool
             </motion.h1>
           </div>
 
@@ -243,10 +243,10 @@ function Hero() {
             }}
             viewport={{ once: true }}
             className="text-lg md:text-xl text-white/90 leading-relaxed max-w-[55ch] font-medium">
-            At VizSchool, our tutors don't just teach—they <span className="text-[#ff8930] font-semibold">mentor</span>
-            , <span className="text-[#4247cb] font-semibold">guide</span>, and{" "}
-            <span className="text-[#ff8930] font-semibold">inspire</span> every learner. With real classroom expertise
-            and cutting-edge tools, they deliver transformative, personalized learning experiences.
+            VizSchool teachers do more than deliver lessons. They <span className="text-[#ff8930] font-semibold">mentor</span>, <span className="text-[#4247cb] font-semibold">guide</span>, and <span className="text-[#ff8930] font-semibold">inspire</span> learners to reach their full potential through personalised, values-based online education.
+            <br />
+            <br />
+            With real classroom experience and the effective use of digital learning tools, VizSchool teachers create meaningful virtual learning experiences that build confidence, strengthen communication skills, and support long-term academic success.
           </motion.p>
 
           {/* Enhanced CTA button */}

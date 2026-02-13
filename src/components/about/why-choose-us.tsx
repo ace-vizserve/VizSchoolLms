@@ -14,42 +14,42 @@ const plusPoints = [
   {
     icon: ShieldCheck,
     title: "Flexible Learning",
-    description: "Self-paced homeschooling with structured support options.",
+    description: "Self-paced virtual schooling is supported by structured learning pathways and guidance options.",
   },
   {
     icon: Clock,
     title: "Catch-Up Opportunities",
-    description: "The Bridging Programme helps late enrollees stay aligned with their grade level.",
+    description: "The Bridging Programme supports late enrollees, helping students align confidently with their grade level.",
   },
   {
     icon: HeartHandshake,
     title: "Holistic Development",
-    description: "Students join co-curricular activities that build character and confidence.",
+    description: "Learners participate in co-curricular activities that nurture character, confidence, and personal growth.",
   },
   {
     icon: FileCheck,
     title: "Rigorous Assessments",
-    description: "Examinations follow Singapore standards to ensure academic consistency.",
+    description: "Assessments and examinations follow Singapore standards, ensuring academic consistency and credibility.",
   },
   {
     icon: Sparkles,
     title: "Engaging Lessons",
-    description: "Interactive classes inspire curiosity and make learning more meaningful.",
+    description: "Interactive lessons encourage curiosity, participation, and deeper understanding of concepts.",
   },
   {
     icon: Sliders,
     title: "Personalized Teaching",
-    description: "Lessons are tailored to each learner’s pace, strengths, and learning style.",
+    description: "Instruction is adapted to each learner’s pace, strengths, and preferred learning style.",
   },
   {
     icon: GraduationCap,
     title: "Qualified Teachers",
-    description: "Full-time educators guide students with experience, care, and dedication.",
+    description: "Experienced, full-time educators guide students with professionalism, care, and dedication.",
   },
   {
     icon: NotebookText,
     title: "Comprehensive Materials",
-    description: "Well-crafted notes and worksheets reinforce mastery and independent study.",
+    description: "Well-structured teaching notes and worksheets reinforce mastery and support independent study.",
   },
 ];
 
@@ -61,8 +61,8 @@ export function WhyChooseUs() {
         Shaping the Future of Smart and Flexible Learning
       </h2>
       <p className="mt-5 text-lg text-muted-foreground">
-        At HFSE VizSchool, learning knows no boundaries. We combine flexibility with structure, ensuring every learner,
-        wherever they are, receives a quality, holistic, and globally aligned education designed for success.
+        At HFSE VizSchool, learning knows no boundaries. The school combines the flexibility of online education with a well-designed academic framework, 
+        ensuring learners, wherever they are in the world, receive a quality, holistic, and globally aligned education designed for long-term success.
       </p>
 
       <div className="mt-12 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 justify-center">

@@ -9,7 +9,7 @@ const features = [
   {
     title: "About Us",
     details:
-      "HFSE VizSchool is the virtual learning arm of HFSE International School, a pioneering international school in Singapore founded by and for global migrant families. It was created to extend HFSE’s mission of being an International School for All offering accessible, technology-enabled, and values-based education that transcends borders. Guided by the HAPI values — Happy, Humble, Assertive, Appreciative, Productive, Proactive, Independent, and Interdependent — VizSchool empowers learners around the world to thrive academically and emotionally while staying connected to their identity, family, and global community.",
+      "HFSE VizSchool is the virtual learning arm of HFSE International School, a pioneering international school in Singapore founded by and for global migrant families. VizSchool extends HFSE’s mission of being an International School for All, offering accessible, technology-enabled, and values-based education that transcends physical borders.Guided by the HAPI values — Happy, Humble, Assertive, Appreciative, Productive, Proactive, Independent, and Interdependent — the school empowers learners to grow academically and emotionally while remaining connected to their identity, family, and global community.",
     tutorialLink: "#",
     asset: kidStudying,
   },
@@ -17,7 +17,7 @@ const features = [
     category: "To be the Leading Virtual School Empowering Global Citizens",
     title: "💡 Our Mission",
     details:
-      "VizSchool shapes lifelong learners with empathy, integrity, and innovation—global citizens committed to building communities, bridging differences, and creating meaningful legacies that inspire generations to come.",
+      "VizSchool nurtures lifelong learners with empathy, integrity, and innovation, preparing them to become global citizens who build communities, bridge differences, and create meaningful legacies for future generations.",
     tutorialLink: "#",
     assetUrl: "/assets/about/kid.png",
   },
@@ -25,7 +25,7 @@ const features = [
     category: "To Shape Global Citizens Who Create a Meaningful Legacy",
     title: "👩‍🏫 Our Vision",
     details:
-      "VizSchool envisions a borderless world of learning, empowering global citizens to grow in knowledge, values, and purpose—ready to lead, connect, and create positive change across cultures.",
+      "The school envisions a borderless world of learning where students grow in knowledge, values, and purpose, ready to lead, connect, and create positive change across cultures.",
     tutorialLink: "#",
     assetUrl: "/assets/about/lady.png",
   },

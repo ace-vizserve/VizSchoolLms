@@ -21,8 +21,13 @@ function About() {
           url: `${BASE_URL}/about-vizschool-virtual-learning`,
         }}
       />
+
       <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
-        <AnimatedMeshGradient primaryColor="#FD8735" secondaryColor="#007AFF" overlayOpacity={0.3} />
+        <AnimatedMeshGradient
+          primaryColor="#FD8735"
+          secondaryColor="#007AFF"
+          overlayOpacity={0.3}
+        />
 
         <MaxWidthWrapper className="relative z-10 space-y-6 text-center text-white">
           <motion.div
@@ -32,13 +37,13 @@ function About() {
               duration: 0.25,
               scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
             }}
-            viewport={{
-              once: true,
-            }}>
+            viewport={{ once: true }}
+          >
             <Badge className="px-4 text-base font-semibold rounded-full py-1 border-none bg-white/20 backdrop-blur-sm">
               Our Vision for Learning
             </Badge>
           </motion.div>
+
           <motion.h1
             initial={{ translateY: 10, opacity: 0 }}
             whileInView={{ translateY: 0, opacity: 1 }}
@@ -47,12 +52,13 @@ function About() {
               duration: 0.25,
               scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
             }}
-            viewport={{
-              once: true,
-            }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl sm:max-w-[25ch] mx-auto font-bold tracking-tight leading-[1.2] lg:leading-[1.2]">
+            viewport={{ once: true }}
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl sm:max-w-[25ch] mx-auto font-bold tracking-tight leading-[1.2] lg:leading-[1.2]"
+          >
             Empowering students to learn anytime, anywhere.
           </motion.h1>
+
+          {/* First paragraph */}
           <motion.p
             initial={{ translateY: 10, opacity: 0 }}
             whileInView={{ translateY: 0, opacity: 1 }}
@@ -61,13 +67,27 @@ function About() {
               duration: 0.25,
               scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
             }}
-            viewport={{
-              once: true,
-            }}
-            className="text-balance text-[17px] md:text-lg">
-            We envision a future where every learner can explore knowledge anytime, anywhere—free from limits. Our
-            mission is to remove barriers to education, empowering students to learn at their own pace.
+            viewport={{ once: true }}
+            className="text-balance text-[17px] md:text-lg"
+          >
+            VizSchool envisions a future where every learner can access quality education without limits. By removing barriers to learning, the school empowers students to explore knowledge anytime, anywhere, progressing at a pace that suits their individual needs.
           </motion.p>
+
+          {/* Second paragraph for double-line spacing */}
+          <motion.p
+            initial={{ translateY: 10, opacity: 0 }}
+            whileInView={{ translateY: 0, opacity: 1 }}
+            transition={{
+              delay: 0.55,
+              duration: 0.25,
+              scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
+            }}
+            viewport={{ once: true }}
+            className="text-balance text-[17px] md:text-lg mt-4"
+          >
+            Built for modern families, our virtual learning platform combines flexibility with purpose, ensuring education remains meaningful, structured, and values driven.
+          </motion.p>
+
           <motion.div
             initial={{ translateY: 10, opacity: 0 }}
             whileInView={{ translateY: 0, opacity: 1 }}
@@ -76,12 +96,12 @@ function About() {
               duration: 0.25,
               scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
             }}
-            viewport={{
-              once: true,
-            }}
-            className="flex items-center justify-center gap-4"></motion.div>
+            viewport={{ once: true }}
+            className="flex items-center justify-center gap-4"
+          ></motion.div>
         </MaxWidthWrapper>
       </div>
+
       <WhyChooseUs />
       <Features />
     </>

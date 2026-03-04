@@ -1,10 +1,6 @@
-import { PlayCircle, X } from "lucide-react";
-import { useState } from "react";
 import { buttonVariants } from "../ui/button";
 
 function HowItWorks() {
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);
-
   return (
     <div id="watch-demo" className="scroll-mt-28 md:scroll-mt-36">
       <div className="container mx-auto px-4 md:px-6 2xl:max-w-[1400px]">
@@ -76,7 +72,8 @@ function HowItWorks() {
             </ul>
 
             <a
-              href="#sign-up"
+              href="https://enrol.hfse.edu.sg/"
+              target="_blank"
               className={buttonVariants({
                 className: "!hidden lg:!flex !mt-2 !font-extrabold !py-6 !w-max",
                 size: "lg",
@@ -85,36 +82,15 @@ function HowItWorks() {
             </a>
           </div>
           <div className="relative aspect-video rounded-xl overflow-hidden border shadow-lg">
-            {isPlaying ? (
-              <div className="relative w-full h-full">
-                <button
-                  onClick={() => setIsPlaying(false)}
-                  className="absolute top-2 right-2 z-10 rounded-full bg-background/80 p-1.5 backdrop-blur-sm transition-colors hover:bg-background"
-                  aria-label="Close video">
-                  <X className="h-5 w-5" />
-                </button>
-                <iframe
-                  src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
-                  title="Product Demo Video"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="absolute inset-0 h-full w-full"></iframe>
-              </div>
-            ) : (
-              <div className="relative h-full w-full cursor-pointer group" onClick={() => setIsPlaying(true)}>
-                <img
-                  src="https://images.unsplash.com/photo-1580894894513-541e068a3e2b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3"
-                  alt="Product walkthrough video thumbnail showing interface demo"
-                  className="object-cover transition-transform group-hover:scale-105"
-                />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="rounded-full bg-primary text-primary-foreground p-2 transition-transform group-hover:scale-110">
-                    <PlayCircle className="h-12 w-12" />
-                  </div>
-                </div>
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
-              </div>
-            )}
+            <div className="relative h-full w-full cursor-pointer group">
+              <img
+                src="https://images.unsplash.com/photo-1580894894513-541e068a3e2b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3"
+                alt="Product walkthrough video thumbnail showing interface demo"
+                className="object-cover transition-transform group-hover:scale-105"
+              />
+
+              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
+            </div>
           </div>
         </div>
       </div>

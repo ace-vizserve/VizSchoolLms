@@ -73,7 +73,7 @@ function SecondaryCourses() {
                 "px-4 py-2 rounded-xl text-sm font-bold transition-all",
                 selectedGradeLevel === level.value
                   ? "bg-white text-orange-600 shadow-sm"
-                  : "text-orange-900/60 hover:text-orange-900"
+                  : "text-orange-900/60 hover:text-orange-900",
               )}>
               {level.label}
             </button>
@@ -129,7 +129,7 @@ function SecondaryCourses() {
                 <div className="flex items-center justify-between mt-6 pt-5 border-t border-slate-100"></div>
               </CardContent>
 
-              <CardFooter className="pb-8 px-8">
+              <CardFooter className="pb-8 px-8 flex-col gap-4">
                 <Link
                   target="_blank"
                   to={"https://enrol.hfse.edu.sg/admission/dashboard"}
@@ -137,6 +137,15 @@ function SecondaryCourses() {
                     className: "w-full !h-14 !rounded-2xl !font-black !shadow-lg !shadow-orange-200 text-white group",
                   })}>
                   Enrol Now
+                  <ArrowUpRight className="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                </Link>
+                <Link
+                  to={"/school-fees-tuition-vizschool"}
+                  className={buttonVariants({
+                    className: "text-primary w-full !h-14 !rounded-2xl !font-black !shadow-lg !shadow-orange-200 group",
+                    variant: "outline",
+                  })}>
+                  See Pricing Details
                   <ArrowUpRight className="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </Link>
               </CardFooter>

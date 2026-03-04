@@ -1,7 +1,6 @@
 import MaxWidthWrapper from "../max-width-wrapper";
 import { buttonVariants } from "../ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
-import EnrichmentCourses from "./courses/enrichment-courses";
 import PrimaryCourses from "./courses/primary-courses";
 import SecondaryCourses from "./courses/secondary-couses";
 
@@ -40,7 +39,7 @@ function Courses() {
               value="secondary">
               Secondary
             </TabsTrigger>
-            <TabsTrigger
+            {/* <TabsTrigger
               className={buttonVariants({
                 variant: "outline",
                 size: "lg",
@@ -49,7 +48,7 @@ function Courses() {
               })}
               value="enrichment">
               Enrichment
-            </TabsTrigger>
+            </TabsTrigger> */}
           </TabsList>
 
           <TabsContent className="mt-6 md:mt-12" value="primary">
@@ -58,9 +57,9 @@ function Courses() {
           <TabsContent className="mt-6 md:mt-12" value="secondary">
             <SecondaryCourses />
           </TabsContent>
-          <TabsContent className="mt-6 md:mt-12" value="enrichment">
+          {/* <TabsContent className="mt-6 md:mt-12" value="enrichment">
             <EnrichmentCourses />
-          </TabsContent>
+          </TabsContent> */}
         </Tabs>
       </div>
     </MaxWidthWrapper>

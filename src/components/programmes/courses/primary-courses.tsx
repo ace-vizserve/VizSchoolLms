@@ -185,7 +185,7 @@ const getAvailableClassTypes = (gradeLevel: string) => {
 };
 
 function PrimaryCourses() {
-  const [selectedGradeLevel, setSelectedGradeLevel] = useState("");
+  const [selectedGradeLevel, setSelectedGradeLevel] = useState("Primary 1");
   const [selectedClassType, setSelectedClassType] = useState("");
 
   const availableClassTypes = useMemo(() => getAvailableClassTypes(selectedGradeLevel), [selectedGradeLevel]);
@@ -226,7 +226,7 @@ function PrimaryCourses() {
                       "px-4 py-2 rounded-xl text-sm font-bold transition-all",
                       selectedGradeLevel === level.value
                         ? "bg-white text-orange-600 shadow-sm"
-                        : "text-orange-900/60 hover:text-orange-900"
+                        : "text-orange-900/60 hover:text-orange-900",
                     )}>
                     {level.label}
                   </button>
@@ -247,7 +247,7 @@ function PrimaryCourses() {
                       "px-4 py-2.5 rounded-xl text-xs font-bold border-2 transition-all duration-200",
                       selectedClassType === type.value
                         ? "border-orange-500 bg-orange-50 text-orange-600 shadow-inner"
-                        : "border-slate-200 bg-white text-slate-600 hover:border-orange-200"
+                        : "border-slate-200 bg-white text-slate-600 hover:border-orange-200",
                     )}>
                     {type.label}
                   </button>
@@ -301,7 +301,7 @@ function PrimaryCourses() {
               <div className="flex items-center justify-between mt-6 pt-5 border-t border-slate-100"></div>
             </CardContent>
 
-            <CardFooter className="pb-8 px-8">
+            <CardFooter className="pb-8 px-8 flex-col gap-4">
               <Link
                 target="_blank"
                 to={"https://enrol.hfse.edu.sg/admission/dashboard"}
@@ -309,6 +309,15 @@ function PrimaryCourses() {
                   className: "w-full !h-14 !rounded-2xl !font-black !shadow-lg !shadow-orange-200 text-white group",
                 })}>
                 Enrol Now
+                <ArrowUpRight className="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              </Link>
+              <Link
+                to={"/school-fees-tuition-vizschool"}
+                className={buttonVariants({
+                  className: "text-primary w-full !h-14 !rounded-2xl !font-black !shadow-lg !shadow-orange-200 group",
+                  variant: "outline",
+                })}>
+                See Pricing Details
                 <ArrowUpRight className="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
               </Link>
             </CardFooter>

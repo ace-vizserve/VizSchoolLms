@@ -7,8 +7,6 @@ import { buttonVariants } from "../../ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "../../ui/card";
 
 const classTypes = [
-  { label: "Global Class 3 (ENGLISH + FRENCH)", value: "Global Class 3 (ENGLISH + FRENCH)" },
-  { label: "Global Class 2 (ENGLISH + TAMIL)", value: "Global Class 2 (ENGLISH + TAMIL)" },
   { label: "Global Class 1 (ENGLISH + MANDARIN)", value: "Global Class 1 (ENGLISH + MANDARIN)" },
   { label: "Standard Class (ENGLISH + TAGALOG)", value: "Standard Class (ENGLISH + TAGALOG)" },
 ];
@@ -23,20 +21,6 @@ const gradeLevels = [
 ];
 
 const primarySchoolCourses = [
-  // Primary 1 - All 4 class types
-  {
-    gradeLevel: "Primary 1",
-    title: "Global Class 3 (ENGLISH + FRENCH)",
-    excerpt: "Master counting, number recognition, and simple problem-solving through games and visual learning tools.",
-    image: "/assets/reviews/blog-2.png",
-  },
-  {
-    gradeLevel: "Primary 1",
-    title: "Global Class 2 (ENGLISH + TAMIL)",
-    excerpt:
-      "Introduce young learners to the wonders of nature, basic experiments, and how science explains everyday things.",
-    image: "/assets/reviews/blog-3.png",
-  },
   {
     gradeLevel: "Primary 1",
     title: "Global Class 1 (ENGLISH + MANDARIN)",
@@ -65,32 +49,7 @@ const primarySchoolCourses = [
       "Deepen understanding of addition, subtraction, and basic multiplication using visual aids and practice exercises.",
     image: "/assets/reviews/blog-5.png",
   },
-  {
-    gradeLevel: "Primary 2",
-    title: "Global Class 3 (ENGLISH + FRENCH)",
-    excerpt: "Learn about plants, animals, and their environments through exciting projects and hands-on activities.",
-    image: "/assets/reviews/blog-6.png",
-  },
-  {
-    gradeLevel: "Primary 2",
-    title: "Global Class 2 (ENGLISH + TAMIL)",
-    excerpt: "Develop strong foundational skills in language and mathematics with engaging bilingual instruction.",
-    image: "/assets/reviews/blog-7.png",
-  },
-  // Primary 3 - All 4 class types
-  {
-    gradeLevel: "Primary 3",
-    title: "Global Class 3 (ENGLISH + FRENCH)",
-    excerpt: "Develop artistic expression through drawing, painting, and crafts while exploring colours and shapes.",
-    image: "/assets/reviews/blog-7.png",
-  },
-  {
-    gradeLevel: "Primary 3",
-    title: "Global Class 2 (ENGLISH + TAMIL)",
-    excerpt:
-      "Gain basic computer skills, from typing to safe internet use, tailored for young primary school students.",
-    image: "/assets/reviews/blog-8.png",
-  },
+
   {
     gradeLevel: "Primary 3",
     title: "Standard Class (ENGLISH + TAGALOG)",
@@ -116,44 +75,21 @@ const primarySchoolCourses = [
     excerpt: "Build strong mathematical foundations and problem-solving skills for upper primary levels.",
     image: "/assets/reviews/blog-2.png",
   },
-  {
-    gradeLevel: "Primary 4",
-    title: "Global Class 3 (ENGLISH + FRENCH)",
-    excerpt: "Explore world cultures and languages through interactive lessons and multimedia resources.",
-    image: "/assets/reviews/blog-3.png",
-  },
-  {
-    gradeLevel: "Primary 4",
-    title: "Global Class 2 (ENGLISH + TAMIL)",
-    excerpt: "Enhance critical thinking and analytical skills through engaging bilingual curriculum.",
-    image: "/assets/reviews/blog-6.png",
-  },
-  // Primary 5 - All 4 class types
+
   {
     gradeLevel: "Primary 5",
     title: "Standard Class (ENGLISH + TAGALOG)",
     excerpt: "Refine writing techniques, expand vocabulary, and prepare for upper primary examinations.",
     image: "/assets/reviews/blog-1.png",
   },
-  {
-    gradeLevel: "Primary 5",
-    title: "Global Class 2 (ENGLISH + TAMIL)",
-    excerpt: "Develop critical thinking and advanced mathematical reasoning for challenging word problems.",
-    image: "/assets/reviews/blog-3.png",
-  },
+
   {
     gradeLevel: "Primary 5",
     title: "Global Class 1 (ENGLISH + MANDARIN)",
     excerpt: "Prepare for PSLE with comprehensive review and advanced language skills development.",
     image: "/assets/reviews/blog-8.png",
   },
-  {
-    gradeLevel: "Primary 5",
-    title: "Global Class 3 (ENGLISH + FRENCH)",
-    excerpt: "Master complex concepts in science and mathematics with international curriculum approach.",
-    image: "/assets/reviews/blog-5.png",
-  },
-  // Primary 6 - Standard Class only
+
   {
     gradeLevel: "Primary 6",
     title: "Standard Class (ENGLISH + TAGALOG)",

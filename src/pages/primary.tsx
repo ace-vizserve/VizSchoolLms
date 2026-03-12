@@ -67,17 +67,14 @@ const Primary = () => {
                       Students will be graded on the following:
                     </h3>
                     <div className="space-y-2">
-                      {[
-                        "Topical Tests for all subjects taught",
-                        "Class Participation",
-                        "School Activities & Events",
-                        "Behaviour in Class",
-                      ].map((item, index) => (
-                        <div key={index} className="flex items-center gap-3">
-                          <div className="w-2 h-2 bg-[#007AFF] rounded-full"></div>
-                          <p className="text-gray-700">{item}</p>
-                        </div>
-                      ))}
+                      {["Topical Tests for all subjects taught", "Class Participation", "Behaviour in Class"].map(
+                        (item, index) => (
+                          <div key={index} className="flex items-center gap-3">
+                            <div className="w-2 h-2 bg-[#007AFF] rounded-full"></div>
+                            <p className="text-gray-700">{item}</p>
+                          </div>
+                        ),
+                      )}
                     </div>
                   </div>
 
@@ -276,13 +273,7 @@ const Primary = () => {
                   { subject: "Mathematics", syllabus: "Singapore's Ministry of Education Syllabus" },
                   { subject: "Science", syllabus: "Singapore's Ministry of Education Syllabus" },
                   { subject: "Mother Tongue", syllabus: "International Syllabus" },
-                  { subject: "History (Secondary One & Two)", syllabus: "International Syllabus" },
-                  { subject: "Humanities (Secondary Three & Four)", syllabus: "International Syllabus" },
-                  { subject: "Contemporary Art", syllabus: "International Syllabus" },
-                  { subject: "Literature", syllabus: "International Syllabus" },
-                  { subject: "Co-Curricular Activities", syllabus: "International Syllabus" },
-                  { subject: "Pastoral Ministry And Personal Development", syllabus: "International Syllabus" },
-                  { subject: "Physical Education And Health", syllabus: "International Syllabus" },
+                  { subject: "Elective (Optional)", syllabus: "Optional / Elective Syllabus" },
                 ].map((module, index) => (
                   <div
                     key={index}

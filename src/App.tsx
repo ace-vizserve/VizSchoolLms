@@ -8,8 +8,12 @@ import About from "./pages/about";
 
 import ContactUs from "./pages/ContactUs";
 
-import Blog from "./pages/blog";
 import Blogs from "./pages/blogs";
+import Blog1 from "./components/blog/blog-posts/blog-1";
+import Blog2 from "./components/blog/blog-posts/blog-2";
+import Blog3 from "./components/blog/blog-posts/blog-3";
+import Blog4 from "./components/blog/blog-posts/blog-4";
+
 import Enrichment from "./pages/enrichment";
 import FAQ from "./pages/faq";
 
@@ -50,13 +54,17 @@ function App() {
 
             <Route path="/vizschool-blog-latest-education-news" element={<Blogs />} />
 
+            {/* Individual Blog Routes */}
+            <Route path="/blogs/vizschool-flexible-virtual-school-global" element={<Blog1 />} />
+            <Route path="/blogs/academic-pathway-online-schooling" element={<Blog2 />} />
+            <Route path="/blogs/programmes-vizindie-vizflex-vizlive" element={<Blog3 />} />
+            <Route path="/blogs/education-scope-primary-secondary" element={<Blog4 />} />
+
             <Route path="/vizschool-reviews-testimonials" element={<Reviews />} />
 
             <Route path="/vizschool-sitemap" element={<Sitemap />} />
 
             <Route path="/vizschool-teachers-expert-educators" element={<OurTeachers />} />
-
-            <Route path="/blogs/:id" element={<Blog />} />
 
             <Route path="/vizschool-frequently-asked-questions" element={<FAQ />} />
 

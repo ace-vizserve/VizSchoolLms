@@ -16,14 +16,16 @@ const blogs = [
     excerpt:
       "Launched January 2026, VizSchool by HFSE provides flexible, values-based online education for Primary and Secondary students worldwide.",
     image: "/assets/blogs/blog-1.png",
+    slug: "vizschool-flexible-virtual-school-global",
   },
   {
     category: "Education",
     readTime: "15 min read",
     title: "Academic Pathway: Online Schooling From Primary to Secondary",
     excerpt:
-      "Discover VizSchool’s online schooling pathway from Primary One to Secondary Four, with clear progression, balanced assessments, and global standards.",
+      "Discover VizSchool's online schooling pathway from Primary One to Secondary Four, with clear progression, balanced assessments, and global standards.",
     image: "/assets/blogs/blog-2.png",
+    slug: "academic-pathway-online-schooling",
   },
   {
     category: "Education",
@@ -32,16 +34,17 @@ const blogs = [
     excerpt:
       "Discover how VizIndie, VizFlex, and VizLive programmes at VizSchool deliver flexible online learning designed to support diverse learners worldwide.",
     image: "/assets/blogs/blog-3.png",
+    slug: "programmes-vizindie-vizflex-vizlive",
   },
   {
     category: "Education",
     readTime: "10 min read",
     title: "VizSchool Education Scope: Primary and Secondary Levels",
     excerpt:
-      "Explore VizSchool’s course scope from Primary One to Secondary Four with core subjects, enrichment, and flexible online learning",
+      "Explore VizSchool's course scope from Primary One to Secondary Four with core subjects, enrichment, and flexible online learning",
     image: "/assets/blogs/blog-4.png",
+    slug: "education-scope-primary-secondary",
   },
-  
 ];
 
 function Blogs() {
@@ -105,7 +108,7 @@ function Blogs() {
                   <p className="mt-2 text-muted-foreground line-clamp-2">{details.excerpt}</p>
 
                   <Link
-                    to={"/blogs/vizschool-flexible-virtual-school-global"}
+                    to={`/blogs/${details.slug}`}
                     className={buttonVariants({
                       className: "!mt-6 !shadow-none",
                       size: "sm",

@@ -9,13 +9,14 @@ import { Separator } from "../components/ui/separator";
 
 const post = {
   category: "Education",
-  read_time: "4 min read",
-  title: "Why Flexible Learning Works for Every Student",
-  created_at: "March 15, 2024",
+  read_time: "9 min read",
+  title: "VizSchool: A Virtual School Offering Quality Online Education",
+  created_at: "January 2026",
   excerpt:
-    "Discover how VizSchool's flexible approach allows students to learn at their own pace while still meeting academic goals. By blending structure with freedom, students can choose when and how they study without losing sight of academic benchmarks. This model not only adapts to different learning styles but also helps reduce stress, build confidence, and prepare learners for the challenges of higher education and real-world problem-solving.",
-  image: "/assets/reviews/blog-1.jpg",
+    "Launched January 2026, VizSchool by HFSE provides flexible, values-based online education for Primary and Secondary students worldwide.",
+  image: "/assets/blogs/blog-1.png",
 };
+
 
 function Blog() {
   return (
@@ -105,34 +106,152 @@ function Blog() {
         </p>
 
         <p className="mt-8">
-          Flexible learning breaks away from rigid schedules, giving students control over when, where, and how they
-          study. This approach ensures learners of all backgrounds can thrive—whether balancing academics with
-          extracurriculars, family responsibilities, or personal goals.
+          Launched in January 2026, VizSchool offers a virtual schooling experience tailored for globally mobile and
+          modern families. As the online arm of HFSE International School, this flexible learning platform extends
+          HFSE's mission of being an International School for All by providing accessible, technology-enabled, and
+          values-based education beyond physical borders.
+        </p>
+
+        <h2 className="text-2xl font-bold text-primary mt-10 mb-4">What Is VizSchool?</h2>
+
+        <p>
+          VizSchool provides continuity in education, allowing learners to thrive academically, emotionally, and
+          socially while remaining connected to their family and global community.
+        </p>
+
+        <p>
+          Guided by the HAPI values—Happy, Humble, Assertive, Appreciative, Productive, Proactive, Independent, and
+          Interdependent—the programme shapes not only how students learn but also who they become.
+        </p>
+
+        <h2 className="text-2xl font-bold text-primary mt-10 mb-4">The Story Behind VizSchool</h2>
+
+        <p>
+          The concept for this virtual school emerged in 2020 during the global pandemic, after HFSE successfully
+          transitioned to online learning. This period inspired the "Balikbahay Series", rooted in the belief that
+          education begins at home and that family plays a key role in a child's learning journey.
         </p>
 
         <blockquote className="border-l-4 border-primary pl-4 italic font-semibold text-lg text-neutral-800 my-8">
-          "Education is most effective when it adapts to the student, not when the student is forced to adapt to the
-          system."
+          "Education begins at home and family plays a key role in a child's learning journey."
         </blockquote>
 
         <p>
-          By tailoring education to the student's pace, VizSchool empowers learners to take ownership of their journey.
-          This not only improves academic performance but also builds confidence, resilience, and a lifelong love for
-          learning.
+          From this philosophy, VizSchool was created to support migrant and globally mobile families who seek
+          high-quality, flexible, and accessible education grounded in strong values.
         </p>
 
-        <div className="bg-primary/5 border border-primary/20 p-4 rounded-xl my-6">
-          <h3 className="text-primary font-semibold mb-1">Key Insight</h3>
+        <h2 className="text-2xl font-bold text-primary mt-10 mb-4">Vision and Mission of VizSchool</h2>
+
+        <div className="bg-primary/5 border border-primary/20 p-6 rounded-xl my-6">
+          <h3 className="text-primary font-semibold mb-2">Vision</h3>
+          <p className="text-sm text-neutral-700 mb-4">
+            To create a borderless world of learning that empowers global citizens to grow in knowledge, values, and
+            purpose. VizSchool aims to shape learners ready to lead, connect, and make a positive impact across
+            cultures.
+          </p>
+          <h3 className="text-primary font-semibold mb-2">Mission</h3>
           <p className="text-sm text-neutral-700">
-            Flexible learning is not just about convenience—it creates an environment where every learner can succeed at
-            their own pace, without being left behind.
+            To nurture lifelong learners with empathy, integrity, and innovation, guiding them to build meaningful
+            legacies and contribute positively to their communities.
           </p>
         </div>
 
+        <h2 className="text-2xl font-bold text-primary mt-10 mb-4">
+          Flexible Learning Pathways to Suit Every Family
+        </h2>
+
+        <p>VizSchool offers three programmes tailored to different learning styles and family lifestyles:</p>
+
+        <div className="space-y-6 my-8">
+          <div className="bg-white border border-neutral-200 p-5 rounded-lg shadow-sm">
+            <h3 className="text-xl font-bold text-primary mb-2">1. VizIndie Flexible Virtual Schooling</h3>
+            <p className="text-sm text-neutral-700">
+              Ideal for self-motivated learners who prefer a self-paced approach. Students enjoy flexibility in
+              schedule, access to curated modules, and optional academic mentoring with quarterly check-ins.
+            </p>
+          </div>
+
+          <div className="bg-white border border-neutral-200 p-5 rounded-lg shadow-sm">
+            <h3 className="text-xl font-bold text-primary mb-2">2. VizFlex Blended Support Programme</h3>
+            <p className="text-sm text-neutral-700">
+              Combines independent learning with live teacher sessions. Learners follow weekly plans, receive feedback,
+              and participate in co-curricular activities. This option suits families seeking structure with
+              flexibility.
+            </p>
+          </div>
+
+          <div className="bg-white border border-neutral-200 p-5 rounded-lg shadow-sm">
+            <h3 className="text-xl font-bold text-primary mb-2">3. VizLive Full-Time Virtual Classroom</h3>
+            <p className="text-sm text-neutral-700">
+              Provides daily live online classes led by certified HFSE teachers. Students engage in collaborative
+              projects, real-time discussions, and continuous assessments aligned with Singapore standards.
+            </p>
+          </div>
+        </div>
+
+        <h2 className="text-2xl font-bold text-primary mt-10 mb-4">Academic Coverage and Curriculum Design</h2>
+
         <p>
-          Whether a student excels in fast-paced environments or needs more time to fully grasp concepts, flexible
-          learning ensures that no one is left behind.
+          This online programme offers a complete pathway from Primary One to Secondary Four, aligned with the
+          Singapore curriculum and international benchmarks.
         </p>
+
+        <p>
+          Core subjects include English, Mathematics, Science, and Mother Tongue Filipino, while enrichment courses
+          support holistic development with Computer Basics, Financial Literacy, ICT and Robotics, and Technology
+          Innovation.
+        </p>
+
+        <p>
+          Learning combines short, focused live sessions with self-paced tasks. The platform uses an inquiry-based,
+          student-centred approach supported by multimedia tools.
+        </p>
+
+        <h2 className="text-2xl font-bold text-primary mt-10 mb-4">Assessment and Learning Progression</h2>
+
+        <p>
+          VizSchool uses a balanced assessment framework combining formative assessments with quarterly evaluations.
+          Performance-based tasks let students apply learning in real-world contexts, while digital portfolios track
+          progress and reflections each term.
+        </p>
+
+        <p>
+          Successful completion allows learners to continue in the online school, transition to on-site HFSE schooling,
+          or move to other international institutions with similar standards.
+        </p>
+
+        <h2 className="text-2xl font-bold text-primary mt-10 mb-4">A Connected Global School Experience</h2>
+
+        <p>
+          Beyond academics, learners enjoy access to HFSE's wider school community. Students may participate in campus
+          activities, school celebrations, clubs, competitions, and hybrid learning experiences throughout the year.
+        </p>
+
+        <p>This ensures that even in a virtual setting, students remain socially engaged and connected.</p>
+
+        <h2 className="text-2xl font-bold text-primary mt-10 mb-4">Begin Your Learning Journey with VizSchool</h2>
+
+        <p>
+          VizSchool offers families a trusted virtual education pathway blending academic rigour, flexibility, and
+          values-based learning. Designed for today's global families, it provides continuity, connection, and
+          confidence in every child's learning journey.
+        </p>
+
+        <div className="bg-primary/5 border border-primary/20 p-6 rounded-xl my-8 text-center">
+          <p className="text-base font-semibold text-primary mb-2">Ready to Get Started?</p>
+          <p className="text-sm text-neutral-700 mb-4">
+            Launching in January 2026, the school invites families worldwide to experience an online programme that
+            puts purpose, people, and progress at the heart of education.
+          </p>
+          <p className="text-sm text-neutral-700 font-medium">
+            Contact our Admissions Team at{" "}
+            <a href="tel:+6582000062" className="text-primary hover:underline">
+              +65 8200 0062
+            </a>{" "}
+            to learn more about VizSchool and its programmes.
+          </p>
+        </div>
       </article>
 
       <OtherArticles />

@@ -24,11 +24,8 @@ function Hero() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const tutors: Tutor[] = [
-    { id: 1, name: "Joe Johnson", title: "Mathematics Expert", image: "/assets/our-tutors/teacher-1.webp" },
-    { id: 2, name: "Michelle Chen", title: "Physics Specialist", image: "/assets/our-tutors/teacher-2.webp" },
-    { id: 3, name: "Emily Rodriguez", title: "Chemistry Master", image: "/assets/our-tutors/teacher-3.webp" },
-    { id: 4, name: "Lisa Thompson", title: "Biology Expert", image: "/assets/our-tutors/teacher-4.png" },
-    { id: 5, name: "David Kim", title: "English Literature", image: "/assets/our-tutors/teacher-5.png" },
+    { id: 1, name: "Arlyn Orpeza", title: "Subject Teacher", image: "/assets/our-tutors/Arlyn Orpeza.png" },
+    { id: 2, name: "Christine Cernero", title: "Subject Teacher", image: "/assets/our-tutors/Christine Cernero.png" },
   ];
 
   const infiniteTutors = [...tutors, ...tutors].map((tutor, index) => ({

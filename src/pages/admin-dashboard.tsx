@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
-import { Plus, LogOut, FileText, Save, Trash2 } from "lucide-react";
+import { Plus, LogOut, FileText, Trash2 } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
@@ -15,6 +15,7 @@ function AdminDashboard() {
   const [selectedBlog, setSelectedBlog] = useState<BlogPost | null>(null);
   const [isCreating, setIsCreating] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [toggleLoading, setToggleLoading] = useState(false);
   const navigate = useNavigate();
   const auth = getAuth();
 
@@ -27,6 +28,7 @@ function AdminDashboard() {
   const [content, setContent] = useState("");
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState("");
+  const [published, setPublished] = useState(false);
 
   useEffect(() => {
     if (!auth.currentUser) {
@@ -57,6 +59,7 @@ function AdminDashboard() {
     setContent("");
     setImageFile(null);
     setImagePreview("");
+    setPublished(false);
   };
 
   const handleSelectBlog = (blog: BlogPost) => {
@@ -67,6 +70,7 @@ function AdminDashboard() {
     setCategory(blog.category);
     setReadTime(blog.readTime);
     setMetaDescription(blog.seo?.metaDescription || blog.excerpt);
+    setPublished(blog.published ?? true);
     
     // Strip HTML tags from content for editing
     const textContent = blog.content.replace(/<[^>]*>/g, '\n').replace(/\n\n+/g, '\n\n');
@@ -91,22 +95,50 @@ function AdminDashboard() {
   };
 
   const formatContent = (text: string) => {
-    // Convert markdown-style formatting to HTML matching your template
     let html = text;
-    
-    // Convert headings
     html = html.replace(/^## (.+)$/gm, '<h2 class="text-2xl font-bold text-primary mt-10 mb-4">$1</h2>');
-    
-    // Convert paragraphs
     html = html.split('\n\n').map(para => {
       if (para.startsWith('<h2')) return para;
       if (para.trim() === '') return '';
       return `<p class="mt-4">${para.trim()}</p>`;
     }).filter(p => p).join('\n\n');
-    
     return html;
   };
 
+  // Toggle publish/draft - auto-saves
+  const handleTogglePublish = async () => {
+    if (!selectedBlog?.id) {
+      alert("Please save the blog first before changing publish status");
+      return;
+    }
+
+    setToggleLoading(true);
+    try {
+      const newPublishedState = !published;
+      
+      await blogService.updateBlog(selectedBlog.id, {
+        published: newPublishedState
+      });
+
+      setPublished(newPublishedState);
+      
+      // Update the blog in the list
+      setBlogs(blogs.map(b => 
+        b.id === selectedBlog.id ? { ...b, published: newPublishedState } : b
+      ));
+      
+      // Update selectedBlog
+      setSelectedBlog({ ...selectedBlog, published: newPublishedState });
+
+    } catch (error) {
+      console.error(error);
+      alert("Error updating publish status");
+    } finally {
+      setToggleLoading(false);
+    }
+  };
+
+  // Manual save for content changes
   const handleSave = async () => {
     setLoading(true);
     try {
@@ -128,7 +160,7 @@ function AdminDashboard() {
         image: imageUrl,
         imagePublicId,
         content: formatContent(content),
-        published: true,
+        published,
         seo: {
           metaTitle: title,
           metaDescription: metaDescription,
@@ -140,13 +172,33 @@ function AdminDashboard() {
       if (selectedBlog?.id) {
         await blogService.updateBlog(selectedBlog.id, blogData);
         alert("Blog updated successfully!");
+        
+        // Update the blog in the list without clearing the form
+        const updatedBlog = { ...selectedBlog, ...blogData };
+        setBlogs(blogs.map(b => b.id === selectedBlog.id ? updatedBlog : b));
+        setSelectedBlog(updatedBlog);
+        
       } else {
-        await blogService.createBlog(blogData);
+        // Create new blog
+        const docId = await blogService.createBlog(blogData);
         alert("Blog created successfully!");
+        
+        // Refresh blogs list and select the newly created one
+        await fetchBlogs();
+        setIsCreating(false);
+        
+        // Find the newly created blog by its ID
+        const allBlogs = await blogService.getAllBlogs(false);
+        const newlyCreatedBlog = allBlogs.find(b => b.id === docId);
+        
+        if (newlyCreatedBlog) {
+          setSelectedBlog(newlyCreatedBlog);
+          setPublished(newlyCreatedBlog.published ?? false);
+        }
       }
 
-      fetchBlogs();
-      handleNewBlog();
+      setImageFile(null);
+      
     } catch (error) {
       console.error(error);
       alert("Error saving blog");
@@ -162,7 +214,7 @@ function AdminDashboard() {
     try {
       await blogService.deleteBlog(selectedBlog.id);
       alert("Blog deleted successfully!");
-      fetchBlogs();
+      await fetchBlogs();
       handleNewBlog();
     } catch (error) {
       alert("Error deleting blog");
@@ -198,7 +250,16 @@ function AdminDashboard() {
                   <FileText className="h-4 w-4 mt-1 flex-shrink-0" />
                   <div className="flex-1 min-w-0">
                     <p className="font-medium text-sm truncate">{blog.title}</p>
-                    <p className="text-xs text-gray-500">{blog.category}</p>
+                    <div className="flex items-center gap-2 mt-1">
+                      <p className="text-xs text-gray-500">{blog.category}</p>
+                      <span className={`text-xs px-1.5 py-0.5 rounded ${
+                        blog.published 
+                          ? 'bg-green-100 text-green-700' 
+                          : 'bg-gray-100 text-gray-700'
+                      }`}>
+                        {blog.published ? '●' : '○'}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -210,9 +271,32 @@ function AdminDashboard() {
       {/* Main Content */}
       <div className="flex-1 overflow-y-auto p-8">
         <div className="max-w-4xl mx-auto bg-white rounded-lg shadow p-6">
-          <h2 className="text-2xl font-bold mb-6">
-            {isCreating ? "Create New Blog" : selectedBlog ? "Edit Blog" : "Select a blog or create new"}
-          </h2>
+          {/* Header with Status */}
+          <div className="mb-6">
+            <div className="flex items-center justify-between">
+              <h2 className="text-2xl font-bold">
+                {isCreating ? "Create New Blog" : selectedBlog ? "Edit Blog" : "Select a blog or create new"}
+              </h2>
+              
+              {/* Status Badge - Only show for existing blogs */}
+              {selectedBlog?.id && (
+                <div className={`px-4 py-2 rounded-full font-semibold ${
+                  published 
+                    ? 'bg-green-100 text-green-700' 
+                    : 'bg-gray-200 text-gray-700'
+                }`}>
+                  {published ? '● Published' : '○ Draft'}
+                </div>
+              )}
+            </div>
+            
+            {/* New blog notice */}
+            {isCreating && (
+              <p className="text-sm text-gray-500 mt-2">
+                Save your blog first to enable publish/draft toggle
+              </p>
+            )}
+          </div>
 
           {(isCreating || selectedBlog) && (
             <div className="space-y-6">
@@ -304,12 +388,46 @@ Double line breaks for paragraphs"
               </div>
 
               {/* Actions */}
-              <div className="flex gap-4 pt-4">
-                <Button onClick={handleSave} disabled={loading} className="flex-1">
-                  <Save className="mr-2 h-4 w-4" />
-                  {loading ? "Saving..." : "Save Blog"}
-                </Button>
-                {selectedBlog && (
+              <div className="flex items-center gap-4 pt-4 border-t">
+                {/* Toggle (only for existing blogs) */}
+                {selectedBlog?.id && (
+                  <div className="flex items-center gap-3">
+                    <button
+                      type="button"
+                      onClick={handleTogglePublish}
+                      disabled={toggleLoading}
+                      className={`
+                        relative inline-flex h-6 w-11 items-center rounded-full
+                        transition-colors disabled:opacity-50
+                        ${published ? 'bg-green-500' : 'bg-gray-300'}
+                      `}
+                    >
+                      <span
+                        className={`
+                          inline-block h-4 w-4 transform rounded-full bg-white 
+                          transition-transform
+                          ${published ? 'translate-x-6' : 'translate-x-1'}
+                        `}
+                      />
+                    </button>
+                    <Label className="cursor-pointer" onClick={handleTogglePublish}>
+                      {toggleLoading ? "Updating..." : published ? "Published" : "Draft"}
+                    </Label>
+                  </div>
+                )}
+
+                <div className="flex-1" />
+
+                {/* Save button (only for new blogs or when editing) */}
+                {(isCreating || selectedBlog?.id) && (
+                  <Button onClick={handleSave} disabled={loading}>
+                    <FileText className="mr-2 h-4 w-4" />
+                    {loading ? "Saving..." : isCreating ? "Create Blog" : "Save Changes"}
+                  </Button>
+                )}
+                
+                {/* Delete (only for existing blogs) */}
+                {selectedBlog?.id && (
                   <Button onClick={handleDelete} variant="destructive">
                     <Trash2 className="mr-2 h-4 w-4" />
                     Delete

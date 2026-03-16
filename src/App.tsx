@@ -8,6 +8,7 @@ import Hero from "./pages/Hero";
 import About from "./pages/about";
 import ContactUs from "./pages/ContactUs";
 import Blogs from "./pages/blogs";
+import Blog from "./pages/blog"; // ADD THIS LINE - import the dynamic blog component
 import Enrichment from "./pages/enrichment";
 import FAQ from "./pages/faq";
 import OurTeachers from "./pages/our-teachers";
@@ -65,6 +66,9 @@ function Layout() {
           <Route path="/blogs/academic-pathway-online-schooling" element={<Blog2 />} />
           <Route path="/blogs/programmes-vizindie-vizflex-vizlive" element={<Blog3 />} />
           <Route path="/blogs/education-scope-primary-secondary" element={<Blog4 />} />
+
+          {/* Dynamic Blog Route - handles Firebase blog posts */}
+          <Route path="/blogs/:slug" element={<Blog />} />
 
           {/* Admin Routes */}
           <Route path="/admin/login" element={<AdminLogin />} />

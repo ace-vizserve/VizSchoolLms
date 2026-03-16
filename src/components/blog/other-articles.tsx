@@ -1,64 +1,58 @@
 import { Calendar } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { Badge } from "../ui/badge";
 import { Separator } from "../ui/separator";
-
-const allArticles = [
-  {
-    id: 1,
-    title: "VizSchool: A Virtual School Offering Quality Online Education",
-    excerpt:
-      "Launched January 2026, VizSchool by HFSE provides flexible, values-based online education for Primary and Secondary students worldwide.",
-    category: "Education",
-    read_time: "9 min read",
-    created_at: "January 2026",
-    image: "/assets/blogs/blog-1.png",
-    slug: "vizschool-flexible-virtual-school-global",
-  },
-  {
-    id: 2,
-    title: "Academic Pathway: Online Schooling From Primary to Secondary",
-    excerpt:
-      "A flexible, values-based online schooling approach designed for modern families seeking continuity, balance, and academic excellence.",
-    category: "Education",
-    read_time: "15 min read",
-    created_at: "January 2026",
-    image: "/assets/blogs/blog-2.png",
-    slug: "academic-pathway-online-schooling",
-  },
-  {
-    id: 3,
-    title: "Programmes of VizSchool: VizIndie, VizFlex & VizLive Explained",
-    excerpt:
-      "Discover how VizIndie, VizFlex, and VizLive offer distinct learning pathways to support different learning styles and family lifestyles.",
-    category: "Education",
-    read_time: "12 min read",
-    created_at: "January 2026",
-    image: "/assets/blogs/blog-3.png",
-    slug: "vizschool-programmes-online-learning",
-  },
-  {
-    id: 4,
-    title: "VizSchool Education Scope: Primary and Secondary Levels",
-    excerpt:
-      "A comprehensive and flexible academic pathway designed to support learners from Primary One to Secondary Four.",
-    category: "Education",
-    read_time: "10 min read",
-    created_at: "January 2026",
-    image: "/assets/blogs/blog-4.png",
-    slug: "education-scope-primary-secondary",
-  },
-];
+import { blogService } from "../../services/firebase-config";
+import type { BlogPost } from "../../services/firebase-config";
 
 interface OtherArticlesProps {
   currentSlug?: string;
 }
 
 function OtherArticles({ currentSlug }: OtherArticlesProps) {
-  // Filter out the current article and get the first 2
-  const otherArticles = allArticles
-    .filter((article) => article.slug !== currentSlug)
-    .slice(0, 2);
+  const [otherArticles, setOtherArticles] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchOtherArticles = async () => {
+      try {
+        const articles = await blogService.getLatestBlogs(2, currentSlug);
+        setOtherArticles(articles);
+      } catch (error) {
+        console.error("Error fetching other articles:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchOtherArticles();
+  }, [currentSlug]);
+
+  const formatDate = (date: any) => {
+    if (!date) return "";
+    const dateObj = date.toDate ? date.toDate() : new Date(date);
+    return dateObj.toLocaleDateString("en-US", {
+      month: "long",
+      year: "numeric",
+    });
+  };
+
+  if (loading) {
+    return (
+      <section className="mt-16">
+        <Separator className="mb-8" />
+        <h2 className="text-2xl md:text-3xl font-bold text-primary mb-6">Other Articles</h2>
+        <div className="flex justify-center py-8">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+        </div>
+      </section>
+    );
+  }
+
+  if (otherArticles.length === 0) {
+    return null;
+  }
 
   return (
     <section className="mt-16">
@@ -85,7 +79,7 @@ function OtherArticles({ currentSlug }: OtherArticlesProps) {
                       <Badge variant="outline" className="text-xs">
                         {article.category}
                       </Badge>
-                      <span className="text-xs text-muted-foreground">{article.read_time}</span>
+                      <span className="text-xs text-muted-foreground">{article.readTime}</span>
                     </div>
 
                     <h3 className="font-bold text-lg text-primary transition-colors duration-200 line-clamp-2 mb-2">
@@ -97,7 +91,7 @@ function OtherArticles({ currentSlug }: OtherArticlesProps) {
 
                   <div className="flex items-center gap-1.5">
                     <Calendar className="size-3 text-muted-foreground" />
-                    <span className="text-xs text-muted-foreground">{article.created_at}</span>
+                    <span className="text-xs text-muted-foreground">{formatDate(article.createdAt)}</span>
                   </div>
                 </div>
               </div>

@@ -1,24 +1,68 @@
 import { Calendar, Share2 } from "lucide-react";
 import { motion } from "motion/react";
 import type { SVGProps } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import OtherArticles from "../components/blog/other-articles";
 import MaxWidthWrapper from "../components/max-width-wrapper";
 import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
 import { Separator } from "../components/ui/separator";
-
-const post = {
-  category: "Education",
-  read_time: "9 min read",
-  title: "VizSchool: A Virtual School Offering Quality Online Education",
-  created_at: "January 2026",
-  excerpt:
-    "Launched January 2026, VizSchool by HFSE provides flexible, values-based online education for Primary and Secondary students worldwide.",
-  image: "/assets/blogs/blog-1.png",
-};
-
+import { blogService } from "../services/firebase-config";
+import type { BlogPost } from "../services/firebase-config";
 
 function Blog() {
+  const { slug } = useParams<{ slug: string }>();
+  const [post, setPost] = useState<BlogPost | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchBlog = async () => {
+      if (!slug) return;
+
+      try {
+        const fetchedPost = await blogService.getBlogBySlug(slug);
+        setPost(fetchedPost);
+      } catch (err) {
+        console.error("Error fetching blog:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBlog();
+  }, [slug]);
+
+  const formatDate = (date: any) => {
+    if (!date) return "";
+    const dateObj = date.toDate ? date.toDate() : new Date(date);
+    return dateObj.toLocaleDateString("en-US", {
+      month: "long",
+      year: "numeric",
+    });
+  };
+
+  if (loading) {
+    return (
+      <MaxWidthWrapper className="max-w-4xl py-16 md:py-20 lg:py-24">
+        <div className="flex items-center justify-center min-h-[400px]">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+        </div>
+      </MaxWidthWrapper>
+    );
+  }
+
+  if (!post) {
+    return (
+      <MaxWidthWrapper className="max-w-4xl py-16 md:py-20 lg:py-24">
+        <div className="text-center">
+          <h1 className="text-4xl font-bold text-primary mb-4">Blog Post Not Found</h1>
+          <p className="text-muted-foreground">The blog post you are looking for does not exist.</p>
+        </div>
+      </MaxWidthWrapper>
+    );
+  }
+
   return (
     <MaxWidthWrapper className="max-w-4xl py-16 md:py-20 lg:py-24">
       <header className="pb-6">
@@ -47,11 +91,11 @@ function Blog() {
             viewport={{ once: true }}
             className="flex items-center gap-3 flex-wrap">
             <Badge variant="outline">{post.category}</Badge>
-            <span className="font-medium text-xs text-muted-foreground">{post.read_time}</span>
+            <span className="font-medium text-xs text-muted-foreground">{post.readTime}</span>
             <span className="font-medium text-xs text-muted-foreground">•</span>
             <div className="flex items-center gap-1.5">
               <Calendar className="size-3 text-muted-foreground" />
-              <span className="text-xs text-muted-foreground">{post.created_at}</span>
+              <span className="text-xs text-muted-foreground">{formatDate(post.createdAt)}</span>
             </div>
           </motion.div>
 
@@ -100,161 +144,12 @@ function Blog() {
         <img src={post.image} alt={post.title} className="w-full rounded-xl shadow-lg object-cover aspect-video" />
       </motion.div>
 
-      <article className="prose prose-neutral prose-lg max-w-none leading-relaxed">
-        <p className="text-base md:text-lg font-medium text-neutral-700 first-letter:text-5xl first-letter:font-bold first-letter:text-primary first-letter:mr-2 first-letter:float-left">
-          {post.excerpt}
-        </p>
+      <article 
+        className="prose prose-neutral prose-lg max-w-none leading-relaxed"
+        dangerouslySetInnerHTML={{ __html: post.content }}
+      />
 
-        <p className="mt-8">
-          Launched in January 2026, VizSchool offers a virtual schooling experience tailored for globally mobile and
-          modern families. As the online arm of HFSE International School, this flexible learning platform extends
-          HFSE's mission of being an International School for All by providing accessible, technology-enabled, and
-          values-based education beyond physical borders.
-        </p>
-
-        <h2 className="text-2xl font-bold text-primary mt-10 mb-4">What Is VizSchool?</h2>
-
-        <p>
-          VizSchool provides continuity in education, allowing learners to thrive academically, emotionally, and
-          socially while remaining connected to their family and global community.
-        </p>
-
-        <p>
-          Guided by the HAPI values—Happy, Humble, Assertive, Appreciative, Productive, Proactive, Independent, and
-          Interdependent—the programme shapes not only how students learn but also who they become.
-        </p>
-
-        <h2 className="text-2xl font-bold text-primary mt-10 mb-4">The Story Behind VizSchool</h2>
-
-        <p>
-          The concept for this virtual school emerged in 2020 during the global pandemic, after HFSE successfully
-          transitioned to online learning. This period inspired the "Balikbahay Series", rooted in the belief that
-          education begins at home and that family plays a key role in a child's learning journey.
-        </p>
-
-        <blockquote className="border-l-4 border-primary pl-4 italic font-semibold text-lg text-neutral-800 my-8">
-          "Education begins at home and family plays a key role in a child's learning journey."
-        </blockquote>
-
-        <p>
-          From this philosophy, VizSchool was created to support migrant and globally mobile families who seek
-          high-quality, flexible, and accessible education grounded in strong values.
-        </p>
-
-        <h2 className="text-2xl font-bold text-primary mt-10 mb-4">Vision and Mission of VizSchool</h2>
-
-        <div className="bg-primary/5 border border-primary/20 p-6 rounded-xl my-6">
-          <h3 className="text-primary font-semibold mb-2">Vision</h3>
-          <p className="text-sm text-neutral-700 mb-4">
-            To create a borderless world of learning that empowers global citizens to grow in knowledge, values, and
-            purpose. VizSchool aims to shape learners ready to lead, connect, and make a positive impact across
-            cultures.
-          </p>
-          <h3 className="text-primary font-semibold mb-2">Mission</h3>
-          <p className="text-sm text-neutral-700">
-            To nurture lifelong learners with empathy, integrity, and innovation, guiding them to build meaningful
-            legacies and contribute positively to their communities.
-          </p>
-        </div>
-
-        <h2 className="text-2xl font-bold text-primary mt-10 mb-4">
-          Flexible Learning Pathways to Suit Every Family
-        </h2>
-
-        <p>VizSchool offers three programmes tailored to different learning styles and family lifestyles:</p>
-
-        <div className="space-y-6 my-8">
-          <div className="bg-white border border-neutral-200 p-5 rounded-lg shadow-sm">
-            <h3 className="text-xl font-bold text-primary mb-2">1. VizIndie Flexible Virtual Schooling</h3>
-            <p className="text-sm text-neutral-700">
-              Ideal for self-motivated learners who prefer a self-paced approach. Students enjoy flexibility in
-              schedule, access to curated modules, and optional academic mentoring with quarterly check-ins.
-            </p>
-          </div>
-
-          <div className="bg-white border border-neutral-200 p-5 rounded-lg shadow-sm">
-            <h3 className="text-xl font-bold text-primary mb-2">2. VizFlex Blended Support Programme</h3>
-            <p className="text-sm text-neutral-700">
-              Combines independent learning with live teacher sessions. Learners follow weekly plans, receive feedback,
-              and participate in co-curricular activities. This option suits families seeking structure with
-              flexibility.
-            </p>
-          </div>
-
-          <div className="bg-white border border-neutral-200 p-5 rounded-lg shadow-sm">
-            <h3 className="text-xl font-bold text-primary mb-2">3. VizLive Full-Time Virtual Classroom</h3>
-            <p className="text-sm text-neutral-700">
-              Provides daily live online classes led by certified HFSE teachers. Students engage in collaborative
-              projects, real-time discussions, and continuous assessments aligned with Singapore standards.
-            </p>
-          </div>
-        </div>
-
-        <h2 className="text-2xl font-bold text-primary mt-10 mb-4">Academic Coverage and Curriculum Design</h2>
-
-        <p>
-          This online programme offers a complete pathway from Primary One to Secondary Four, aligned with the
-          Singapore curriculum and international benchmarks.
-        </p>
-
-        <p>
-          Core subjects include English, Mathematics, Science, and Mother Tongue Filipino, while enrichment courses
-          support holistic development with Computer Basics, Financial Literacy, ICT and Robotics, and Technology
-          Innovation.
-        </p>
-
-        <p>
-          Learning combines short, focused live sessions with self-paced tasks. The platform uses an inquiry-based,
-          student-centred approach supported by multimedia tools.
-        </p>
-
-        <h2 className="text-2xl font-bold text-primary mt-10 mb-4">Assessment and Learning Progression</h2>
-
-        <p>
-          VizSchool uses a balanced assessment framework combining formative assessments with quarterly evaluations.
-          Performance-based tasks let students apply learning in real-world contexts, while digital portfolios track
-          progress and reflections each term.
-        </p>
-
-        <p>
-          Successful completion allows learners to continue in the online school, transition to on-site HFSE schooling,
-          or move to other international institutions with similar standards.
-        </p>
-
-        <h2 className="text-2xl font-bold text-primary mt-10 mb-4">A Connected Global School Experience</h2>
-
-        <p>
-          Beyond academics, learners enjoy access to HFSE's wider school community. Students may participate in campus
-          activities, school celebrations, clubs, competitions, and hybrid learning experiences throughout the year.
-        </p>
-
-        <p>This ensures that even in a virtual setting, students remain socially engaged and connected.</p>
-
-        <h2 className="text-2xl font-bold text-primary mt-10 mb-4">Begin Your Learning Journey with VizSchool</h2>
-
-        <p>
-          VizSchool offers families a trusted virtual education pathway blending academic rigour, flexibility, and
-          values-based learning. Designed for today's global families, it provides continuity, connection, and
-          confidence in every child's learning journey.
-        </p>
-
-        <div className="bg-primary/5 border border-primary/20 p-6 rounded-xl my-8 text-center">
-          <p className="text-base font-semibold text-primary mb-2">Ready to Get Started?</p>
-          <p className="text-sm text-neutral-700 mb-4">
-            Launching in January 2026, the school invites families worldwide to experience an online programme that
-            puts purpose, people, and progress at the heart of education.
-          </p>
-          <p className="text-sm text-neutral-700 font-medium">
-            Contact our Admissions Team at{" "}
-            <a href="tel:+6582000062" className="text-primary hover:underline">
-              +65 8200 0062
-            </a>{" "}
-            to learn more about VizSchool and its programmes.
-          </p>
-        </div>
-      </article>
-
-      <OtherArticles />
+      <OtherArticles currentSlug={post.slug} />
     </MaxWidthWrapper>
   );
 }

@@ -25,6 +25,7 @@ function AdminDashboard() {
   const [category, setCategory] = useState("Education");
   const [readTime, setReadTime] = useState("5 min read");
   const [metaDescription, setMetaDescription] = useState("");
+  const [excerpt, setExcerpt] = useState("");           // ← NEW: dedicated excerpt field
   const [content, setContent] = useState("");
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState("");
@@ -56,6 +57,7 @@ function AdminDashboard() {
     setCategory("Education");
     setReadTime("5 min read");
     setMetaDescription("");
+    setExcerpt("");
     setContent("");
     setImageFile(null);
     setImagePreview("");
@@ -69,11 +71,29 @@ function AdminDashboard() {
     setSlug(blog.slug);
     setCategory(blog.category);
     setReadTime(blog.readTime);
-    setMetaDescription(blog.seo?.metaDescription || blog.excerpt);
+    setMetaDescription(blog.seo?.metaDescription || blog.excerpt || "");
+    setExcerpt(blog.excerpt || "");                    // ← load from excerpt
     setPublished(blog.published ?? true);
-    
-    // Strip HTML tags from content for editing
-    const textContent = blog.content.replace(/<[^>]*>/g, '\n').replace(/\n\n+/g, '\n\n');
+
+    // Convert HTML back to readable format
+    let textContent = blog.content;
+
+    textContent = textContent.replace(/<blockquote[^>]*>(.*?)<\/blockquote>/g, '> $1');
+    textContent = textContent.replace(/<h3[^>]*>(.*?)<\/h3>/g, '### $1');
+    textContent = textContent.replace(/<h2[^>]*>(.*?)<\/h2>/g, '## $1');
+    textContent = textContent.replace(/<strong>(.*?)<\/strong>/g, '**$1**');
+    textContent = textContent.replace(/<b>(.*?)<\/b>/g, '**$1**');
+    textContent = textContent.replace(/<em>(.*?)<\/em>/g, '*$1*');
+    textContent = textContent.replace(/<i>(.*?)<\/i>/g, '*$1*');
+    textContent = textContent.replace(/<\/p>\s*<p[^>]*>/g, '\n\n');
+    textContent = textContent.replace(/<[^>]*>/g, '');
+    textContent = textContent.replace(/&quot;/g, '"');
+    textContent = textContent.replace(/&amp;/g, '&');
+    textContent = textContent.replace(/&lt;/g, '<');
+    textContent = textContent.replace(/&gt;/g, '>');
+    textContent = textContent.replace(/\n{3,}/g, '\n\n');
+    textContent = textContent.trim();
+
     setContent(textContent);
     setImagePreview(blog.image);
   };
@@ -83,9 +103,7 @@ function AdminDashboard() {
     if (file) {
       setImageFile(file);
       const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagePreview(reader.result as string);
-      };
+      reader.onloadend = () => setImagePreview(reader.result as string);
       reader.readAsDataURL(file);
     }
   };
@@ -96,16 +114,35 @@ function AdminDashboard() {
 
   const formatContent = (text: string) => {
     let html = text;
-    html = html.replace(/^## (.+)$/gm, '<h2 class="text-2xl font-bold text-primary mt-10 mb-4">$1</h2>');
-    html = html.split('\n\n').map(para => {
-      if (para.startsWith('<h2')) return para;
-      if (para.trim() === '') return '';
-      return `<p class="mt-4">${para.trim()}</p>`;
-    }).filter(p => p).join('\n\n');
+
+    html = html.replace(/^> (.+)$/gm, '<blockquote class="!border-l-4 !border-primary !pl-4 !italic !font-semibold !text-lg !text-neutral-800 !my-8">$1</blockquote>');
+    html = html.replace(/^## (.+)$/gm, '<h2 class="!text-2xl !font-bold !text-primary !mt-10 !mb-4">$1</h2>');
+    html = html.replace(/^### (.+)$/gm, '<h3 class="!text-xl !font-bold !text-primary !mb-2">$1</h3>');
+    html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    html = html.replace(/\*(.+?)\*/g, '<em>$1</em>');
+
+    const paragraphs = html.split('\n\n');
+    html = paragraphs
+      .map((para, index) => {
+        para = para.trim();
+        if (!para) return '';
+
+        if (para.startsWith('<h2') || para.startsWith('<h3') || para.startsWith('<blockquote')) {
+          return para;
+        }
+
+        if (index === 0) {
+          return `<p class="!text-base md:!text-lg !font-medium !text-neutral-700 first-letter:!text-5xl first-letter:!font-bold first-letter:!text-primary first-letter:!mr-2 first-letter:!float-left">${para}</p>`;
+        }
+
+        return `<p class="!mt-4">${para}</p>`;
+      })
+      .filter(Boolean)
+      .join('\n\n');
+
     return html;
   };
 
-  // Toggle publish/draft - auto-saves
   const handleTogglePublish = async () => {
     if (!selectedBlog?.id) {
       alert("Please save the blog first before changing publish status");
@@ -115,21 +152,11 @@ function AdminDashboard() {
     setToggleLoading(true);
     try {
       const newPublishedState = !published;
-      
-      await blogService.updateBlog(selectedBlog.id, {
-        published: newPublishedState
-      });
+      await blogService.updateBlog(selectedBlog.id, { published: newPublishedState });
 
       setPublished(newPublishedState);
-      
-      // Update the blog in the list
-      setBlogs(blogs.map(b => 
-        b.id === selectedBlog.id ? { ...b, published: newPublishedState } : b
-      ));
-      
-      // Update selectedBlog
+      setBlogs(blogs.map(b => b.id === selectedBlog.id ? { ...b, published: newPublishedState } : b));
       setSelectedBlog({ ...selectedBlog, published: newPublishedState });
-
     } catch (error) {
       console.error(error);
       alert("Error updating publish status");
@@ -138,7 +165,6 @@ function AdminDashboard() {
     }
   };
 
-  // Manual save for content changes
   const handleSave = async () => {
     setLoading(true);
     try {
@@ -155,7 +181,7 @@ function AdminDashboard() {
         category,
         readTime,
         title,
-        excerpt: metaDescription,
+        excerpt,                        // ← now saving from dedicated excerpt field
         slug: slug || generateSlug(title),
         image: imageUrl,
         imagePublicId,
@@ -172,25 +198,16 @@ function AdminDashboard() {
       if (selectedBlog?.id) {
         await blogService.updateBlog(selectedBlog.id, blogData);
         alert("Blog updated successfully!");
-        
-        // Update the blog in the list without clearing the form
         const updatedBlog = { ...selectedBlog, ...blogData };
         setBlogs(blogs.map(b => b.id === selectedBlog.id ? updatedBlog : b));
         setSelectedBlog(updatedBlog);
-        
       } else {
-        // Create new blog
         const docId = await blogService.createBlog(blogData);
         alert("Blog created successfully!");
-        
-        // Refresh blogs list and select the newly created one
         await fetchBlogs();
         setIsCreating(false);
-        
-        // Find the newly created blog by its ID
         const allBlogs = await blogService.getAllBlogs(false);
         const newlyCreatedBlog = allBlogs.find(b => b.id === docId);
-        
         if (newlyCreatedBlog) {
           setSelectedBlog(newlyCreatedBlog);
           setPublished(newlyCreatedBlog.published ?? false);
@@ -198,7 +215,6 @@ function AdminDashboard() {
       }
 
       setImageFile(null);
-      
     } catch (error) {
       console.error(error);
       alert("Error saving blog");
@@ -245,18 +261,19 @@ function AdminDashboard() {
                 onClick={() => handleSelectBlog(blog)}
                 className={`p-3 rounded cursor-pointer border ${
                   selectedBlog?.id === blog.id ? 'bg-blue-50 border-blue-500' : 'hover:bg-gray-50'
-                }`}>
+                }`}
+              >
                 <div className="flex items-start gap-2">
                   <FileText className="h-4 w-4 mt-1 flex-shrink-0" />
                   <div className="flex-1 min-w-0">
                     <p className="font-medium text-sm truncate">{blog.title}</p>
                     <div className="flex items-center gap-2 mt-1">
                       <p className="text-xs text-gray-500">{blog.category}</p>
-                      <span className={`text-xs px-1.5 py-0.5 rounded ${
-                        blog.published 
-                          ? 'bg-green-100 text-green-700' 
-                          : 'bg-gray-100 text-gray-700'
-                      }`}>
+                      <span
+                        className={`text-xs px-1.5 py-0.5 rounded ${
+                          blog.published ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700'
+                        }`}
+                      >
                         {blog.published ? '●' : '○'}
                       </span>
                     </div>
@@ -271,54 +288,55 @@ function AdminDashboard() {
       {/* Main Content */}
       <div className="flex-1 overflow-y-auto p-8">
         <div className="max-w-4xl mx-auto bg-white rounded-lg shadow p-6">
-          {/* Header with Status */}
+          {/* Header */}
           <div className="mb-6">
             <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-bold">
-                {isCreating ? "Create New Blog" : selectedBlog ? "Edit Blog" : "Select a blog or create new"}
-              </h2>
-              
-              {/* Status Badge - Only show for existing blogs */}
+              <div>
+                <h2 className="text-2xl font-bold">Blog Editor</h2>
+                <p className="text-sm text-gray-500 mt-1">
+                  {isCreating ? "Create a new blog post" : selectedBlog ? "Edit existing blog post" : "Select or create a blog"}
+                </p>
+              </div>
+
               {selectedBlog?.id && (
-                <div className={`px-4 py-2 rounded-full font-semibold ${
-                  published 
-                    ? 'bg-green-100 text-green-700' 
-                    : 'bg-gray-200 text-gray-700'
-                }`}>
+                <div
+                  className={`px-4 py-2 rounded-full font-semibold ${
+                    published ? 'bg-green-100 text-green-700' : 'bg-gray-200 text-gray-700'
+                  }`}
+                >
                   {published ? '● Published' : '○ Draft'}
                 </div>
               )}
             </div>
-            
-            {/* New blog notice */}
+
             {isCreating && (
               <p className="text-sm text-gray-500 mt-2">
-                Save your blog first to enable publish/draft toggle
+                Save once to enable publish toggle and delete options
               </p>
             )}
           </div>
 
           {(isCreating || selectedBlog) && (
             <div className="space-y-6">
-              {/* Image Upload */}
+              {/* Featured Image */}
               <div>
                 <Label>Featured Image</Label>
                 <Input type="file" accept="image/*" onChange={handleImageChange} className="mt-2" />
                 {imagePreview && (
-                  <img src={imagePreview} alt="Preview" className="mt-2 h-40 object-cover rounded" />
+                  <img src={imagePreview} alt="Preview" className="mt-3 h-48 w-full object-cover rounded-lg shadow-sm" />
                 )}
               </div>
 
               {/* SEO Title */}
               <div>
-                <Label>SEO Title</Label>
+                <Label>Blog Title (SEO Title)</Label>
                 <Input
                   value={title}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  onChange={(e) => {
                     setTitle(e.target.value);
                     setSlug(generateSlug(e.target.value));
                   }}
-                  placeholder="Your blog title"
+                  placeholder="Enter blog title here"
                   className="mt-2"
                 />
               </div>
@@ -326,70 +344,81 @@ function AdminDashboard() {
               {/* Slug */}
               <div>
                 <Label>Slug (URL)</Label>
-                <Input 
-                  value={slug} 
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSlug(e.target.value)} 
-                  className="mt-2" 
-                />
-                <p className="text-xs text-gray-500 mt-1">URL: /blogs/{slug}</p>
+                <Input value={slug} onChange={(e) => setSlug(e.target.value)} className="mt-2" />
+                <p className="text-xs text-gray-500 mt-1">URL: /blogs/{slug || '[auto-generated]'}</p>
               </div>
 
               {/* Category & Read Time */}
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <Label>Category</Label>
-                  <Input 
-                    value={category} 
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setCategory(e.target.value)} 
-                    className="mt-2"
-                    placeholder="Education" 
-                  />
+                  <Input value={category} onChange={(e) => setCategory(e.target.value)} className="mt-2" placeholder="Education" />
                 </div>
                 <div>
                   <Label>Read Time</Label>
-                  <Input 
-                    value={readTime} 
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setReadTime(e.target.value)} 
-                    className="mt-2"
-                    placeholder="5 min read" 
-                  />
+                  <Input value={readTime} onChange={(e) => setReadTime(e.target.value)} className="mt-2" placeholder="5 min read" />
                 </div>
               </div>
 
               {/* Meta Description */}
               <div>
-                <Label>Meta Description</Label>
-                <Textarea 
-                  value={metaDescription} 
-                  onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setMetaDescription(e.target.value)} 
-                  rows={3} 
+                <Label>Meta Description (for search engines)</Label>
+                <Textarea
+                  value={metaDescription}
+                  onChange={(e) => setMetaDescription(e.target.value)}
+                  rows={3}
                   className="mt-2"
-                  placeholder="Short description for SEO (1-2 sentences)"
+                  placeholder="Short SEO summary (150–160 characters recommended)"
                 />
+              </div>
+
+              {/* Excerpt / Intro Paragraph */}
+              <div>
+                <Label>Excerpt / Lead Paragraph</Label>
+                <Textarea
+                  value={excerpt}
+                  onChange={(e) => setExcerpt(e.target.value)}
+                  rows={4}
+                  className="mt-2"
+                  placeholder="This appears as the highlighted intro text on blog list and social previews. First paragraph of the blog usually works best here."
+                />
+                <p className="text-xs text-gray-500 mt-1">
+                  Tip: This is usually the first paragraph — keep it engaging (1–3 sentences).
+                </p>
               </div>
 
               {/* Content Editor */}
               <div>
-                <Label>Content</Label>
+                <Label>Full Blog Content</Label>
                 <Textarea
-                  name="content"
                   value={content}
-                  onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setContent(e.target.value)}
-                  rows={20}
-                  className="mt-2"
-                  placeholder="Write your blog content here...
+                  onChange={(e) => setContent(e.target.value)}
+                  rows={22}
+                  className="mt-2 font-mono text-sm"
+                  placeholder={`Start writing here...
 
-Use ## for headings
-Double line breaks for paragraphs"
+First paragraph will get automatic drop-cap styling (big colorful first letter).
+
+Use markdown for formatting:
+
+## Main Heading
+### Sub Heading
+
+**Bold text**   *italic text*
+
+> This is a blockquote
+
+Double line breaks create new paragraphs.
+
+Paste full HTML if you want exact control (headings, cards, etc.).`}
                 />
                 <p className="text-xs text-gray-500 mt-1">
-                  Tips: Use ## for headings, double line breaks for paragraphs
+                  First paragraph → automatic drop cap • ## → big heading • ### → subheading • ** → bold • &gt; → quote • Double Enter → new paragraph
                 </p>
               </div>
 
               {/* Actions */}
-              <div className="flex items-center gap-4 pt-4 border-t">
-                {/* Toggle (only for existing blogs) */}
+              <div className="flex items-center gap-4 pt-6 border-t">
                 {selectedBlog?.id && (
                   <div className="flex items-center gap-3">
                     <button
@@ -397,15 +426,13 @@ Double line breaks for paragraphs"
                       onClick={handleTogglePublish}
                       disabled={toggleLoading}
                       className={`
-                        relative inline-flex h-6 w-11 items-center rounded-full
-                        transition-colors disabled:opacity-50
-                        ${published ? 'bg-green-500' : 'bg-gray-300'}
+                        relative inline-flex h-6 w-11 items-center rounded-full transition-colors
+                        ${published ? 'bg-green-500' : 'bg-gray-300'} disabled:opacity-50
                       `}
                     >
                       <span
                         className={`
-                          inline-block h-4 w-4 transform rounded-full bg-white 
-                          transition-transform
+                          inline-block h-4 w-4 transform rounded-full bg-white transition-transform
                           ${published ? 'translate-x-6' : 'translate-x-1'}
                         `}
                       />
@@ -418,15 +445,13 @@ Double line breaks for paragraphs"
 
                 <div className="flex-1" />
 
-                {/* Save button (only for new blogs or when editing) */}
                 {(isCreating || selectedBlog?.id) && (
                   <Button onClick={handleSave} disabled={loading}>
                     <FileText className="mr-2 h-4 w-4" />
                     {loading ? "Saving..." : isCreating ? "Create Blog" : "Save Changes"}
                   </Button>
                 )}
-                
-                {/* Delete (only for existing blogs) */}
+
                 {selectedBlog?.id && (
                   <Button onClick={handleDelete} variant="destructive">
                     <Trash2 className="mr-2 h-4 w-4" />

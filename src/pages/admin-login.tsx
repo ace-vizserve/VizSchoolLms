@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
+import { authService } from "../services/supabase-config";
 
 function AdminLogin() {
   const [email, setEmail] = useState("");
@@ -12,7 +12,6 @@ function AdminLogin() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const auth = getAuth();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,10 +19,10 @@ function AdminLogin() {
     setError("");
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      await authService.signIn(email, password);
       navigate("/admin/dashboard");
     } catch (err: any) {
-      setError("Invalid email or password");
+      setError(err.message || "Invalid email or password");
       console.error(err);
     } finally {
       setLoading(false);

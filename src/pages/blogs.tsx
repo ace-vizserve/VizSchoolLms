@@ -8,8 +8,8 @@ import { buttonVariants } from "../components/ui/button";
 import { Card, CardContent, CardHeader } from "../components/ui/card";
 import { BASE_URL } from "../constants";
 import SEO from "../seo";
-import { blogService } from "../services/firebase-config";
-import type { BlogPost } from "../services/firebase-config";
+import { blogService } from "../services/supabase-config";
+import type { BlogPost } from "../services/supabase-config";
 
 function Blogs() {
   const [blogs, setBlogs] = useState<BlogPost[]>([]);
@@ -19,7 +19,7 @@ function Blogs() {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        console.log("🔍 Fetching blogs from Firebase...");
+        console.log("🔍 Fetching blogs from Supabase...");
         const fetchedBlogs = await blogService.getAllBlogs(true); // Only published
         console.log("✅ Fetched blogs:", fetchedBlogs);
         console.log("📊 Number of blogs:", fetchedBlogs.length);
@@ -121,7 +121,9 @@ function Blogs() {
                     <h3 className="mt-4 text-[1.35rem] font-semibold tracking-tight line-clamp-2">
                       {blog.title}
                     </h3>
-                    <p className="mt-2 text-muted-foreground line-clamp-2">{blog.excerpt}</p>
+                    <p className="mt-2 text-muted-foreground line-clamp-2">
+                      {blog.seo?.metaDescription || blog.excerpt}
+                    </p>
 
                     <Link
                       to={`/blogs/${blog.slug}`}

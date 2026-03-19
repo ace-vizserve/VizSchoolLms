@@ -1,10 +1,10 @@
-import { Calendar } from "lucide-react";
+
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Badge } from "../ui/badge";
 import { Separator } from "../ui/separator";
-import { blogService } from "../../services/firebase-config";
-import type { BlogPost } from "../../services/firebase-config";
+import { blogService } from "../../services/supabase-config";
+import type { BlogPost } from "../../services/supabase-config";
 
 interface OtherArticlesProps {
   currentSlug?: string;
@@ -29,14 +29,7 @@ function OtherArticles({ currentSlug }: OtherArticlesProps) {
     fetchOtherArticles();
   }, [currentSlug]);
 
-  const formatDate = (date: any) => {
-    if (!date) return "";
-    const dateObj = date.toDate ? date.toDate() : new Date(date);
-    return dateObj.toLocaleDateString("en-US", {
-      month: "long",
-      year: "numeric",
-    });
-  };
+ 
 
   if (loading) {
     return (
@@ -86,12 +79,13 @@ function OtherArticles({ currentSlug }: OtherArticlesProps) {
                       {article.title}
                     </h3>
 
-                    <p className="text-sm text-neutral-600 line-clamp-2 mb-3">{article.excerpt}</p>
+                    <p className="text-sm text-neutral-600 line-clamp-2 mb-3">
+  {article.seo?.metaDescription || article.excerpt}
+</p>
                   </div>
 
                   <div className="flex items-center gap-1.5">
-                    <Calendar className="size-3 text-muted-foreground" />
-                    <span className="text-xs text-muted-foreground">{formatDate(article.createdAt)}</span>
+                   
                   </div>
                 </div>
               </div>

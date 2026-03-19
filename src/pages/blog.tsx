@@ -8,8 +8,8 @@ import MaxWidthWrapper from "../components/max-width-wrapper";
 import { Badge } from "../components/ui/badge";
 import { Button } from "../components/ui/button";
 import { Separator } from "../components/ui/separator";
-import { blogService } from "../services/firebase-config";
-import type { BlogPost } from "../services/firebase-config";
+import { blogService } from "../services/supabase-config";
+import type { BlogPost } from "../services/supabase-config";
 import { useSEO } from "../hooks/useSEO";
 
 function Blog() {
@@ -44,9 +44,9 @@ function Blog() {
     fetchBlog();
   }, [slug]);
 
-  const formatDate = (date: any) => {
-    if (!date) return "";
-    const dateObj = date.toDate ? date.toDate() : new Date(date);
+  const formatDate = (dateString: string) => {
+    if (!dateString) return "";
+    const dateObj = new Date(dateString);
     return dateObj.toLocaleDateString("en-US", {
       month: "long",
       year: "numeric",
@@ -86,21 +86,9 @@ function Blog() {
     // Platform-specific sharing
     const shareUrls = {
       twitter: `https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`,
-      facebook: `https://www.facebook.com/dialog/share?app_id=YOUR_APP_ID&display=popup&href=${encodeURIComponent(url)}&redirect_uri=${encodeURIComponent(url)}`,
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
       linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
     };
-
-    // For Facebook, use the simpler sharer if no app_id
-    if (platform === "facebook") {
-      // Facebook's sharer.php is deprecated but still works for basic sharing
-      // The link WILL appear, but you need to make sure your page has proper Open Graph tags
-      window.open(
-        `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-        "_blank",
-        "width=600,height=400"
-      );
-      return;
-    }
 
     window.open(shareUrls[platform], "_blank", "width=600,height=400");
   };
@@ -190,7 +178,7 @@ function Blog() {
               scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
             }}
             viewport={{ once: true }}
-            className="flex flex-wrap items-center"
+            className="flex flex-wrap items-center gap-1"
           >
             <Button
               size="sm"
@@ -207,8 +195,9 @@ function Blog() {
               size="icon"
               onClick={() => handleShare("twitter")}
               title="Share on Twitter"
+              className="h-9 w-9"
             >
-              <Twitter />
+              <Twitter className="h-5 w-5" />
             </Button>
 
             <Button 
@@ -216,8 +205,9 @@ function Blog() {
               size="icon"
               onClick={() => handleShare("facebook")}
               title="Share on Facebook"
+              className="h-9 w-9"
             >
-              <Facebook />
+              <Facebook className="h-5 w-5" />
             </Button>
 
             <Button 
@@ -225,8 +215,9 @@ function Blog() {
               size="icon"
               onClick={() => handleShare("linkedin")}
               title="Share on LinkedIn"
+              className="h-9 w-9"
             >
-              <LinkedIn />
+              <LinkedIn className="h-5 w-5" />
             </Button>
           </motion.div>
         </div>

@@ -1,14 +1,12 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getAuth, signOut } from "firebase/auth";
 import { Plus, LogOut, FileText, Trash2 } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { Textarea } from "../components/ui/textarea";
-import { blogService } from "../services/firebase-config";
-import type { BlogPost } from "../services/firebase-config";
-import { cloudinaryService } from "../services/cloudinary-service";
+import { blogService, storageService, authService } from "../services/supabase-config";
+import type { BlogPost } from "../services/supabase-config";
 
 function AdminDashboard() {
   const [blogs, setBlogs] = useState<BlogPost[]>([]);
@@ -17,7 +15,6 @@ function AdminDashboard() {
   const [loading, setLoading] = useState(false);
   const [toggleLoading, setToggleLoading] = useState(false);
   const navigate = useNavigate();
-  const auth = getAuth();
 
   // Form state
   const [title, setTitle] = useState("");
@@ -25,19 +22,22 @@ function AdminDashboard() {
   const [category, setCategory] = useState("Education");
   const [readTime, setReadTime] = useState("5 min read");
   const [metaDescription, setMetaDescription] = useState("");
-  const [excerpt, setExcerpt] = useState("");           // ← NEW: dedicated excerpt field
   const [content, setContent] = useState("");
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState("");
   const [published, setPublished] = useState(false);
 
   useEffect(() => {
-    if (!auth.currentUser) {
-      navigate("/admin/login");
-      return;
-    }
+    checkAuth();
     fetchBlogs();
   }, []);
+
+  const checkAuth = async () => {
+    const user = await authService.getCurrentUser();
+    if (!user) {
+      navigate("/admin/login");
+    }
+  };
 
   const fetchBlogs = async () => {
     const allBlogs = await blogService.getAllBlogs(false);
@@ -45,7 +45,7 @@ function AdminDashboard() {
   };
 
   const handleLogout = async () => {
-    await signOut(auth);
+    await authService.signOut();
     navigate("/admin/login");
   };
 
@@ -57,7 +57,6 @@ function AdminDashboard() {
     setCategory("Education");
     setReadTime("5 min read");
     setMetaDescription("");
-    setExcerpt("");
     setContent("");
     setImageFile(null);
     setImagePreview("");
@@ -71,8 +70,7 @@ function AdminDashboard() {
     setSlug(blog.slug);
     setCategory(blog.category);
     setReadTime(blog.readTime);
-    setMetaDescription(blog.seo?.metaDescription || blog.excerpt || "");
-    setExcerpt(blog.excerpt || "");                    // ← load from excerpt
+    setMetaDescription(blog.seo?.metaDescription || "");
     setPublished(blog.published ?? true);
 
     // Convert HTML back to readable format
@@ -172,16 +170,20 @@ function AdminDashboard() {
       let imagePublicId = selectedBlog?.imagePublicId;
 
       if (imageFile) {
-        const uploadResult = await cloudinaryService.uploadImageClient(imageFile);
-        imageUrl = uploadResult.secureUrl;
+        const uploadResult = await storageService.uploadImage(imageFile);
+        imageUrl = uploadResult.url;
         imagePublicId = uploadResult.publicId;
       }
+
+      // Generate excerpt from first 150 characters of content
+      const plainText = content.replace(/[#*>]/g, '').trim();
+      const excerpt = plainText.substring(0, 150) + (plainText.length > 150 ? '...' : '');
 
       const blogData = {
         category,
         readTime,
         title,
-        excerpt,                        // ← now saving from dedicated excerpt field
+        excerpt,
         slug: slug || generateSlug(title),
         image: imageUrl,
         imagePublicId,
@@ -198,11 +200,11 @@ function AdminDashboard() {
       if (selectedBlog?.id) {
         await blogService.updateBlog(selectedBlog.id, blogData);
         alert("Blog updated successfully!");
-        const updatedBlog = { ...selectedBlog, ...blogData };
+        const updatedBlog = { ...selectedBlog, ...blogData, updatedAt: new Date().toISOString() };
         setBlogs(blogs.map(b => b.id === selectedBlog.id ? updatedBlog : b));
         setSelectedBlog(updatedBlog);
       } else {
-        const docId = await blogService.createBlog(blogData);
+        const docId = await blogService.createBlog(blogData as any);
         alert("Blog created successfully!");
         await fetchBlogs();
         setIsCreating(false);
@@ -370,21 +372,6 @@ function AdminDashboard() {
                   className="mt-2"
                   placeholder="Short SEO summary (150–160 characters recommended)"
                 />
-              </div>
-
-              {/* Excerpt / Intro Paragraph */}
-              <div>
-                <Label>Excerpt / Lead Paragraph</Label>
-                <Textarea
-                  value={excerpt}
-                  onChange={(e) => setExcerpt(e.target.value)}
-                  rows={4}
-                  className="mt-2"
-                  placeholder="This appears as the highlighted intro text on blog list and social previews. First paragraph of the blog usually works best here."
-                />
-                <p className="text-xs text-gray-500 mt-1">
-                  Tip: This is usually the first paragraph — keep it engaging (1–3 sentences).
-                </p>
               </div>
 
               {/* Content Editor */}

@@ -1,5 +1,13 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/" }],
+  "rewrites": [
+    { "source": "/blogs/:slug", "destination": "/api/blog-og?slug=:slug" },
+    { "source": "/(.*)", "destination": "/" }
+  ],
+  "functions": {
+    "api/blog-og.ts": {
+      "includeFiles": "dist/index.html"
+    }
+  },
   "headers": [
     {
       "source": "/(.*).css",

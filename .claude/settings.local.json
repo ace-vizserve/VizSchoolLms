@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(npm install *)",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "PowerShell(npx tsc --noEmit -p tsconfig.app.json 2>&1)"
     ]
   }
 }

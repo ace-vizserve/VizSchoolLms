@@ -1,12 +1,148 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Plus, LogOut, FileText, Trash2 } from "lucide-react";
+import { Plus, LogOut, FileText, Trash2, Copy, Check } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { Textarea } from "../components/ui/textarea";
 import { blogService, storageService, authService } from "../services/supabase-config";
 import type { BlogPost } from "../services/supabase-config";
+
+// Reference template for styled blog content. Paste this (with your content)
+// into ChatGPT/Claude to get formatted HTML, then paste the result into the
+// "Full Blog Content" field below.
+const BLOG_HTML_TEMPLATE = `<h2 class="text-3xl md:text-4xl font-bold text-primary mt-10 mb-8 text-start">
+Flexible Path to Academic Excellence, Learning That Fits Your Family's Lifestyle
+</h2>
+
+<p class="text-base md:text-lg font-medium text-neutral-700 first-letter:text-5xl first-letter:font-bold first-letter:text-primary first-letter:mr-2 first-letter:float-left">
+A flexible, values-based online schooling approach designed for modern families seeking continuity, balance, and academic excellence within a supportive and well-structured learning environment.
+</p>
+
+
+<p class="mt-6">
+Family life today comes in many forms. Work commitments, travel schedules, training routines, and personal circumstances all shape how learning fits into daily life. Online schooling offers families the flexibility to align education with their routines while maintaining clear academic goals and high standards.
+</p>
+
+<p>
+Some families relocate for work or live across different regions. Others support children pursuing sports, creative arts, or specialised interests. Many families simply value a home-centred rhythm that allows learning to take place alongside meaningful family time. In each situation, online schooling provides continuity, structure, and adaptability while keeping learning purposeful and consistent.
+</p>
+
+<p>
+Launching in January 2026, VizSchool offers a thoughtful approach to online schooling that blends academic rigour with family-friendly flexibility. As the virtual learning arm of HFSE International School, VizSchool extends the mission of being an International School for All, making quality education accessible to families wherever they are.
+</p>
+
+<h2 class="text-2xl font-bold text-primary mt-10 mb-4">Why Families Choose Online Schooling</h2>
+
+<p>
+Families choose online schooling because it supports continuity, personalisation, and a balanced learning pace. At VizSchool, the experience is intentionally designed. Lessons are planned by certified educators, interaction is purposeful, and student wellbeing is woven into daily schedules. Learning adapts to the learner while maintaining clear expectations and progression.
+</p>
+
+<p>
+Online schooling at VizSchool supports families who value flexibility alongside structure, including:
+</p>
+
+<div class="space-y-3 my-6 ml-6">
+  <p>Globally mobile families seeking continuity across locations</p>
+  <p>Households with travel or variable work schedules</p>
+  <p>Learners engaged in sports, performing arts, or specialised training</p>
+  <p>Students who benefit from tailored pacing and focused learning blocks</p>
+  <p>Parents who prioritise a family-centred, values-driven education</p>
+</div>
+
+<p>
+Rather than fitting learning into a fixed routine, online schooling at VizSchool aligns with each family's rhythm while keeping academic outcomes clear and consistent.
+</p>
+
+<h2 class="text-2xl font-bold text-primary mt-10 mb-4">What Makes VizSchool's Online Schooling Distinct</h2>
+
+<p>
+Online schooling at VizSchool balances flexibility with care, guidance, and connection. Learners remain academically supported while developing independence and confidence. The HAPI values of Happy, Humble, Assertive, Appreciative, Productive, Proactive, Independent, and Interdependent guide both learning experiences and character development.
+</p>
+
+<p>
+Certified HFSE educators deliver carefully sequenced lessons through a technology-enabled platform that encourages inquiry, discussion, and meaningful practice. Screen time is purposeful and interactive, ensuring that online schooling supports engagement, reflection, and deep understanding.
+</p>
+
+<h2 class="text-2xl font-bold text-primary mt-10 mb-4">Flexible Learning Pathways for Diverse Family Needs</h2>
+
+<p>
+VizSchool offers three pathways within a unified online schooling framework, allowing families to select the level of structure that suits them best.
+</p>
+
+<div class="space-y-6 my-8">
+  <div class="bg-white border border-neutral-200 p-5 rounded-lg shadow-sm">
+    <h3 class="text-xl font-bold text-primary mb-2">VizIndie Flexible Learning</h3>
+    <p class="text-sm text-neutral-700">
+      Designed for self-motivated learners who progress at their own pace through curated modules and assessments. Optional mentoring and quarterly check-ins provide guidance while preserving schedule flexibility.
+    </p>
+  </div>
+
+  <div class="bg-white border border-neutral-200 p-5 rounded-lg shadow-sm">
+    <h3 class="text-xl font-bold text-primary mb-2">VizFlex Blended Support</h3>
+    <p class="text-sm text-neutral-700">
+      A balanced pathway combining weekly learning plans, live teacher sessions, and regular feedback. This option suits families who value both independence and a steady learning rhythm.
+    </p>
+  </div>
+
+  <div class="bg-white border border-neutral-200 p-5 rounded-lg shadow-sm">
+    <h3 class="text-xl font-bold text-primary mb-2">VizLive Full-Time Virtual Classroom</h3>
+    <p class="text-sm text-neutral-700">
+      A structured pathway with daily live lessons, collaborative activities, and ongoing assessments led by experienced HFSE teachers.
+    </p>
+  </div>
+</div>
+
+<p>
+Each pathway aligns with international benchmarks, ensuring online schooling remains structured, credible, and outcomes-focused.
+</p>
+
+<h2 class="text-2xl font-bold text-primary mt-10 mb-4">Academic Coverage and Curriculum</h2>
+
+<p>
+VizSchool delivers a complete academic journey from Primary One to Secondary Four, aligned with the Singapore curriculum and international standards. Core subjects include English, Mathematics, Science, and Mother Tongue Filipino. Enrichment subjects broaden learning through Computer Basics, ICT and Robotics, Financial Literacy, and Technology Innovation.
+</p>
+
+<p>
+Short, focused live sessions are paired with self-paced tasks. This balance supports effective online schooling by allowing learners to manage time well while maintaining depth and clarity of understanding.
+</p>
+
+<h2 class="text-2xl font-bold text-primary mt-10 mb-4">Assessment That Reflects Meaningful Progress</h2>
+
+<p>
+Assessment at VizSchool is designed to show growth over time. Formative checks, quarterly evaluations, and performance-based tasks help students apply learning with confidence. Digital portfolios capture work samples, reflections, and milestones each term.
+</p>
+
+<p>
+This approach makes online schooling transparent for families and supports smooth transitions within VizSchool, to on-site HFSE schooling, or to other international institutions.
+</p>
+
+<h2 class="text-2xl font-bold text-primary mt-10 mb-4">Community, Connection, and Belonging</h2>
+
+<p>
+Online schooling at VizSchool includes intentional opportunities for connection. Learners may participate in campus celebrations, clubs, competitions, and hybrid learning experiences throughout the year. These shared moments strengthen relationships, communication skills, and confidence within a wider school community.
+</p>
+
+<h2 class="text-2xl font-bold text-primary mt-10 mb-4">Designed for Real Life, Built for the Future</h2>
+
+<p>
+Education should support how families live and grow. Online schooling at VizSchool honours this by combining flexibility with structure and values with vision. Families gain the freedom to move, plan, and spend time together while maintaining academic consistency and purpose.
+</p>
+
+<p>
+Launching in January 2026, VizSchool invites families worldwide to experience online schooling that adapts to real life and prepares learners for a future without borders.
+</p>
+
+<div class="bg-primary/5 border border-primary/20 p-6 rounded-xl my-8 text-center">
+  <p class="text-base font-semibold text-primary mb-2">Ready to Get Started?</p>
+  <p class="text-sm text-neutral-700 mb-4">
+    For admissions and enquiries, contact our Admissions Team at
+  </p>
+  <p class="text-sm text-neutral-700 font-medium">
+    <a href="tel:+6582000062" class="text-primary hover:underline">+65 8200 0062</a>
+    to learn more about VizSchool and its online schooling programmes.
+  </p>
+</div>`;
 
 function AdminDashboard() {
   const [blogs, setBlogs] = useState<BlogPost[]>([]);
@@ -26,6 +162,18 @@ function AdminDashboard() {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState("");
   const [published, setPublished] = useState(false);
+  const [templateOpen, setTemplateOpen] = useState(false);
+  const [templateCopied, setTemplateCopied] = useState(false);
+
+  const handleCopyTemplate = async () => {
+    try {
+      await navigator.clipboard.writeText(BLOG_HTML_TEMPLATE);
+      setTemplateCopied(true);
+      setTimeout(() => setTemplateCopied(false), 2000);
+    } catch {
+      // Clipboard API unavailable (e.g. non-HTTPS) — leave the template visible to copy manually
+    }
+  };
 
   useEffect(() => {
     checkAuth();
@@ -402,6 +550,42 @@ Paste full HTML if you want exact control (headings, cards, etc.).`}
                 <p className="text-xs text-gray-500 mt-1">
                   First paragraph → automatic drop cap • ## → big heading • ### → subheading • ** → bold • &gt; → quote • Double Enter → new paragraph
                 </p>
+              </div>
+
+              {/* HTML Template Reference */}
+              <div className="rounded-lg border border-neutral-200 bg-neutral-50">
+                <div className="flex items-center justify-between gap-3 p-4">
+                  <button
+                    type="button"
+                    onClick={() => setTemplateOpen((v) => !v)}
+                    className="text-sm font-semibold text-gray-700 hover:text-gray-900"
+                  >
+                    {templateOpen ? "▾" : "▸"} Styled HTML Template (for ChatGPT / Claude)
+                  </button>
+                  <Button type="button" variant="outline" size="sm" onClick={handleCopyTemplate}>
+                    {templateCopied ? (
+                      <>
+                        <Check className="mr-2 h-4 w-4" /> Copied
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="mr-2 h-4 w-4" /> Copy template
+                      </>
+                    )}
+                  </Button>
+                </div>
+
+                {templateOpen && (
+                  <div className="border-t border-neutral-200 p-4">
+                    <p className="mb-3 text-xs text-gray-600">
+                      Copy this template, paste it into ChatGPT or Claude, then paste your plain blog text under it and ask it
+                      to format your content using the same template. Paste the result into the “Full Blog Content” field above.
+                    </p>
+                    <pre className="max-h-80 overflow-auto rounded-md bg-neutral-900 p-4 text-xs leading-relaxed text-neutral-100 whitespace-pre-wrap">
+                      {BLOG_HTML_TEMPLATE}
+                    </pre>
+                  </div>
+                )}
               </div>
 
               {/* Actions */}

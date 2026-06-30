@@ -3,7 +3,13 @@
     "allow": [
       "Bash(npm install *)",
       "Bash(npm run *)",
-      "PowerShell(npx tsc --noEmit -p tsconfig.app.json 2>&1)"
+      "PowerShell(npx tsc --noEmit -p tsconfig.app.json 2>&1)",
+      "PowerShell(npm install @tiptap/react @tiptap/starter-kit @tiptap/extension-link @tiptap/extension-image @tiptap/extension-underline 2>&1)",
+      "PowerShell(node -e \"console.log\\(require\\('./node_modules/@tiptap/react/package.json'\\).version, require\\('./node_modules/@tiptap/starter-kit/package.json'\\).version\\)\")",
+      "PowerShell(npm install -D @tailwindcss/typography 2>&1)",
+      "PowerShell(npm run build 2>&1)",
+      "Bash(echo \"exit:$?\")",
+      "PowerShell(npx tsc --noEmit -p tsconfig.app.json 2>&1 | Select-Object -First 20; Write-Output \"--- exit:$LASTEXITCODE ---\")"
     ]
   }
 }

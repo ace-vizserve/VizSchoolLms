@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Plus, LogOut, FileText, Trash2, Copy, Check } from "lucide-react";
+import { Plus, LogOut, FileText, Trash2, Copy, Check, Eye, X } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { Textarea } from "../components/ui/textarea";
+import { Badge } from "../components/ui/badge";
+import { RichTextEditor } from "../components/admin/rich-text-editor";
 import { blogService, storageService, authService } from "../services/supabase-config";
 import type { BlogPost } from "../services/supabase-config";
 
@@ -164,6 +166,7 @@ function AdminDashboard() {
   const [published, setPublished] = useState(false);
   const [templateOpen, setTemplateOpen] = useState(false);
   const [templateCopied, setTemplateCopied] = useState(false);
+  const [previewOpen, setPreviewOpen] = useState(false);
 
   const handleCopyTemplate = async () => {
     try {
@@ -179,6 +182,16 @@ function AdminDashboard() {
     checkAuth();
     fetchBlogs();
   }, []);
+
+  // Lock background scroll while the preview modal is open
+  useEffect(() => {
+    if (!previewOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [previewOpen]);
 
   const checkAuth = async () => {
     const user = await authService.getCurrentUser();
@@ -525,30 +538,11 @@ function AdminDashboard() {
               {/* Content Editor */}
               <div>
                 <Label>Full Blog Content</Label>
-                <Textarea
-                  value={content}
-                  onChange={(e) => setContent(e.target.value)}
-                  rows={22}
-                  className="mt-2 font-mono text-sm"
-                  placeholder={`Start writing here...
-
-First paragraph will get automatic drop-cap styling (big colorful first letter).
-
-Use markdown for formatting:
-
-## Main Heading
-### Sub Heading
-
-**Bold text**   *italic text*
-
-> This is a blockquote
-
-Double line breaks create new paragraphs.
-
-Paste full HTML if you want exact control (headings, cards, etc.).`}
-                />
+                <div className="mt-2">
+                  <RichTextEditor value={content} onChange={setContent} />
+                </div>
                 <p className="text-xs text-gray-500 mt-1">
-                  First paragraph → automatic drop cap • ## → big heading • ### → subheading • ** → bold • &gt; → quote • Double Enter → new paragraph
+                  Write visually with the toolbar, use <strong>Insert block</strong> for the drop-cap intro / cards / CTA, or switch to <strong>Code</strong> to paste raw HTML.
                 </p>
               </div>
 
@@ -616,6 +610,11 @@ Paste full HTML if you want exact control (headings, cards, etc.).`}
 
                 <div className="flex-1" />
 
+                <Button onClick={() => setPreviewOpen(true)} variant="outline">
+                  <Eye className="mr-2 h-4 w-4" />
+                  Preview
+                </Button>
+
                 {(isCreating || selectedBlog?.id) && (
                   <Button onClick={handleSave} disabled={loading}>
                     <FileText className="mr-2 h-4 w-4" />
@@ -634,6 +633,82 @@ Paste full HTML if you want exact control (headings, cards, etc.).`}
           )}
         </div>
       </div>
+
+      {/* Public Preview */}
+      {previewOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-start justify-center bg-black/80 p-4 sm:p-8"
+          onClick={() => setPreviewOpen(false)}
+        >
+          <div
+            className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-xl bg-white shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="sticky top-0 z-10 flex items-center justify-between rounded-t-xl border-b bg-white/95 px-6 py-3 backdrop-blur">
+              <span className="text-sm font-semibold text-gray-600">
+                Public preview {published ? "" : "(draft — not yet live)"}
+              </span>
+              <button
+                type="button"
+                onClick={() => setPreviewOpen(false)}
+                className="rounded-full p-1.5 text-gray-500 hover:bg-gray-100"
+                title="Close preview"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            <div className="px-6 py-8 sm:px-10">
+              <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-3 text-primary">
+                {title || "Untitled blog post"}
+              </h1>
+
+              <div className="mb-6 flex items-center gap-3 flex-wrap">
+                {category && <Badge variant="outline">{category}</Badge>}
+                {readTime && (
+                  <span className="font-medium text-xs text-muted-foreground">{readTime}</span>
+                )}
+              </div>
+
+              {(imagePreview || selectedBlog?.image) && (
+                <img
+                  src={imagePreview || selectedBlog?.image}
+                  alt={title}
+                  className="mb-8 w-full rounded-xl shadow-lg object-cover aspect-video"
+                />
+              )}
+
+              {content.trim() ? (
+                <article
+                  className="
+                  prose
+                  prose-lg
+                  max-w-none
+                  prose-headings:text-primary
+                  prose-h2:text-2xl
+                  prose-h2:font-bold
+                  prose-h2:mt-10
+                  prose-h2:mb-4
+                  prose-h3:text-xl
+                  prose-h3:font-bold
+                  prose-blockquote:border-primary
+                  prose-blockquote:italic
+                  prose-blockquote:font-semibold
+                  prose-blockquote:text-neutral-800
+                  prose-p:text-neutral-700
+                  prose-p:leading-relaxed
+                  prose-img:rounded-xl
+                  prose-img:shadow-md
+                  "
+                  dangerouslySetInnerHTML={{ __html: content }}
+                />
+              ) : (
+                <p className="text-gray-400 italic">No content yet — start writing to see the preview.</p>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

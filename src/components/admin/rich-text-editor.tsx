@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { Image } from "@tiptap/extension-image";
-import { Extension, Node } from "@tiptap/core";
+import { Extension, Node, mergeAttributes } from "@tiptap/core";
 import {
   Bold,
   Italic,
@@ -27,9 +27,9 @@ import { Button } from "../ui/button";
 
 const DROP_CAP_INTRO = `<p class="text-base md:text-lg font-medium text-neutral-700 first-letter:text-5xl first-letter:font-bold first-letter:text-primary first-letter:mr-2 first-letter:float-left">Write your opening paragraph here. The first letter becomes a large coloured drop cap.</p>`;
 
-const PATHWAY_CARD = `<div data-branded-block class="bg-white border border-neutral-200 p-5 rounded-lg shadow-sm my-4"><h3 class="text-xl font-bold text-primary mb-2">Card Title</h3><p class="text-sm text-neutral-700">Card description goes here. Edit this block in Code view to change the text.</p></div>`;
+const PATHWAY_CARD = `<div data-card><h3>Card Title</h3><p>Card description goes here — click to edit.</p></div>`;
 
-const CTA_BOX = `<div data-branded-block class="bg-primary/5 border border-primary/20 p-6 rounded-xl my-8 text-center"><p class="text-base font-semibold text-primary mb-2">Ready to Get Started?</p><p class="text-sm text-neutral-700 mb-4">For admissions and enquiries, contact our Admissions Team at</p><p class="text-sm text-neutral-700 font-medium"><a href="tel:+6582000062" class="text-primary hover:underline">+65 8200 0062</a> to learn more.</p></div>`;
+const CTA_BOX = `<div data-cta><p><strong>Ready to Get Started?</strong></p><p>For admissions and enquiries, contact our Admissions Team at</p><p><a href="tel:+6582000062">+65 8200 0062</a> to learn more.</p></div>`;
 
 /* ------------------------------------------------------------------ */
 /* Custom extensions                                                   */
@@ -85,6 +85,48 @@ const BrandedBlock = Node.create({
     }
     el.setAttribute("data-branded-block", "");
     return el;
+  },
+});
+
+// Editable pathway card — its inner heading + text can be edited inline.
+const Card = Node.create({
+  name: "card",
+  group: "block",
+  content: "block+",
+  defining: true,
+  parseHTML() {
+    return [{ tag: "div[data-card]", priority: 260 }];
+  },
+  renderHTML({ HTMLAttributes }) {
+    return [
+      "div",
+      mergeAttributes(HTMLAttributes, {
+        "data-card": "",
+        class: "bg-white border border-neutral-200 p-5 rounded-lg shadow-sm my-6",
+      }),
+      0,
+    ];
+  },
+});
+
+// Editable call-to-action box — its inner text can be edited inline.
+const CtaBox = Node.create({
+  name: "ctaBox",
+  group: "block",
+  content: "block+",
+  defining: true,
+  parseHTML() {
+    return [{ tag: "div[data-cta]", priority: 260 }];
+  },
+  renderHTML({ HTMLAttributes }) {
+    return [
+      "div",
+      mergeAttributes(HTMLAttributes, {
+        "data-cta": "",
+        class: "bg-primary/5 border border-primary/20 p-6 rounded-xl my-8 text-center",
+      }),
+      0,
+    ];
   },
 });
 
@@ -146,6 +188,8 @@ export function RichTextEditor({ value, onChange }: RichTextEditorProps) {
       }),
       Image,
       KeepClass,
+      Card,
+      CtaBox,
       BrandedBlock,
     ],
     content: value,

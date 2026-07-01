@@ -44,7 +44,7 @@ function AdminLogin() {
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="admin@vizschool.com"
+                placeholder="Your Email"
                 required
               />
             </div>

@@ -68,19 +68,20 @@ const Hero: React.FC = () => {
               <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
                 <div className="fade-in-heading flex items-center gap-3 mb-6">
                   <span className="h-px w-8 bg-white" />
-                  <span className="font-serif text-xs tracking-[0.3em] uppercase text-white">VizSchool Notice</span>
+                  <span className="font-serif text-xs tracking-[0.3em] uppercase text-white">VizSchool</span>
                 </div>
 
                 <h1 className="fade-in-heading font-mono uppercase text-5xl sm:text-6xl lg:text-7xl leading-[0.95] tracking-tight text-white mb-3">
-                  On Rebound
+                  Launching Soon
                 </h1>
+
                 <p className="fade-in-heading font-serif text-2xl sm:text-3xl lg:text-4xl text-[#ff8930] mb-6">
-                  Launching soon.
+                  A smarter way to learn is almost here.
                 </p>
 
                 <p className="fade-in-buttons text-base sm:text-lg text-white max-w-md mb-8 leading-relaxed">
-                  We are revamping our website to serve you better. Drop your email to get notified the second we
-                  launch.
+                  We're putting the finishing touches on VizSchool. <br />
+                  Join our launch list and be the first to know when we go live.
                 </p>
 
                 <ul className="fade-in-buttons flex flex-col gap-2.5 mb-10 text-left">

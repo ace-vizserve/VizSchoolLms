@@ -7,3 +7,10 @@ export const enrollNowSchema = z.object({
 });
 
 export type EnrollNowSchema = z.infer<typeof enrollNowSchema>;
+
+export const waitlistSchema = z.object({
+  name: z.string().min(1, "Please enter your name"),
+  email: z.string().email("Please enter a valid email"),
+});
+
+export type WaitlistSchema = z.infer<typeof waitlistSchema>;

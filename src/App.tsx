@@ -44,10 +44,11 @@ function ScrollToTop() {
 function Layout() {
   const location = useLocation();
   const isAdminPage = location.pathname.startsWith('/admin');
+  const isHeroPage = location.pathname === '/';
 
   return (
     <main className="flex flex-col min-h-dvh">
-      {!isAdminPage && <NavBar />}
+      {!isAdminPage && !isHeroPage && <NavBar />}
       <ScrollToTop />
       <div className="flex-1">
         <Routes>
@@ -94,7 +95,7 @@ function Layout() {
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>
-      {!isAdminPage && <Footer />}
+      {!isAdminPage && !isHeroPage && <Footer />}
     </main>
   );
 }

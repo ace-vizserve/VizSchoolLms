@@ -21,8 +21,8 @@ function AdminLogin() {
     try {
       await authService.signIn(email, password);
       navigate("/admin/dashboard");
-    } catch (err: any) {
-      setError(err.message || "Invalid email or password");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Invalid email or password");
       console.error(err);
     } finally {
       setLoading(false);

@@ -10,7 +10,10 @@
       "PowerShell(npm run build 2>&1)",
       "Bash(echo \"exit:$?\")",
       "PowerShell(npx tsc --noEmit -p tsconfig.app.json 2>&1 | Select-Object -First 20; Write-Output \"--- exit:$LASTEXITCODE ---\")",
-      "PowerShell($conns = Get-NetTCPConnection -LocalPort 5173 -ErrorAction SilentlyContinue; if \\($conns\\) { $conns | Select-Object -ExpandProperty OwningProcess -Unique | ForEach-Object { Stop-Process -Id $_ -Force; \"Killed PID $_\" } } else { \"No process found on port 5173\" })"
+      "PowerShell($conns = Get-NetTCPConnection -LocalPort 5173 -ErrorAction SilentlyContinue; if \\($conns\\) { $conns | Select-Object -ExpandProperty OwningProcess -Unique | ForEach-Object { Stop-Process -Id $_ -Force; \"Killed PID $_\" } } else { \"No process found on port 5173\" })",
+      "PowerShell(npx eslint src/pages/admin-login.tsx src/pages/Hero.tsx 2>&1)",
+      "PowerShell(npx eslint src/pages/admin-login.tsx 2>&1 | Select-Object -First 10; Write-Output \"--- eslint exit:$LASTEXITCODE ---\"; npx tsc --noEmit -p tsconfig.app.json 2>&1 | Select-Object -First 5; Write-Output \"--- tsc exit:$LASTEXITCODE ---\")",
+      "PowerShell(npx tsc --noEmit -p tsconfig.app.json 2>&1 | Select-Object -First 20; Write-Output \"--- tsc exit:$LASTEXITCODE ---\")"
     ]
   }
 }

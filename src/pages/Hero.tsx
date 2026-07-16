@@ -1,5 +1,4 @@
 import React from "react";
-import NotifyForm from "../components/coming-soon/notify-form";
 import AnimatedMeshGradient from "../components/ui/animated-mesh-gradient";
 import { BASE_URL } from "../constants";
 import SEO from "../seo";
@@ -108,7 +107,26 @@ const Hero: React.FC = () => {
                   </div>
                   <img src="/assets/logo.png" alt="VidSchool Logo" className="w-20 h-20 object-contain" />
                 </div>
-                <NotifyForm />
+               <iframe
+    src="https://links.hfse.edu.sg/widget/form/63BCVdHW90VYP90zt1tF"
+    style={{ width: "100%", height: "350px", border: "none", borderRadius: "8px" }}
+    id="inline-63BCVdHW90VYP90zt1tF" 
+    data-layout="{'id':'INLINE'}"
+    data-trigger-type="alwaysShow"
+    data-trigger-value=""
+    data-activation-type="alwaysActivated"
+    data-activation-value=""
+    data-deactivation-type="neverDeactivate"
+    data-deactivation-value=""
+    data-form-name="Vizschool form waiting list"
+    data-height="undefined"
+    data-layout-iframe-id="inline-63BCVdHW90VYP90zt1tF"
+    data-form-id="63BCVdHW90VYP90zt1tF"
+    title="Vizschool form waiting list"
+    
+        >
+</iframe>
+<script src="https://links.hfse.edu.sg/js/form_embed.js"></script>
                 <p className="text-[#161b33]/50 text-xs mt-4">No spam — just one email the moment we launch.</p>
               </div>
             </div>

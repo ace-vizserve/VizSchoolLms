@@ -5,6 +5,7 @@ import NavBar from "./components/Navbar";
 
 // Regular Pages
 import Hero from "./pages/Hero";
+import MapPage from "./pages/map";
 
 // Static Blog Posts
 
@@ -28,14 +29,18 @@ function Layout() {
   const location = useLocation();
   const isAdminPage = location.pathname.startsWith("/admin");
   const isHeroPage = location.pathname === "/";
+  const isMapPage = location.pathname === "/map";
+  const hideChrome = isAdminPage || isHeroPage || isMapPage;
 
   return (
     <main className="flex flex-col min-h-dvh">
-      {!isAdminPage && !isHeroPage && <NavBar />}
+      {!hideChrome && <NavBar />}
       <ScrollToTop />
       <div className="flex-1">
         <Routes>
           <Route path="/" element={<Hero />} />
+
+          <Route path="/map" element={<MapPage />} />
 
           {/* <Route path="/about-vizschool-virtual-learning" element={<About />} />
 
@@ -78,7 +83,7 @@ function Layout() {
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </div>
-      {!isAdminPage && !isHeroPage && <Footer />}
+      {!hideChrome && <Footer />}
     </main>
   );
 }

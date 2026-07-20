@@ -13,7 +13,14 @@
       "PowerShell($conns = Get-NetTCPConnection -LocalPort 5173 -ErrorAction SilentlyContinue; if \\($conns\\) { $conns | Select-Object -ExpandProperty OwningProcess -Unique | ForEach-Object { Stop-Process -Id $_ -Force; \"Killed PID $_\" } } else { \"No process found on port 5173\" })",
       "PowerShell(npx eslint src/pages/admin-login.tsx src/pages/Hero.tsx 2>&1)",
       "PowerShell(npx eslint src/pages/admin-login.tsx 2>&1 | Select-Object -First 10; Write-Output \"--- eslint exit:$LASTEXITCODE ---\"; npx tsc --noEmit -p tsconfig.app.json 2>&1 | Select-Object -First 5; Write-Output \"--- tsc exit:$LASTEXITCODE ---\")",
-      "PowerShell(npx tsc --noEmit -p tsconfig.app.json 2>&1 | Select-Object -First 20; Write-Output \"--- tsc exit:$LASTEXITCODE ---\")"
+      "PowerShell(npx tsc --noEmit -p tsconfig.app.json 2>&1 | Select-Object -First 20; Write-Output \"--- tsc exit:$LASTEXITCODE ---\")",
+      "Bash(python -c \"import PIL; print\\('PIL', PIL.__version__\\)\")",
+      "Bash(grep -iE \"^\\(sharp|canvas|pngjs|jimp\\)$\")",
+      "Bash(node \"C:/Users/Kurt/AppData/Local/Temp/claude/c--Coding-Vizschool/4a7781b2-0b0b-40da-a542-c229bf6118d7/scratchpad/png.mjs\" public/assets/ys-map/MAP.png 120 54)",
+      "Bash(node \"C:/Users/Kurt/AppData/Local/Temp/claude/c--Coding-Vizschool/4a7781b2-0b0b-40da-a542-c229bf6118d7/scratchpad/crop.mjs\" 1380 1700 440 700 4)",
+      "Bash(node -e ' *)",
+      "Bash(sed -i \"s#public/assets/ys-map/MAP.png#public/assets/ys-map/World Map.png#\" \"C:/Users/Kurt/AppData/Local/Temp/claude/c--Coding-Vizschool/4a7781b2-0b0b-40da-a542-c229bf6118d7/scratchpad/crop.mjs\")",
+      "Bash(node \"C:/Users/Kurt/AppData/Local/Temp/claude/c--Coding-Vizschool/4a7781b2-0b0b-40da-a542-c229bf6118d7/scratchpad/crop.mjs\" 1560 1680 470 600 3)"
     ]
   }
 }

@@ -75,7 +75,7 @@ const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
-    const mq = window.matchMedia('(max-width: 639px)')
+    const mq = window.matchMedia('(max-width: 767px)')
     const sync = () => setIsMobile(mq.matches)
     sync()
     mq.addEventListener('change', sync)
@@ -85,10 +85,26 @@ const useIsMobile = () => {
   return isMobile
 }
 
-const LogoGrid = ({ logos, cols }: { logos: string[]; cols: number }) => (
+const LOGO_W = 124
+
+// `fluid` lets the tiles shrink to share the available width — needed in the
+// bottom sheet, where three fixed 124px tiles would overflow a phone screen.
+const LogoGrid = ({
+  logos,
+  cols,
+  fluid = false,
+}: {
+  logos: string[]
+  cols: number
+  fluid?: boolean
+}) => (
   <div
     className="grid justify-items-center gap-x-4 gap-y-3"
-    style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}
+    style={{
+      gridTemplateColumns: `repeat(${cols}, ${
+        fluid ? 'minmax(0, 1fr)' : `${LOGO_W}px`
+      })`,
+    }}
   >
     {logos.map((logo) => (
       <img
@@ -96,7 +112,8 @@ const LogoGrid = ({ logos, cols }: { logos: string[]; cols: number }) => (
         src={`/assets/ys-map/LogosYS/${logo}`}
         alt={logo.replace(/\.png$/, '')}
         title={logo.replace(/\.png$/, '')}
-        className="h-12 w-[92px] object-contain"
+        className="h-16 w-full object-contain"
+        style={{ maxWidth: LOGO_W }}
       />
     ))}
   </div>
@@ -216,7 +233,7 @@ const map = () => {
             <p className="mb-3 text-center text-[11px] font-semibold tracking-wide text-neutral-500 uppercase">
               {activePin?.label}
             </p>
-            <LogoGrid logos={activePin?.logos ?? []} cols={3} />
+            <LogoGrid logos={activePin?.logos ?? []} cols={3} fluid />
           </div>
         </>
       )}

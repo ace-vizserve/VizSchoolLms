@@ -37,7 +37,7 @@ const PINS = [
     left: 83.7,
     top: 47.98,
     anchorX: 80,
-    cols: 3,
+    cols: 4,
     logos: [
       'Ateneo.png',
       'UST Angelicum College.png',
@@ -45,6 +45,8 @@ const PINS = [
       'Domuschola International School.png',
       'San Carlos School of Cebu.png',
       'St. Edward School.png',
+      'CSA Makati.png',
+      'AFGBMTS.png',
     ],
   },
   {

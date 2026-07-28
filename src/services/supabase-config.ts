@@ -226,6 +226,18 @@ export const storageService = {
   },
 };
 
+// The Supabase project is shared across apps, so a valid account is not enough:
+// the user's raw_user_meta_data (exposed as user_metadata by the client) must
+// grant access to this app.
+export const APP_ACCESS = 'vizschool';
+
+export const hasAppAccess = (user: any): boolean => {
+  const access = user?.user_metadata?.app_access;
+  return Array.isArray(access) ? access.includes(APP_ACCESS) : access === APP_ACCESS;
+};
+
+const NO_ACCESS_MESSAGE = 'This account does not have access to VizSchool.';
+
 // Auth helpers
 export const authService = {
   // Sign in
@@ -237,6 +249,12 @@ export const authService = {
 
     if (error) {
       throw error;
+    }
+
+    // Don't leave a usable session behind for accounts from other apps.
+    if (!hasAppAccess(data.user)) {
+      await supabase.auth.signOut();
+      throw new Error(NO_ACCESS_MESSAGE);
     }
 
     return data;
@@ -253,6 +271,19 @@ export const authService = {
   // Get current user
   async getCurrentUser() {
     const { data: { user } } = await supabase.auth.getUser();
+    return user;
+  },
+
+  // Get current user only if they're allowed into this app; otherwise clear the
+  // session so protected pages can just redirect to login.
+  async getAuthorizedUser() {
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (user && !hasAppAccess(user)) {
+      await supabase.auth.signOut();
+      return null;
+    }
+
     return user;
   },
 

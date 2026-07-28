@@ -194,7 +194,8 @@ function AdminDashboard() {
   }, [previewOpen]);
 
   const checkAuth = async () => {
-    const user = await authService.getCurrentUser();
+    // Rejects both signed-out users and accounts without app_access: "vizschool"
+    const user = await authService.getAuthorizedUser();
     if (!user) {
       navigate("/admin/login");
     }

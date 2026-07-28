@@ -20,7 +20,8 @@
       "Bash(node \"C:/Users/Kurt/AppData/Local/Temp/claude/c--Coding-Vizschool/4a7781b2-0b0b-40da-a542-c229bf6118d7/scratchpad/crop.mjs\" 1380 1700 440 700 4)",
       "Bash(node -e ' *)",
       "Bash(sed -i \"s#public/assets/ys-map/MAP.png#public/assets/ys-map/World Map.png#\" \"C:/Users/Kurt/AppData/Local/Temp/claude/c--Coding-Vizschool/4a7781b2-0b0b-40da-a542-c229bf6118d7/scratchpad/crop.mjs\")",
-      "Bash(node \"C:/Users/Kurt/AppData/Local/Temp/claude/c--Coding-Vizschool/4a7781b2-0b0b-40da-a542-c229bf6118d7/scratchpad/crop.mjs\" 1560 1680 470 600 3)"
+      "Bash(node \"C:/Users/Kurt/AppData/Local/Temp/claude/c--Coding-Vizschool/4a7781b2-0b0b-40da-a542-c229bf6118d7/scratchpad/crop.mjs\" 1560 1680 470 600 3)",
+      "Bash(npx tsc *)"
     ]
   }
 }
